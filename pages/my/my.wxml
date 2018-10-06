@@ -1,0 +1,75 @@
+  <view class="my">
+    <view class="my-in">
+      <view class="myinfo" bindtap="onToLogin">
+        <view class="nickname-box">
+          <view class="nickname">{{userInfo.nickName || '微信用户'}}</view>
+          <view class="phone" wx:if="{{userInfo.parent_phone}}" bind:tap="onAddPhone">{{userInfo.parent_phone}}<label class="iconfont icon-brush_fill"></label></view>
+          <view class="phone-tips" wx:else>绑定手机号，享受更优质服务</view>
+        </view>
+        <!-- catch:tap="openPage('profile')" -->
+        <view class="avatar"><image class="img" src="{{userInfo.avatarUrl || '../../images/head.jpg'}}"></image></view>
+      </view>
+      <view class="info-list">
+          <!-- bind:tap="openPage('child')" -->
+        <view class="info mix-flex-y-center">
+          <view class="info-name">
+            <view class="p"><text class="iconfont icon-mine"></text>我的孩子</view>
+          </view>
+          <view>
+            <view class="iconfont icon-enter"></view>
+          </view>
+        </view>
+        <!-- bind:tap="openPage('my-course-list')" -->
+        <view class="info mix-flex-y-center">
+          <view class="info-name">
+            <view class="p"><text class="iconfont icon-document"></text>我的课程</view>
+          </view>
+          <view>
+            <view class="iconfont icon-enter"></view>
+          </view>
+        </view>
+
+        <!-- bind:tap="openPage('growth-record')" -->
+        <view class="info mix-flex-y-center">
+          <view class="info-name">
+            <view class="p"><text class="iconfont icon-dynamic"></text>成长记录</view>
+          </view>
+          <view>
+            <view class="iconfont icon-enter"></view>
+          </view>
+        </view>
+
+        <!-- bind:tap="openPage('my-order')" -->
+        <view class="info mix-flex-y-center">
+          <view class="info-name">
+            <view class="p"><text class="iconfont icon-activity"></text>我的订单</view>
+          </view>
+          <view>
+            <view class="iconfont icon-enter"></view>
+          </view>
+        </view>
+
+        <!--  bind:tap="openPage('concat')" -->
+        <view class="info mix-flex-y-center">
+          <view class="info-name">
+            <view class="p"><text class="iconfont icon-customerservice"></text>联系我们</view>
+          </view>
+          <view>
+            <view class="iconfont icon-enter"></view>
+          </view>
+        </view>
+      </view>
+      <!-- bind:tap="onToTeacherMp" -->
+      <view class='minProgram' wx:if="{{!userInfo.nickName}}">
+        <view class="navigator">
+            <label class="iconfont icon-link icons"></label><label>切换老师版</label>
+        </view>
+      </view>
+      <view class='minProgram' wx:if="{{userInfo.parent_phone && isTeacherMpInfo}}">
+        <navigator target="miniProgram" open-type="navigate" app-id="{{remote_app_id}}" path="{{remote_app_page}}" extra-data="" version="release" class="navigator">
+            <label class="iconfont icon-link icons"></label><label>切换老师版</label>
+        </navigator>
+      </view>
+      <auth-model wx:if="{{auth && !userInfo.nickName}}" auth="{{auth}}" userInfo="{{userInfo}}" bindlogin="handleAuthLogin"></auth-model>
+    </view>
+  </view>

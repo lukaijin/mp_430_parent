@@ -1,0 +1,8 @@
+<view class="auth-model {{auth && !userInfo.nickName ? 'show' : ''}}">
+   <view class="auth-box">
+      <image class="shield" src="../../images/shouquan.png" mode="aspectFit"></image>
+     <!-- <view class="shield"></view> -->
+     <text class="p">请完成微信授权继续使用</text>
+     <button class="button mix-flex-center" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGetuserinfo">授权微信用户信息</button>
+   </view>
+ </view>

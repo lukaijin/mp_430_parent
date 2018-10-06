@@ -1,0 +1,46 @@
+.auth-model {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0,0,0,0.7);
+   display: none;
+   justify-content: center;
+   align-items: center;
+ }
+ .auth-model .auth-box {
+   width: 590rpx;
+   height: 640rpx;
+   border-radius: 10rpx;
+   background-color: #fff;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   box-sizing: border-box;
+   padding: 56rpx 0;
+ }
+ .auth-model .auth-box .shield {
+   display: block;
+   width: 366rpx;
+   height: 257rpx;
+ }
+ .auth-model .auth-box .p {
+   font-size: 34rpx;
+   font-weight: 500;
+   color: #333;
+ }
+ .auth-model .auth-box .button {
+   background-color: #40BF6A;
+   width: 460rpx;
+   height: 96rpx;
+   border-radius: 48rpx;
+   color: #fff;
+   font-size: 32rpx;
+   font-weight: 500;
+ }
+ .show {
+   display: flex;
+ }
+ 

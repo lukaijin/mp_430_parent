@@ -1,0 +1,85 @@
+/* 颜色 */
+.color-333 { color: #333333; }
+.color-666 { color: #666666; }
+.color-999 { color: #999999; }
+.color-ccc { color: #cccccc; }
+.color-aaa { color: #aaaaaa; }
+.color-ff9a49 { color: #ff9a49; }
+.color-40bf6a { color: #40bf6a; }
+.color-ff4254 { color: #ff4254; }
+
+/* 背景色 */
+.bg-f3f3f33 { background: #f3f3f3; }
+.bg-ff9a49 { background: #ff9a49; }
+.bg-40bf6a { background: #40bf6a !important; }
+.bg-ccc { background: #cccccc; }
+
+/* 大小 */
+.fz-22 { font-size: 22rpx; }
+.fz-24 { font-size: 24rpx; }
+.fz-26 { font-size: 26rpx; }
+.fz-28 { font-size: 28rpx; }
+.fz-30 { font-size: 30rpx; }
+.fz-32 { font-size: 32rpx; }
+.fz-34 { font-size: 34rpx; }
+.fz-36 { font-size: 36rpx; }
+.fz-38 { font-size: 38rpx; }
+.fz-40 { font-size: 40rpx; }
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix::after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.fw-blod {
+  font-weight: bold;
+}
+
+/* 垂直居中 */
+.mix-flex-y-center {
+  display: flex;
+  align-items: center;
+}
+
+/* 水平居中 */
+.mix-flex-x-center {
+  display: flex;
+  justify-content: center;
+}
+
+/* 水平垂直居中 */
+.mix-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 超出部分出省略号 */
+.text-hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+ }
+
+/** 修改默认的navigator点击态 **/
+.navigator-hover {
+  background-color: transparent;
+  opacity: 1;
+}
+
+/* 小程序占位符样式 */
+.input-placeholder {
+  color: #cccccc;
+}

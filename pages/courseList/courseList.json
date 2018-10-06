@@ -1,0 +1,7 @@
+{
+	"navigationBarBackgroundColor": "white",
+	"navigationBarTitleText": "课程",
+	"usingComponents": {
+		"yx-course-card": "../../components/CourseCard/CourseCard"
+	}
+}

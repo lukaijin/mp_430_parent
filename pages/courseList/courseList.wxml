@@ -1,0 +1,6 @@
+<view class="course-list">
+   <!-- <navigator-tar title="课程" :type="1"></navigator-tar> -->
+   <view class="course-list-item">
+      <yx-course-card class=course-card-class" wx:for="{{courseList}}" wx:key="{{index + 1}}" info="{{item}}"></yx-course-card>
+   </view>
+ </view>

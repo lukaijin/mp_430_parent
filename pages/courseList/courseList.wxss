@@ -1,0 +1,6 @@
+.course-list-item {
+   width: 100%;
+   min-height: 100%;
+   padding: 40rpx 30rpx;
+   box-sizing: border-box;
+ }
