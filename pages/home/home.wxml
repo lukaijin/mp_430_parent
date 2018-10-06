@@ -1,4 +1,76 @@
-<!--index.wxml-->
-<view class="container">
-	首页你好啊
+<view class="home">
+	<!-- 学校 -->
+	<view wx:if="{{schoolName}}" class="school-title">
+	  <view class="h2">{{schoolName}}</view>
+	  <navigator class="school-tip" url="{{'/pages/mechanismDetail/mechanismDetail?groupId='+userInfo.group_id}}">
+		 <text class="school-tip-name">详情</text><text class="iconfont icon-xiala"></text>
+	  </navigator>
+	</view>
+	<view class="banner-swiper" wx:if="{{swiperShow}}">
+	  <swiper class="swiper-container" indicator-dots="{{true}}" autoplay="{{autoplay}}" interval="{{interval}}" circular="{{true}}" duration="{{duration}}" indicator-active-color="rgba(255,255,255,1)" bind:change="swiperChange" current="{{current}}">
+		 <block wx:for="{{swiperList}}" wx:key="{{index + 1}}">
+			<swiper-item class="swiper-item">
+			  <navigator target="miniProgram" open-type="navigate" app-id="{{item.swiper_link_remote_appid}}" path="{{item.swiper_link_url}}" extra-data="" version="release" wx:if="{{item.swiper_link_remote_appid}}">
+				 <image src="{{item.swiper_image}}" class="slide-image" />
+			  </navigator>
+			  <image src="{{item.swiper_image}}" class="slide-image"  bind:tap="toBanner" data-url="{{item.swiper_link_url}}" wx:else/>
+			</swiper-item>
+		 </block>
+	  </swiper>
+	</view>
+
+	<!-- 最新消息 -->
+	<view class="news-contaienr">
+	  <view class="news-box mix-flex-y-center">
+		 <image class="news-icon" src="../../images/news.png" mode="aspectFit"></image>
+		 <view class="news-swiper">
+			<swiper class="swiper-container" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" vertical="{{true}}" circular="{{true}}">
+			  <block>
+				 <swiper-item
+					class="swiper-item mix-flex-y-center text-hidden"
+					wx:for="{{newMessageList}}"
+					wx:key="{{item.arrange_id}}"
+					data-item="{{item}}"
+					bind:tap="jump"
+				 >
+					<view>
+					  <label class="iconfont icon-laba"></label>{{item.msg_content}}<label class="iconfont icon-enter"></label>
+					</view>
+				 </swiper-item>
+			  </block>
+			</swiper>
+		 </view>
+	  </view>
+	</view>
+
+	<!-- 活动 -->
+	<view class="discount-contaienr">
+	  <view class="discount" wx:if="{{discountList.length}}">
+		 <view class="title-box mix-flex-y-center">
+			<text class="title">最新活动</text>
+			<!-- <view bind:tap="moreDiscount">更多<label class="iconfont icon-enter"></label></view> -->
+		 </view>
+		 <swiper class="discount-swiper" next-margin="198rpx">
+			<block wx:for="{{discountList}}" wx:key="{{item.discount_i}}d">
+			  <swiper-item class="swiper-item">
+				 <yx-discount-card info="{{item}}"></yx-discount-card>
+			  </swiper-item>
+			</block>
+		 </swiper>
+	  </view>
+	</view>
+
+	<!-- 课程 -->
+	<view class="course-contaienr">
+	  <view class="course-list" wx:if="{{courseList.length}}">
+		 <view class="title-box mix-flex-y-center">
+			<view class="title">最热课程</view>
+			<view bind:tap="moreCourse">更多<label class="iconfont icon-enter"></label></view>
+		 </view>
+
+		 <view class="course-list-wrap">
+			<yx-course-card wx:for="{{courseList}}" wx:key="{{index + 1}}" info="{{item}}"></yx-course-card>
+		 </view>
+	  </view>
+	</view>
 </view>

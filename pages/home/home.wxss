@@ -1,137 +1,142 @@
-/**index.wxss**/
-
-page {
-  background: #f6f6f6;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+.iconfont {
+  padding-left: 10rpx;
 }
-
-.userinfo, .uploader, .tunnel {
-  margin-top: 40rpx;
-  height: 140rpx;
+.school-title {
+  padding-left: 30rpx;
+  margin-bottom: 40rpx;
+  position: relative;
+}
+.school-title .h2 {
+  width: 450rpx;
+  font-weight: bold;
+  font-size: 50rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.school-title .school-tip {
+  position: absolute;
+  right: 50rpx;
+  bottom: 0;
+  width: 120rpx;
+  height: 60rpx;
+}
+.school-title .school-tip .school-tip-name {
+  font-size: 24rpx;
+  color: #666666;
+  position: absolute;
+  bottom: 0;
+  right: 20rpx;
+}
+.school-title .school-tip .icon-xiala {
+  position: absolute;
+  right: 0;
+  bottom: 7rpx;
+  color: #cccccc;
+  font-size: 10rpx;
+  color: #333333;
+}
+.home {
   width: 100%;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-left: none;
-  border-right: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  transition: all 300ms ease;
+  overflow: hidden;
 }
-
-.userinfo-avatar {
-  width: 100rpx;
-  height: 100rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-  background-size: cover;
-  background-color: white;
+.home .banner-swiper {
+  height: 300rpx;
+  padding: 0 30rpx;
+  margin-bottom: 45rpx;
 }
-
-.userinfo-avatar:after {
-  border: none;
-}
-
-.userinfo-nickname {
-  font-size: 32rpx;
-  color: #007aff;
-  background-color: white;
-  background-size: cover;
-}
-
-.userinfo-nickname::after {
-  border: none;
-}
-
-.uploader, .tunnel {
-  height: auto;
-  padding: 0 0 0 40rpx;
-  flex-direction: column;
-  align-items: flex-start;
-  box-sizing: border-box;
-}
-
-.uploader-text, .tunnel-text {
+.home .banner-swiper .loading {
   width: 100%;
-  line-height: 52px;
-  font-size: 34rpx;
-  color: #007aff;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
 }
-
-.uploader-container {
+.home .swiper-container {
   width: 100%;
-  height: 400rpx;
-  padding: 20rpx 20rpx 20rpx 0;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  box-sizing: border-box;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  height: 100%;
 }
-
-.uploader-image {
+.home .swiper-container .swiper-item {
   width: 100%;
+  height: 100%;
+}
+.home .swiper-container .swiper-item navigator {
+  width: 100%;
+  height: 100%;
+}
+.home .swiper-container .swiper-item .slide-image {
+  width: 100%;
+  height: 100%;
+}
+.news-contaienr,
+.course-contaienr {
+  padding: 0 30rpx;
+}
+.discount-contaienr {
+  padding-left: 30rpx;
+}
+.news-box {
+  width: 100%;
+  height: 70rpx;
+  background-color: #fbfbfb;
+  border-radius: 10rpx;
+  margin-bottom: 56rpx;
+}
+.news-box .news-icon {
+  height: 40rpx;
+  width: 170rpx;
+  border-right: 1px solid #e6e6e6;
+}
+.news-box .news-swiper {
+  width: 520rpx;
+  height: 100%;
+}
+.news-box .news-swiper .icon-enter {
+  position: absolute;
+  right: 49rpx;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.news-box .news-swiper .swiper-container .swiper-item {
+  padding: 0 20rpx;
+}
+.news-box .news-swiper .swiper-container .swiper-item .iconfont {
+  color: #cccccc;
+}
+.news-box .news-swiper .swiper-container .swiper-item .iconfont:first-child {
+  margin-right: 20rpx;
+}
+.news-box .news-swiper .swiper-container .swiper-item .icon-laba {
+  color: #333333;
+}
+.discount {
+  width: 100%;
+  margin-bottom: 56rpx;
+}
+.discount .discount-swiper {
   height: 360rpx;
 }
-
-.tunnel {
-  padding: 0 0 0 40rpx;
+.discount .discount-swiper .swiper-item {
+  padding-right: 33rpx;
 }
-
-.tunnel-text {
-  position: relative;
-  color: #222;
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-between;
+.course-list {
   box-sizing: border-box;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-
-.tunnel-text:first-child {
-  border-top: none;
+.course-list .course-list-wrap /deep/ .yx-course-card:first-child {
+  padding-top: 0;
 }
-
-.tunnel-switch {
-  position: absolute;
-  right: 20rpx;
-  top: -2rpx;
+.course-list .course-list-wrap /deep/ .yx-course-card:last-child {
+  border: none;
 }
-
-.disable {
-  color: #888;
+.title-box {
+  height: 50rpx;
+  justify-content: space-between;
+  margin-bottom: 49rpx;
 }
-
-.service {
-  position: fixed;
-  right: 40rpx;
-  bottom: 40rpx;
-  width: 140rpx;
-  height: 140rpx;
-  border-radius: 50%;
-  background: linear-gradient(#007aff, #0063ce);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  transition: all 300ms ease;
+.title-box p {
+  font-size: 30rpx;
+  color: #ccc;
 }
-
-.service-button {
-  position: absolute;
-  top: 40rpx;
-}
-
-.service:active {
-  box-shadow: none;
-}
-
-.request-text {
-  padding: 20rpx 0;
-  font-size: 24rpx;
-  line-height: 36rpx;
-  word-break: break-all;
+.title-box .title {
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #333;
 }

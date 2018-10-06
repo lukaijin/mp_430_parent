@@ -78,15 +78,15 @@ const getReportDetail = (params) => fetch('/ReportManager/getReportDetail', 'GET
 const updateReporthomework = (params) => fetch('/ReportManager/updateReporthomework', 'POST', params)
 
 module.exports = {
-   getCourseList,
-   getCourseDetail,
-   getCourseOutline,
-   courseSignup,
-   newReportList,
-   getReportZanList,
-   updateReportZan,
-   submitReply,
-   deleteReportReply,
-   getReportDetail,
-   updateReporthomework
+  getCourseList,
+  getCourseDetail,
+  getCourseOutline,
+  courseSignup,
+  newReportList,
+  getReportZanList,
+  updateReportZan,
+  submitReply,
+  deleteReportReply,
+  getReportDetail,
+  updateReporthomework
 }

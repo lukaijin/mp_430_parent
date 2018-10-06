@@ -1,6 +1,10 @@
 {
    "navigationBarBackgroundColor": "white",
-   "navigationBarTitleText": "",
+   "navigationBarTitleText": "成长优选",
     "enablePullDownRefresh": true,
-    "backgroundTextStyle":  "dark"
+    "backgroundTextStyle":  "dark",
+    "usingComponents": {
+      "yx-discount-card": "../../components/DiscountCard/DiscountCard",
+      "yx-course-card": "../../components/CourseCard/CourseCard"
+    }
  }

@@ -1,6 +1,7 @@
 {
-	"navigationBarBackgroundColor": "white",
 	"navigationBarTitleText": "课程",
+	"enablePullDownRefresh": true,
+	"backgroundTextStyle": "dark",
 	"usingComponents": {
 		"yx-course-card": "../../components/CourseCard/CourseCard"
 	}

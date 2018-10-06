@@ -3,7 +3,11 @@
         "pages/home/home",
         "pages/courseList/courseList",
         "pages/my/my",
-        "pages/courseDetail/courseDetail"
+        "pages/courseDetail/courseDetail",
+        "pages/discountDetail/discountDetail",
+        "pages/mechanismDetail/mechanismDetail",
+        "pages/courseSpace/courseSpace",
+        "pages/myCourseList/myCourseList"
     ],
     "window": {
         "backgroundTextStyle": "light",

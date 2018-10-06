@@ -1,6 +1,5 @@
 const api = require('./utils/api/index.js')
 let  { getUserInfo, setUserInfo } = require('./utils/common.js')
-// const regeneratorRuntime = require('./utils/regenerator-runtime/runtime.js')
 // require('./utils/wxPromise.js')
 //app.js
 App({

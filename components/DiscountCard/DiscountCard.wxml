@@ -1,0 +1,8 @@
+<view class="yx-discount-card" data-discount-id="{{info.discount_id}}" bind:tap="onOpenDetails">
+   <image class="img" src="{{info.discount_image}}"></image>
+   <view class="model">
+     <view class="p text-hidden model-title">{{info.discount_title}}</view>
+     <view class="p line"></view>
+     <view class="p text-hidden model-desc">{{info.discount_desc}}</view>
+   </view>
+ </view>

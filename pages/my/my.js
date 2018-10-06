@@ -1,3 +1,5 @@
+const regeneratorRuntime = require('../../utils/regenerator-runtime/runtime.js')
+
 const api = require('../../utils/api/index.js')
 let { wxLogin, getUserInfo, setNavigationBarColorAndTabBarStyle } = require('../../utils/common.js')
 
@@ -20,7 +22,7 @@ Page({
     })
     console.log('getStorageSync_isTeacherMpInfo', this.data.isTeacherMpInfo)
     this.getCode()
-    // this.getTeacherInfoByPhone()
+    this.getTeacherInfoByPhone()
     // this._getLatestMessageCount()
   },
 
@@ -91,20 +93,22 @@ Page({
   onToTeacherMp () {
     console.log('onToTeacherMp')
     if (!this.data.userInfo.nickName) this.setData({ auth: true })
+  },
+  async getTeacherInfoByPhone () {
+    let res = await api.getTeacherInfoByPhone(this.data.userInfo.parent_phone)
+    console.log('api_getTeacherInfoByPhone', res)
+    if (res) {
+      this.setData({
+        remote_app_id: res.remote_app_id,
+        remote_app_page: res.remote_app_page
+      })
+      if (!this.data.isTeacherMpInfo) {
+        wx.setStorageSync('isTeacherMpInfo', true)
+        this.setData({ isTeacherMpInfo: true })
+        console.log('isTeacherMpInfo', this.data.isTeacherMpInfo)
+      }
+    }
   }
-  // async getTeacherInfoByPhone () {
-  //   let res = await api.getTeacherInfoByPhone(this.data.userInfo.parent_phone)
-  //   console.log('api_getTeacherInfoByPhone', res)
-  //   if (res) {
-  //     this.remote_app_id = res.remote_app_id
-  //     this.remote_app_page = res.remote_app_page
-  //     if (!this.isTeacherMpInfo) {
-  //       wx.setStorageSync('isTeacherMpInfo', true)
-  //       this.isTeacherMpInfo = true
-  //       console.log('isTeacherMpInfo', this.isTeacherMpInfo)
-  //     }
-  //   }
-  // }
   //methods方法 end
 
 })

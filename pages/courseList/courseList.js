@@ -18,7 +18,6 @@ Page({
 
   onPullDownRefresh () {
     this.init()
-    wx.stopPullDownRefresh()
   },
 
   init () {
@@ -39,14 +38,15 @@ Page({
         this.setData({
           courseList: list
         })
-        wx.hideLoading()
+        wx.stopPullDownRefresh()
+        // wx.hideLoading()
       })
       .catch(error => {
         console.warn(`获取课程列表：${error}`)
       })
-      // .finally(() => {
-      //   wx.hideLoading()
-      // })
+      .finally(() => {
+        wx.hideLoading()
+      })
   }
 
 })
