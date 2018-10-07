@@ -1,0 +1,19 @@
+ <view class="phone-container">
+    <!-- <navigator-tar title="手机" titleColor="#ffffff"></navigator-tar> -->
+    <view class="phone-container-in">
+      <image class="logo" src="../../images/logo.png" mode="aspectFit"></image>
+
+      <view class="box phone-box mix-flex-y-center">
+        <label class="icon iconfont icon-mobilephone"></label>
+        <input type="tel" value="{{phone}}" bindinput="onPhoneInput" placeholder="请输入手机号" />
+      </view>
+
+      <view class="box code-box mix-flex-y-center">
+        <label class="icon iconfont icon-lock"></label>
+        <input type="tel" value="{{authCode}}" bindinput="onAuthCodeInput" placeholder="请输入验证码" />
+        <view class="code-button {{!time ? 'active' : ''}}" bind:tap="getCode">{{time ? '重新获取（' + time + '）' : '获取验证码'}}</view>
+      </view>
+
+      <view class="button mix-flex-center {{active ? 'active' : ''}}" bind:tap="handleBindPhone">登录</view>
+    </view>
+  </view>

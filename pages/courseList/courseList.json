@@ -3,6 +3,7 @@
 	"enablePullDownRefresh": true,
 	"backgroundTextStyle": "dark",
 	"usingComponents": {
-		"yx-course-card": "../../components/CourseCard/CourseCard"
+		"yx-course-card": "../../components/CourseCard/CourseCard",
+		"navigator-bar": "../../components/NavigatorBar/NavigatorBar"
 	}
 }

@@ -1,8 +1,8 @@
 let api = null
 setTimeout(() => {
   api = require('./api/index.js')
-  console.log('common.js_api', api)
-})
+  // console.log('common.js_api', api)
+}, 100)
 // 获取用户信息
 const getUserInfo = () => wx.getStorageSync('userInfo') || {}
 
@@ -78,7 +78,7 @@ const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
       wx.hideLoading()
       wx.showModal({
         title: '提示',
-        content: '错误',
+        content: error.errmsg,
         showCancel: false
       })
     })

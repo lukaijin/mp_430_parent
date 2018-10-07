@@ -1,17 +1,38 @@
 const api = require('./utils/api/index.js')
-let  { getUserInfo, setUserInfo } = require('./utils/common.js')
+const { getUserInfo, setUserInfo } = require('./utils/common.js')
 // require('./utils/wxPromise.js')
 //app.js
 App({
   onLaunch (path) {
-    console.log('onLaunch', path)
+    // console.log('onLaunch', path)
     this.globalData = {
       userInfo: getUserInfo()
     }
-    console.log('onLaunch_globalData', this.globalData)
+    // console.log('onLaunch_globalData', this.globalData)
+    this._getSystemInfo()
     this.getCode()
     const redirectUrl = this._redirectUrlHandle(path)
     this._getSetting(redirectUrl)
+  },
+  
+  _getSystemInfo () {
+    wx.getSystemInfo({
+      success (res) {
+        console.log('getSystemInfo', res)
+        let totalTopHeight = 68
+        if (res.model.indexOf('iPhone X') !== -1) {
+          totalTopHeight = 88
+        } else if (res.model.indexOf('iPhone') !== -1) {
+          totalTopHeight = 64
+        }
+        wx.setStorageSync('statusBarHeight', res.statusBarHeight)
+        wx.setStorageSync('titleBarHeight', totalTopHeight - res.statusBarHeight)
+      },
+      fail () {
+        wx.setStorageSync('statusBarHeight', 0)
+        wx.setStorageSync('titleBarHeight', 0)
+      }
+    })
   },
 
   _redirectUrlHandle (path) {
@@ -25,7 +46,7 @@ App({
   },
   
   _getSetting(redirectUrl) { //查看是否授权过，更新授权状态
-    console.log('redirectUrl', redirectUrl)
+    // console.log('redirectUrl', redirectUrl)
     const _this = this;
     if (this.globalData.userInfo.nickName && JSON.stringify(this.globalData.userInfo) !== '{}') {
       // 已经授权过，可以直接调用 getUserInfo 获取头像昵称

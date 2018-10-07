@@ -1,3 +1,1 @@
-module.exports = {
-   baseUrl: 'https://uedu.xinjijiaoyu.com'
-}
+exports.baseUrl = 'https://uedu.xinjijiaoyu.com'

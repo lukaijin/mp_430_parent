@@ -1,0 +1,60 @@
+.phone-container {
+  min-height: 100%;
+}
+.phone-container .phone-container-in {
+  padding: 0 60rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.phone-container .logo {
+  width: 366rpx;
+  height: 97rpx;
+  margin: 100rpx 0 63rpx;
+}
+.phone-container .box {
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(221, 221, 221, 0.61);
+  padding: 51rpx 0 28rpx;
+}
+.phone-container .box .icon {
+  font-size: 48rpx;
+  margin-right: 28rpx;
+  color: #ccc;
+}
+.phone-container .box input {
+  font-size: 30rpx;
+}
+.phone-container .code-box {
+  position: relative;
+}
+.phone-container .code-box input {
+  font-size: 30rpx;
+  width: 350rpx;
+}
+.phone-container .code-box .code-button {
+  font-size: 30rpx;
+  color: #999;
+  position: absolute;
+  right: 0;
+}
+.phone-container .code-box .code-button.active {
+  color: #40BF6A;
+}
+.phone-container .button {
+  width: 100%;
+  height: 96rpx;
+  background-color: #40BF6A;
+  opacity: .3;
+  border-radius: 48rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 60rpx;
+}
+.phone-container .button.active {
+  opacity: 1;
+}

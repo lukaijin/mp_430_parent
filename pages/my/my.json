@@ -1,7 +1,7 @@
 {
-	"navigationBarBackgroundColor": "white",
 	"navigationBarTitleText": "我的",
 	"usingComponents": {
-		"auth-model": "../../components/AuthModel/AuthModel"
+		"auth-model": "../../components/AuthModel/AuthModel",
+		"navigator-bar": "../../components/NavigatorBar/NavigatorBar"
 	}
 }

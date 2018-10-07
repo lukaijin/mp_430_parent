@@ -1,0 +1,113 @@
+//out: ../pages/message/message.wxss, compress: false, sourceMap: false
+
+.message_item{
+   width: 100%;
+   padding: 12rpx 30rpx;
+   box-sizing: border-box;
+   .message_list{
+     margin-top: 30rpx;
+     border-bottom:1px solid #eee;
+     margin-bottom: 48rpx;
+     .header{
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding-bottom: 24rpx;
+       .header_item{
+         display: flex;
+         align-items: center;
+         .header_title{
+            label {
+             font-weight: bold;
+             color:#666666;
+             font-size: 28rpx;
+           }
+           .name{
+             color:#40BF6A;
+           }
+         }
+         .user_img{
+           width: 70rpx;
+           height: 70rpx;
+           border-radius: 50%;
+           border:1px solid #eee;
+           margin-right: 18rpx;
+         }
+       }
+       .time{
+         color: #999;
+         font-size: 24rpx;
+       }
+
+     }
+     .contents{
+       margin-bottom: 26rpx;
+       font-size: 28rpx;
+     }
+     .content{
+       width: 100%;
+       padding: 27rpx 36rpx;
+       box-sizing: border-box;
+       font-size: 28rpx;
+       background:rgba(251,251,251,1);
+       margin-bottom: 48rpx;
+       color: #666666;
+       .report{
+         display: flex;
+         .left{
+           width: 120rpx;
+           height: 160rpx;
+           flex:0 0 120rpx;
+           margin-right: 22rpx;
+           border:1px solid #eee;
+         }
+         .right{
+           flex: 1;
+           display: flex;
+           flex-direction: column;
+           justify-content: space-between;
+           .title{
+             font-size: 30rpx;
+             font-weight: bold;
+           }
+           .dec{
+             font-size: 26rpx;
+             color: #999999;
+           }
+           button{
+             font-size: 24rpx;
+             padding: 0;
+             width:160rpx;
+             height:56rpx;
+             background:rgba(64,191,106,1);
+             border-radius:8rpx;
+             line-height: 56rpx;
+             text-align: center;
+             color:white;
+             margin: 0;
+             &::after{
+               border:none
+             }
+
+           }
+         }
+       }
+     }
+   }
+   .nothing {
+     display: flex;
+     flex-direction: column;
+     align-content: center;
+     align-items: center;
+     margin-top: 361rpx;
+     image {
+       width: 179rpx;
+       height: 133rpx;
+     }
+     .p {
+       font-size: 32rpx;
+       color: #666666;
+       margin-top: 56rpx;
+     }
+   }
+ }

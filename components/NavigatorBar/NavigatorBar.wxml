@@ -1,0 +1,18 @@
+<view class="navigate-box">
+   <view class="navigate-title" style="padding-top: {{statusBarHeight + titleBarHeight + 'px'}}; background: {{bgColor}}"></view>
+   <view class="header-title" style="background: {{headerBgColor}}">
+     <view class="status-bar" style="height: {{statusBarHeight + 'px'}}"></view>
+     <view wx:if='{{title}}' class="title-bar" style="height: {{titleBarHeight + 'px'}}">
+       <view class="left-icon">
+         <navigator wx:if="{{!type}}" class="left-icon-navigator" open-type="navigateBack">
+           <label class="navigator-after" style="border-color: {{arrowColor}}"></label>
+         </navigator>
+       </view>
+       <view class="title" style="color: {{titleColor}}">{{title}}</view>
+       <view class="right-icon"></view>
+     </view>
+     <view wx:else bind:tap="_toMessage" style="height: {{titleBarHeight + 'px'}}; line-height: {{titleBarHeight + 'px'}}">
+       <view class="iconfont left-msg icon-mail {{totalCount?'radius':''}}"></view>
+     </view>
+   </view>
+ </view>

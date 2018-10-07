@@ -1,4 +1,5 @@
 <view class="home">
+	<navigator-bar title="{{schoolName.slice(0, 8) || '成长优选'}}" titleColor="{{titleColor}}" type="{{1}}"></navigator-bar>
 	<!-- 学校 -->
 	<view wx:if="{{schoolName}}" class="school-title">
 	  <view class="h2">{{schoolName}}</view>

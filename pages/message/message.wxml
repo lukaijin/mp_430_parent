@@ -1,0 +1,37 @@
+  <view class="message">
+    <navigator-bar title="我的消息"></navigator-bar>
+    <view class="message_item" >
+      <view class="message_list" wx:for="{{messageList}}" wx:key="{{index}}" wx:if='messageList.length !== 0'>
+        <view class="header">
+          <view class="header_item">
+            <image src="{{item.from_headimg || item.from_wx_nickname}}" class="user_img"/>
+            <view class="header_title">
+              <label class="name">{{item.from_user_name || item.from_wx_nickname}}</label>
+              <label wx:if="{{item.message_type == 1}}">@了你</label>
+              <label wx:if="{{(item.message_type ==2 && item.report_reply.my_reply_images.length !== 0)}}">对你进行了图片评论</label>
+              <label wx:if="{{(item.message_type ==2 && item.report_reply.my_reply_images.length === 0)}}">回复了你</label>
+            </view>
+          </view>
+          <view class="time">{{item.time}}</view>
+        </view>
+        <view class="contents" wx:if="{{item.message_type ==2}}" data-arrange-id="{{item.arrange_id}}" data-teacher-id="{{item.teacher_id}}" bind:tap="_toCourseSpace">{{item.report_reply.other_reply_content}}</view>
+        <view class="content" wx:if="{{item.message_type ==2}}">
+          <view data-arrange-id="{{item.report_reply.arrange_id}}" data-teacher-id="{{item.report_reply.teacher_id}}" bind:tap="_toCourseSpace">{{item.report_reply.my_reply_content}}</view>
+        </view>
+        <view class="content" wx:if="{{item.message_type ==1}}">
+          <view class="report" data-report-id="{{item.report_info.report_id}}" bind:tap="_toReportDetail">
+            <image class="left" src='{{item.report_info.arrange_image}}'/>
+            <view class="right">
+                <view class='title'>{{item.report_info.course_name}}</view>
+                <view class="dec">点击查看孩子的学习情况吧</view>
+                <button>{{typeList[item.report_info.report_type]}}</button>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='nothing'  wx:if='{{messageList.length === 0}}'>
+        <image src='https://oss.xinjijiaoyu.com/430-parent/uedu_weapp/photo/wx0e886225c0f71b79.o6zAJs0l2NXCDBbJrkk275vIVNHU.Q7mD3RldhKRJ7d396dc3234a9d7380941b343ee83544.png' />
+        <view class="p">暂无消息</view>
+      </view>
+    </view>
+  </view>

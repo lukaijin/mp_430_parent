@@ -1,0 +1,37 @@
+<view class="profile-box">
+   <form bind:submit="formSubmit">
+     <view class="profile-container">
+       <view class="profile-ul">
+         <view class="li">
+           <label class="label-title">姓名</label>
+           <input class="profile-input" type="text" placeholder-class="input-placeholder" placeholder="请填写姓名" value="{{profile.parent_name}}" name="parent_name" />
+         </view>
+         <view class="li">
+           <label class="label-title">职业</label>
+           <picker bind:change="bindOccupationChange" value="{{index}}" range="{{options.occupation}}" name="parent_job">
+             <view class="profile-picker">
+               {{options.occupation[index]}}
+             </view>
+           </picker>
+         </view>
+         <view class="li">
+           <label class="label-title">年龄</label>
+           <picker bind:change="bindAgeChange" value="{{ageIndex}}" range="{{options.age}}" name="parent_age">
+             <view class="profile-picker">
+               {{options.age[ageIndex]}}
+             </view>
+           </picker>
+         </view>
+         <view class="li">
+           <label class="label-title">我与孩子的关系</label>
+           <picker bind:change="bindRelationChange" value="{{relationIndex}}" range="{{options.relation}}" name="child_relation">
+             <view class="profile-picker">
+               {{options.relation[relationIndex]}}
+             </view>
+           </picker>
+         </view>
+       </view>
+       <view class="save-btn-view"><button class="save-btn" formType="submit">保存修改</button></view>
+     </view>
+   </form>
+ </view>

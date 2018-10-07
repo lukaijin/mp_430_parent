@@ -1,5 +1,9 @@
 const api = require('../../utils/api/index.js')
-const { getUserInfo, setUserInfo, superNavigation } = require('../../utils/common.js')
+const { getUserInfo } = require('../../utils/common.js')
+
+let statusBarHeight = wx.getStorageSync('statusBarHeight')
+let titleBarHeight = wx.getStorageSync('titleBarHeight')
+const barHeight = statusBarHeight + titleBarHeight
 
 Page({
   data: {
@@ -14,7 +18,7 @@ Page({
     courseList: [],
     newMessageList: [],
     userInfo: {},
-    schoolName: '成长优选',
+    schoolName: '',
     schoolList: [],
     schoolId: 0,
     titleColor: '#ffffff'
@@ -31,9 +35,9 @@ Page({
   },
   onPageScroll (obj) {
     // console.log('onPageScroll', obj)
-    if (obj.scrollTop <= 50) {
+    if (obj.scrollTop <= barHeight) {
       this.setData({ titleColor:  '#ffffff'})
-    } else if (obj.scrollTop > 50) {
+    } else if (obj.scrollTop > barHeight) {
       this.setData({ titleColor:  '#333333'})
     }
   },
@@ -83,7 +87,7 @@ Page({
   getSchoolInfo (groupId) {
     api.getSchoolInfo(groupId)
       .then((res) => {
-        console.log(res)
+        console.log(res, 'getSchoolInfo')
         this.setData({ schoolName: res.group_name })
       })
       .catch(error => {

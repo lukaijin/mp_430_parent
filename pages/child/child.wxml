@@ -1,0 +1,77 @@
+  <view class="profile-box">
+    <navigator-bar title="孩子资料"></navigator-bar>
+    <view hidden="{{!iscropper}}" class='cropper' style="top: {{statusBarHeight + titleBarHeight + 'px'}}">
+       <view class="cropper-wrapper">
+         <canvas
+            canvas-id="{{id}}"
+            bindtouchstart="touchstart"
+            bindtouchmove="touchmove"
+            bindtouchend="touchend"
+            disable-scroll="{{true}}"
+            style="width:{{width}}px;height:{{height}}px;background-color: rgba(0, 0, 0, 0.8)">
+         </canvas>
+         <view class="cropper-buttons">
+            <view
+                     class="upload"
+                     bindtap="uploadTap">
+                  上传图片
+            </view>
+            <view
+                     class="getCropperImage"
+                     bindtap="getCropperImage">
+                  生成图片
+            </view>
+         </view>
+      </view>
+      <!-- <we-cropper
+        :option="cropperOpt"
+        bind:ready="cropperReady"
+        bind:beforeDraw="cropperBeforeDraw"
+        bind:beforeImageLoad="cropperBeforeImageLoad"
+        bind:beforeLoad="cropperLoad"
+        >
+       </we-cropper> -->
+      <view class="cropper-buttons" id='footer'>
+        <view class="upload" bind:tap="uploadTap"> 重新选择 </view>
+        <view class="getCropperImage" bind:tap="getCropperImage">确定</view>
+      </view>
+    </view>
+    <form bind:submit="formSubmit" wx:if="{{!iscropper}}">
+      <view class="profile-container">
+        <view class="profile-ul">
+          <view class="li">
+            <label class="label-title">头像</label>
+            <image  src="{{child.child_headimgurl || '../../images/head.jpg'}}" class="headImg" bind:tap="uploadTap"></image>
+          </view>
+          <view class="li">
+            <label class="label-title">姓名</label>
+            <input class="profile-input" type="text"
+              placeholder-class="input-placeholder"
+              placeholder="请填写姓名"
+              value="{{child.child_name}}"
+              bindinput="bindChildName"
+              name="child_name" />
+          </view>
+          <view class="li">
+            <label class="label-title">孩子的生日</label>
+            <picker mode="date" value="{{child.child_birthday}}" name="child_birthday" bind:change="bindBirthdayChange">
+              <view wx:if="{{child.child_birthday}}" class="profile-picker">
+                {{child.child_birthday}}
+              </view>
+              <view wx:else class="profile-picker color-ccc">请选择孩子的生日</view>
+            </picker>
+          </view>
+          <view class="li">
+            <label class="label-title">孩子的性别</label>
+            <picker bind:change="bindGenderChange" value="{{genderIndex}}" name="child_sex" range="{{options.gender}}" >
+              <view wx:if="genderIndex != -1" class="profile-picker">
+                {{options.gender[genderIndex]}}
+              </view>
+              <view wx:else class="profile-picker color-ccc">请选择孩子的性别</view>
+            </picker>
+          </view>
+        </view>
+        <view class="save-btn-view"><button class="save-btn" formType="submit">保存修改</button></view>
+      </view>
+    </form>
+  </view>

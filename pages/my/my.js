@@ -1,38 +1,44 @@
 const regeneratorRuntime = require('../../utils/regenerator-runtime/runtime.js')
-
 const api = require('../../utils/api/index.js')
 let { wxLogin, getUserInfo, setNavigationBarColorAndTabBarStyle } = require('../../utils/common.js')
-
-const app = getApp()
 
 Page({
 
   data: {
     userInfo: {},
     auth: false,
-    isTeacherMpInfo: false,
+    parentInfo: {parent_name: ''},
     remote_app_id: '', // 'wxfdd778f2a9a0c054
-    remote_app_page: '' // /pages/home/main
+    remote_app_page: '', // /pages/home/main
+    totalCount: 0
   },
 
   onShow () {
     this.setData({
-      userInfo: app.globalData.userInfo,
-      isTeacherMpInfo: wx.getStorageSync('isTeacherMpInfo')
+      userInfo: getUserInfo()
     })
-    console.log('getStorageSync_isTeacherMpInfo', this.data.isTeacherMpInfo)
+    // 查看是否授权
+    if (this.data.userInfo.nickName) {
+      wx.getSetting({
+        success: res => {
+          if (res.authSetting['scope.userInfo']) {
+            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+            wx.getUserInfo({
+              lang: 'zh_CN',
+              success: () => {
+                this.getParentInfo()
+              }
+            })
+          }
+        }
+      })
+    }
     this.getCode()
     this.getTeacherInfoByPhone()
-    // this._getLatestMessageCount()
+    this._getLatestMessageCount()
   },
 
   //methods方法 start
-  _getLatestMessageCount () {
-    api.getLatestMessageCount()
-      .then(res => {
-        this.totalCount = Number(res.totalCount)
-      })
-  },
   getCode () {
     wx.login({
       success: res => {
@@ -44,21 +50,6 @@ Page({
       }
     })
   },
-  onToLogin () {
-    console.log('onToLogin')
-    if (!this.data.userInfo.nickName) {
-      this.setData({ auth: true })
-    } else if (!this.data.userInfo.parent_phone) {
-      this.onAddPhone()
-    }
-  },
-  onAddPhone () {
-    let route = this.route
-    wx.navigateTo({
-      url: `/pages/phone/main?pagePath=${encodeURIComponent(route)}`
-    })
-  },
-
   handleAuthLogin (info) {
     console.log('handleAuthLogin', info)
     // let tempInfo = info
@@ -81,12 +72,41 @@ Page({
       }
     })
   },
-  openPage (type) {
+  _getLatestMessageCount () {
+    api.getLatestMessageCount()
+      .then(res => {
+        this.setData({ totalCount: Number(res.totalCount) })
+      })
+  },
+  getParentInfo () {
+    api.getParentInfo()
+      .then(res => {
+        this.setData({ parentInfo: res })
+      })
+  },
+  onToLogin () {
+    console.log('onToLogin')
+    if (!this.data.userInfo.nickName) {
+      this.setData({ auth: true })
+    } else if (!this.data.userInfo.parent_phone) {
+      this.onAddPhone()
+    }
+  },
+  onAddPhone () {
+    let route = this.route
+    wx.navigateTo({
+      url: `/pages/phone/phone?pagePath=${encodeURIComponent(route)}`
+    })
+  },
+
+  openPage (e) {
+    // console.log(e)
+    let type = e.currentTarget.dataset.type
     if (!this.data.userInfo.nickName) {
       this.setData({ auth: true })
     } else {
       wx.navigateTo({
-        url: `/pages/${type}/main`
+        url: `/pages/${type}/${type}`
       })
     }
   },
@@ -102,11 +122,6 @@ Page({
         remote_app_id: res.remote_app_id,
         remote_app_page: res.remote_app_page
       })
-      if (!this.data.isTeacherMpInfo) {
-        wx.setStorageSync('isTeacherMpInfo', true)
-        this.setData({ isTeacherMpInfo: true })
-        console.log('isTeacherMpInfo', this.data.isTeacherMpInfo)
-      }
     }
   }
   //methods方法 end

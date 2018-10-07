@@ -1,0 +1,120 @@
+// out: ../components/NavigatorBar/NavigatorBar.wxss, compress: false, sourceMap: false
+
+.header-title {
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 9999;
+ }
+ 
+ .right-icon {
+   width: 100rpx;
+   height: 100rpx;
+   float: right;
+ }
+ 
+ .icon-mail {
+   margin-left: 60rpx;
+ }
+ 
+ .title {
+   width: 100%;
+   text-align: center;
+   line-height: 100rpx;
+   font-size: 34rpx;
+   color: #3c3c3c;
+   font-weight: bold;
+   display:flex;
+   align-items:center;
+   justify-content:center;
+ 
+ }
+ 
+ .title-bar {
+   width: 100%;
+   overflow: hidden;
+   display: flex;
+   position: relative;
+ }
+ 
+ .avtives_header{
+   background: #3a2c77;
+   color:white;
+ }
+ 
+ .avtives_title{
+   color:white;
+ }
+ .actives_nav{
+    background: #fff;
+    color:white;
+ }
+ .navigate-title{
+   color:white;
+ }
+ .actives_nav:after{
+     content: '';
+     display: block;
+     width: 25rpx;
+     height: 25rpx;
+     border-right: 4rpx solid white !important;
+     border-top: 4rpx solid white !important;
+     -webkit-transform: rotate(225deg);
+     transform: rotate(225deg);
+ }
+ .padding_left-30{
+   width: 100%;
+   padding-left: 30rpx;
+   box-sizing: border-box;
+ }
+ .radius {
+   position: relative;
+ }
+ .radius::after{
+   content:'';
+   width:16rpx;
+   height:16rpx;
+   background:rgba(255,97,97,1);
+   border-radius:50%;
+   display: inline-block;
+   position: absolute;
+   right:0;
+   top:-28rpx;
+   bottom: 0;
+   left:-8rpx;
+   margin: auto;
+ }
+ 
+ .left-msg {
+   width: 100rpx;
+   font-size:48rpx;
+   height: 100rpx;
+   line-height:100rpx;
+   margin-left: 50rpx;
+   position: relative;
+ }
+ 
+ .left-icon {
+   width: 100rpx;
+   font-size:48rpx;
+   height: 100rpx;
+   line-height:100rpx;
+   position: relative;
+   /*箭头部分*/
+ 
+   .left-icon-navigator {
+     height: 100%;
+     width: 100%;
+   }
+   .navigator-after {
+     display: block;
+     width: 25rpx;
+     height: 25rpx;
+     border-right: 4rpx solid #000;
+     border-top: 4rpx solid #000;
+     position: absolute;
+     top: 50%;
+     right: 0;
+     transform: translate(0, -50%) rotate(225deg);
+   }
+ }
