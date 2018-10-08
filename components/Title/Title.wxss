@@ -1,0 +1,14 @@
+.title {
+  position: relative;
+}
+.title .icon-read-fill {
+  position: absolute;
+  left: 0;
+  top: 3rpx;
+  font-size: 38rpx;
+}
+.title .h2 {
+  padding-left: 60rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+}

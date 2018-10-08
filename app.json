@@ -15,7 +15,8 @@
     "pages/profile/profile",
     "pages/phone/phone",
     "pages/message/message",
-    "pages/reportDetail/reportDetail"
+    "pages/reportDetail/reportDetail",
+    "pages/teacher/teacher"
   ],
   "window": {
     "backgroundTextStyle": "light",

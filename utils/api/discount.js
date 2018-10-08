@@ -5,16 +5,11 @@ const fetch = require('./fetch.js').fetch
  * @returns {Promise}
  * @returns {Promise}
  */
-const getDiscountList = groupId => fetch(`/DiscountManager/getdiscountlist`, 'GET', { group_id: groupId })
+exports.getDiscountList = groupId => fetch(`/DiscountManager/getdiscountlist`, 'GET', { group_id: groupId })
 
 /**
  * 获取活动详情
  * @param {number} id
  * @returns {Promise}
  */
-const getDiscountDetail = id => fetch(`/DiscountManager/getdiscountdetail`, 'GET', {discount_id: id})
-
-module.exports = {
-   getDiscountList,
-   getDiscountDetail
-}
+exports.getDiscountDetail = id => fetch(`/DiscountManager/getdiscountdetail`, 'GET', {discount_id: id})

@@ -1,0 +1,15 @@
+.back-home {
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 50%;
+  background: rgba(64, 191, 106, 0.7);
+  position: fixed;
+  right: 30rpx;
+  bottom: 188rpx;
+  text-align: center;
+}
+.back-home .icon-shouye {
+  font-size: 42rpx;
+  color: #ffffff;
+}

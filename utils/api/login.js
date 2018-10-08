@@ -5,7 +5,7 @@ const fetch = require('./fetch.js').fetch
  * @param {Object} params
  * @returns {Promise}
  */
-const login = params => {
+exports.login = params => {
   return fetch('/AuthorizeManager/getuserinfo', 'GET', params)
   // return new Promise((resolve, reject) => {
   //  fetch('/AuthorizeManager/getuserinfo', 'GET', params)
@@ -22,8 +22,4 @@ const login = params => {
   //       reject(error)
   //     })
   // })
-}
-
-module.exports = {
-  login
 }

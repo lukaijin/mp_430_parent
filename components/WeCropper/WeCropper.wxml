@@ -1,4 +1,4 @@
-  <canvas
+  <!-- <canvas
         class="cropper"
         canvas-id="{{id}}"
         bindtouchstart="touchstart"
@@ -7,4 +7,4 @@
         disable-scroll="{{true}}"
         style="width:{{width}}px;height:{{height}}px;background-color: rgba(0, 0, 0, 0.8)">
   </canvas>
-
+ -->

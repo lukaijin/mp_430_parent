@@ -1,0 +1,45 @@
+.dialog-container {
+  width: 100%;
+  min-height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+.dialog {
+  width: 590rpx;
+  margin: 207rpx auto 0;
+  background-color: #ffffff;
+  padding: 82rpx 57rpx  92rpx 55rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  position: relative;
+}
+.dialog .li .h3 {
+  font-size: 34rpx;
+  margin-bottom: 30rpx;
+  font-weight: bold;
+}
+.dialog .li .p {
+  color: #666666;
+  line-height: 48rpx;
+}
+.dialog .li:not(:last-child) .p {
+  margin-bottom: 55rpx;
+}
+.dialog .circle-close {
+  width: 88rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  position: absolute;
+  bottom: -138rpx;
+  border: 2rpx solid #ffffff;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dialog .circle-close .icon-close {
+  color: #ffffff;
+  font-size: 65rpx;
+}

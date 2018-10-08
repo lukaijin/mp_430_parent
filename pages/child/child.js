@@ -2,9 +2,9 @@ const regeneratorRuntime = require('../../utils/regenerator-runtime/runtime.js')
 const api = require('../../utils/api/index.js')
 const options = require('../../utils/options.js')
 const { uploadImg } = require('../../utils/common.js')
-// import MpvueCropper from 'mpvue-cropper'
 
-let wecropper = null
+let WeCropper = require('we-cropper')
+
 const device = wx.getSystemInfoSync()
 const width = device.windowWidth
 let height = 0
@@ -43,36 +43,49 @@ Page({
     }
   },
 
-  onLoad: function (options) {
-
+  onLoad () {
+    let { cropperOpt } = this.data
+    new WeCropper(cropperOpt)
+    .on('ready', (ctx) => {
+        console.log(`wecropper is ready for work!`)
+    })
+    .on('beforeImageLoad', (ctx) => {
+        console.log(`before picture loaded, i can do something`)
+        console.log(`current canvas context: ${ctx}`)
+        wx.showToast({
+            title: '上传中',
+            icon: 'loading',
+            duration: 20000
+        })
+    })
+    .on('imageLoad', (ctx) => {
+        console.log(`picture loaded`)
+        console.log(`current canvas context: ${ctx}`)
+        wx.hideToast()
+    })
   },
 
-  onReady: function () {
-    // wecropper = this.$refs.cropper
-    // console.log(wecropper, 'wecropper')
+  onReady () {
     this.getChildInfo()
     this.statusBarHeight = wx.getStorageSync('statusBarHeight')
     this.titleBarHeight = wx.getStorageSync('titleBarHeight')
   },
 
-  onShow: function () {
-    // if (wx.getStorageSync('childSrc')) {
-    //   wecropper.pushOrigin(wx.getStorageSync('childSrc'))
-    // }
+  onShow () {
+    if (wx.getStorageSync('childSrc')) {
+      this.wecropper.pushOrign(wx.getStorageSync('childSrc'))
+    }
   },
 
   /* methods start */
-  cropperReady (...args) {
-    console.log('cropper ready!')
+  touchstart (e) {
+    this.wecropper.touchStart(e)
   },
-  cropperBeforeImageLoad (...args) {
-    console.log('before image load')
+  touchmove (e) {
+    this.wecropper.touchMove(e)
   },
-  cropperLoad (...args) {
-    console.log('image loaded')
-  },
-  cropperBeforeDraw (...args) {
-    // Todo: 绘制水印等等
+  touchend (e) {
+    this.wecropper.touchEnd(e)
   },
   _close () {
     this.setData({ iscropper: false })
@@ -88,38 +101,35 @@ Page({
         //  获取裁剪图片资源后，给data添加src属性及其值
         _this.setData({ iscropper: true })
         wx.setStorageSync('childSrc', src)
-        // wecropper.pushOrigin(src)
+        _this.wecropper.pushOrign(src)
       }
     })
   },
   getCropperImage () {
     const _this = this
-    // wecropper
-    //   .getCropperImage()
-    //   .then(src => {
-    //     if (src) {
-    //       this.iscropper = false
-    //       wx.showLoading({ title: '上传中' })
-    //       uploadImg(src)
-    //         .then((data) => {
-    //           data.url = data.url + ''
-    //           this.$set(_this.child, 'child_headimgurl', data.url)
-    //           wx.hideLoading()
-    //         })
-    //         .catch((e) => {
-    //           wx.hideLoading()
-    //           wx.showToast({
-    //             title: '上传失败，请重新上传',
-    //             icon: 'none',
-    //             duration: 1500,
-    //             mask: true
-    //           })
-    //         })
-    //     }
-    //   })
-    //   .catch(e => {
-    //     console.error('获取图片失败')
-    //   })
+    this.wecropper.getCropperImage((src) => {
+      if (src) {
+        _this.setData({ iscropper: false })
+        wx.showLoading({ title: '上传中' })
+        uploadImg(src)
+          .then((data) => {
+            data.url = data.url + ''
+            _this.setData({ ['child.child_headimgurl']: data.url })
+            wx.hideLoading()
+          })
+          .catch((e) => {
+            wx.hideLoading()
+            wx.showToast({
+              title: '上传失败，请重新上传',
+              icon: 'none',
+              duration: 1500,
+              mask: true
+            })
+          })
+      } else {
+        console.log('获取图片地址失败，请稍后重试')
+      }
+    })
   },
   async getChildInfo () {
     let res = await api.getChildInfo()

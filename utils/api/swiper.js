@@ -5,4 +5,4 @@ const fetch = require('./fetch.js').fetch
  * @returns {Promise}
  * @returns {Promise}
  */
-module.exports.getSwiper = () => fetch(`/SwiperManager/getswiper`)
+exports.getSwiper = () => fetch(`/SwiperManager/getswiper`)

@@ -3,12 +3,12 @@
     <view hidden="{{!iscropper}}" class='cropper' style="top: {{statusBarHeight + titleBarHeight + 'px'}}">
        <view class="cropper-wrapper">
          <canvas
-            canvas-id="{{id}}"
+            canvas-id="{{cropperOpt.id}}"
             bindtouchstart="touchstart"
             bindtouchmove="touchmove"
             bindtouchend="touchend"
             disable-scroll="{{true}}"
-            style="width:{{width}}px;height:{{height}}px;background-color: rgba(0, 0, 0, 0.8)">
+            style="width:{{cropperOpt.width}}px;height:{{cropperOpt.height}}px;background-color: rgba(0, 0, 0, 0.8)">
          </canvas>
          <view class="cropper-buttons">
             <view
@@ -23,14 +23,7 @@
             </view>
          </view>
       </view>
-      <!-- <we-cropper
-        :option="cropperOpt"
-        bind:ready="cropperReady"
-        bind:beforeDraw="cropperBeforeDraw"
-        bind:beforeImageLoad="cropperBeforeImageLoad"
-        bind:beforeLoad="cropperLoad"
-        >
-       </we-cropper> -->
+
       <view class="cropper-buttons" id='footer'>
         <view class="upload" bind:tap="uploadTap"> 重新选择 </view>
         <view class="getCropperImage" bind:tap="getCropperImage">确定</view>

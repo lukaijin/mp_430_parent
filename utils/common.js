@@ -3,29 +3,31 @@ setTimeout(() => {
   api = require('./api/index.js')
   // console.log('common.js_api', api)
 }, 100)
-// 获取用户信息
-const getUserInfo = () => wx.getStorageSync('userInfo') || {}
-
-// 保存用户信息
-const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
 
 // 获取code
- const getCode = (callback) => {
-   let code = null
-   wx.login({
-     success: res => {
-       code = res.code
-       callback && callback(code)
-     },
-     fail: () => {
-       getCode()
-     }
-   })
-   return code
- }
- 
+const getCode = (callback) => {
+  let code = null
+  wx.login({
+    success: res => {
+      code = res.code
+      callback && callback(code)
+    },
+    fail: () => {
+      getCode()
+    }
+  })
+  return code
+}
+
+
+// 获取用户信息
+exports.getUserInfo = () => wx.getStorageSync('userInfo') || {}
+
+// 保存用户信息
+exports.setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
+
 // 授权登录
- const wxLogin = object => {
+ exports.wxLogin = object => {
   if (!wx.canIUse('button.open-type.getUserInfo')) {
     return wx.showModal({
       title: '提示',
@@ -88,28 +90,28 @@ const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
   * 超级导航
   * @param {string} url 需要跳转到的url地址
   */
- const superNavigation = url => {
-   const defaultUrl = '/pages/home/home'
-   wx.switchTab({
-     url: url,
-     fail: () => {
-       wx.navigateTo({
-         url: url,
-         fail: () => {
-           wx.reLaunch({
-             url: defaultUrl
-           })
-         }
-       })
-     }
-   })
- }
+//  const superNavigation = url => {
+//    const defaultUrl = '/pages/home/home'
+//    wx.switchTab({
+//      url: url,
+//      fail: () => {
+//        wx.navigateTo({
+//          url: url,
+//          fail: () => {
+//            wx.reLaunch({
+//              url: defaultUrl
+//            })
+//          }
+//        })
+//      }
+//    })
+//  }
  
  /**
   * 授权登录的时候修改navigationbar的背景色，显示隐藏tabbar
   * @param {string} color 16进制颜色值
   */
- const setNavigationBarColorAndTabBarStyle = (color = '#ffffff') => {
+exports.setNavigationBarColorAndTabBarStyle = (color = '#ffffff') => {
    color = color === '#fff' ? '#ffffff' : color
    if (color === '#ffffff') {
      wx.showTabBar()
@@ -123,7 +125,7 @@ const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
    })
  }
  
-const uploadImg = function (url) {
+exports.uploadImg = function (url) {
    return new Promise((resolve, reject) => {
      api.getOossSignature()
        .then((res) => {
@@ -153,12 +155,4 @@ const uploadImg = function (url) {
          })
        })
    })
- } 
-
-module.exports = {
-   getUserInfo,
-   setUserInfo,
-   wxLogin,
-   setNavigationBarColorAndTabBarStyle,
-   uploadImg
-}
+ }

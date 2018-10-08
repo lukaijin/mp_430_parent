@@ -6,7 +6,7 @@ let { dateFormat, getDayOfWeek } = require('../time.js')
  * @param {Object} params
  * @returns {Promise}
  */
-const getCourseList = (params) => {
+exports.getCourseList = (params) => {
   return new Promise((resolve, reject) => {
     fetch(`/CourseManager/getcourselist`, 'GET', params)
       .then((list = []) => {
@@ -49,44 +49,30 @@ const getCourseList = (params) => {
 }
 
 // 获取课程详情
-const getCourseDetail = arrangeId => fetch('/CourseManager/getcoursedetail', 'GET', {arrange_id: arrangeId})
+exports.getCourseDetail = arrangeId => fetch('/CourseManager/getcoursedetail', 'GET', {arrange_id: arrangeId})
 // 获取课程大纲
-const getCourseOutline = arrangeId => fetch('/CourseManager/getCourseOutline', 'GET', {arrange_id: arrangeId})
+exports.getCourseOutline = arrangeId => fetch('/CourseManager/getCourseOutline', 'GET', {arrange_id: arrangeId})
 
 // 课程报名
-const courseSignup = (params) => fetch('/CourseManager/coursesignup', 'GET', params)
+exports.courseSignup = (params) => fetch('/CourseManager/coursesignup', 'GET', params)
 
 // 最新课程
-const newReportList = (params) => fetch('/ReportManager/getReportList', 'GET', params)
+exports.newReportList = (params) => fetch('/ReportManager/getReportList', 'GET', params)
 
 // 点赞列表
-const getReportZanList = (params) => fetch('/ReportManager/getReportZanList', 'GET', params)
+exports.getReportZanList = (params) => fetch('/ReportManager/getReportZanList', 'GET', params)
 
 // 点赞
-const updateReportZan = (params) => fetch('/ReportManager/updateReportLike', 'POST', params)
+exports.updateReportZan = (params) => fetch('/ReportManager/updateReportLike', 'POST', params)
 
 // 提交评论
-const submitReply = (params) => fetch('/ReportManager/updateReportReply', 'POST', params)
+exports.submitReply = (params) => fetch('/ReportManager/updateReportReply', 'POST', params)
 
 // 删除评论
-const deleteReportReply = (params) => fetch('/ReportManager/deleteReportReply', 'POST', params)
+exports.deleteReportReply = (params) => fetch('/ReportManager/deleteReportReply', 'POST', params)
 
 // 报告详情
-const getReportDetail = (params) => fetch('/ReportManager/getReportDetail', 'GET', params)
+exports.getReportDetail = (params) => fetch('/ReportManager/getReportDetail', 'GET', params)
 
 // 提交作业
-const updateReporthomework = (params) => fetch('/ReportManager/updateReporthomework', 'POST', params)
-
-module.exports = {
-  getCourseList,
-  getCourseDetail,
-  getCourseOutline,
-  courseSignup,
-  newReportList,
-  getReportZanList,
-  updateReportZan,
-  submitReply,
-  deleteReportReply,
-  getReportDetail,
-  updateReporthomework
-}
+exports.updateReporthomework = (params) => fetch('/ReportManager/updateReporthomework', 'POST', params)

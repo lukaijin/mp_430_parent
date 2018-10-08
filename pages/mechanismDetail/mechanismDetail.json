@@ -1,4 +1,5 @@
 {
-	"navigationBarBackgroundColor": "white",
-	"navigationBarTitleText": "机构详情"
-}
+	"usingComponents": {
+	  "navigator-bar": "../../components/NavigatorBar/NavigatorBar"
+	}
+ }

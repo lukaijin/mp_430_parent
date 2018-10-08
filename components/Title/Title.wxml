@@ -1,0 +1,4 @@
+  <view class="title">
+    <label class="iconfont icon-read-fill color-ccc"></label>
+    <view class="h2">{{title}}</view>
+  </view>

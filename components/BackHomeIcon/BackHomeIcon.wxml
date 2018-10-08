@@ -1,0 +1,3 @@
+  <view class="back-home" hidden="{{!isBackHome}}" bind:tap="onBackHome">
+    <label class="iconfont icon-shouye"></label>
+  </view>

@@ -1,0 +1,11 @@
+  <view class="dialog-container" hidden="{{!isShowDialog}}">
+    <view class="dialog">
+      <view class="ul">
+        <view class="li" wx:for="{{tagsInfo}}" wx:key="{{item.ability_name}}">
+          <view class="h3">{{item.ability_name}}</view>
+          <view class="p">{{item.ability_desc}}</view>
+        </view>
+      </view>
+      <label class="circle-close" bind:tap="handleClose"><text class="iconfont icon-close"></text></label>
+    </view>
+   </view>

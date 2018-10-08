@@ -1,4 +1,5 @@
 {
-  "navigationBarBackgroundColor": "white",
-  "navigationBarTitleText": "成长记录"
-}
+	"usingComponents": {
+	  "navigator-bar": "../../components/NavigatorBar/NavigatorBar"
+	}
+ }

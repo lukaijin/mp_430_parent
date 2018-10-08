@@ -4,6 +4,11 @@ Component({
    * 组件的属性列表
    */
   externalClasses: ['course-card-class'],
+  
+  options: {
+    addGlobalClass: true,
+  },
+
   properties: {
     info: {
       type: Object,
