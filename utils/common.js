@@ -21,13 +21,13 @@ const getCode = (callback) => {
 
 
 // 获取用户信息
-exports.getUserInfo = () => wx.getStorageSync('userInfo') || {}
+const getUserInfo = () => wx.getStorageSync('userInfo') || {}
 
 // 保存用户信息
-exports.setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
+const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
 
 // 授权登录
- exports.wxLogin = object => {
+ const wxLogin = object => {
   if (!wx.canIUse('button.open-type.getUserInfo')) {
     return wx.showModal({
       title: '提示',
@@ -71,12 +71,14 @@ exports.setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
            url: `${decodeURIComponent(object.redirectUrl)}`
          })
        }
-       object.callback && object.callback()
+       setNavigationBarColorAndTabBarStyle('#ffffff')
+       let updateUserInfo = getUserInfo()
+       object.callback && object.callback(updateUserInfo)
        api.updateParentWxInfo(args)
        wx.hideLoading()
      })
     .catch(error => {
-      console.log('login', error)
+      console.log('授权失败', error)
       wx.hideLoading()
       wx.showModal({
         title: '提示',
@@ -87,31 +89,10 @@ exports.setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
  }
  
  /**
-  * 超级导航
-  * @param {string} url 需要跳转到的url地址
-  */
-//  const superNavigation = url => {
-//    const defaultUrl = '/pages/home/home'
-//    wx.switchTab({
-//      url: url,
-//      fail: () => {
-//        wx.navigateTo({
-//          url: url,
-//          fail: () => {
-//            wx.reLaunch({
-//              url: defaultUrl
-//            })
-//          }
-//        })
-//      }
-//    })
-//  }
- 
- /**
   * 授权登录的时候修改navigationbar的背景色，显示隐藏tabbar
   * @param {string} color 16进制颜色值
   */
-exports.setNavigationBarColorAndTabBarStyle = (color = '#ffffff') => {
+const setNavigationBarColorAndTabBarStyle = (color = '#ffffff') => {
    color = color === '#fff' ? '#ffffff' : color
    if (color === '#ffffff') {
      wx.showTabBar()
@@ -125,7 +106,7 @@ exports.setNavigationBarColorAndTabBarStyle = (color = '#ffffff') => {
    })
  }
  
-exports.uploadImg = function (url) {
+const uploadImg = function (url) {
    return new Promise((resolve, reject) => {
      api.getOossSignature()
        .then((res) => {
@@ -155,4 +136,12 @@ exports.uploadImg = function (url) {
          })
        })
    })
+ }
+
+ module.exports = {
+  getUserInfo,
+  setUserInfo,
+  wxLogin,
+  setNavigationBarColorAndTabBarStyle,
+  uploadImg,
  }

@@ -52,22 +52,13 @@ Page({
   },
   handleAuthLogin (info) {
     console.log('handleAuthLogin', info)
-    // let tempInfo = info
-    // console.log(info, 'info')
-    // if (!this.data.code) {
-    //   this.getCode(() => {
-    //     this.handleAuthLogin(tempInfo)
-    //   })
-    //   return
-    // }
     wxLogin({
       userInfo: info.detail,
       code: this.data.code,
-      callback: () => {
-        setNavigationBarColorAndTabBarStyle('#ffffff')
+      callback: (updateUserInfo) => {
         this.setData({
           auth: false,
-          userInfo: getUserInfo()
+          userInfo: updateUserInfo
         })
       }
     })
