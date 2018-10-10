@@ -1,6 +1,6 @@
-const api = require('./utils/api/index.js')
 const { getUserInfo, setUserInfo } = require('./utils/common.js')
-// require('./utils/wxPromise.js')
+const api = require('./utils/api/index.js')
+require('./utils/wxPromise.js')
 //app.js
 App({
   onLaunch (path) {

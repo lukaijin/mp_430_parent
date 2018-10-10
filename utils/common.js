@@ -1,8 +1,5 @@
-let api = null
-setTimeout(() => {
-  api = require('./api/index.js')
-  // console.log('common.js_api', api)
-}, 100)
+const api = require('./api/index.js')
+console.log('common.js_api', api)
 
 // 获取code
 const getCode = (callback) => {

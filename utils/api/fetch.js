@@ -1,6 +1,11 @@
 
 const config = require('../../config.js')
-const getUserInfo = require('../common.js').getUserInfo
+// let getUserInfo = null
+// setTimeout(() => {
+// 	getUserInfo = require('../common.js').getUserInfo	
+// 	console.log('getUserInfo', getUserInfo)
+// })
+const getUserInfo = () => wx.getStorageSync('userInfo') || {}
 
 module.exports.fetch = (path = '', requestType = 'GET', params = {}, contentType = 'application/x-www-form-urlencoded') => {
 	const openId = getUserInfo().open_id
