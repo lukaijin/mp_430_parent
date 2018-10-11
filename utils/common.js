@@ -36,7 +36,7 @@ const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
   let tempObject = object
   console.log(tempObject, 'tempObject')
   if (!object.code) {
-    getCode((code) => {
+    getCode((code) => { // 先暂时这样写，看需求噢
       tempObject.code = code
       wxLogin(tempObject)
     })
@@ -63,11 +63,11 @@ const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
          wx_headimgurl: object.userInfo.avatarUrl
        }
        setUserInfo(Object.assign(res, object.userInfo))
-       if (object.redirectUrl) {
-         wx.switchTab({
-           url: `${decodeURIComponent(object.redirectUrl)}`
-         })
-       }
+      //  if (object.redirectUrl) {
+      //    wx.switchTab({
+      //      url: `${decodeURIComponent(object.redirectUrl)}`
+      //    })
+      //  }
        setNavigationBarColorAndTabBarStyle('#ffffff')
        let updateUserInfo = getUserInfo()
        object.callback && object.callback(updateUserInfo)

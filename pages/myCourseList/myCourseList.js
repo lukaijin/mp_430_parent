@@ -1,66 +1,124 @@
-// pages/myCourseList/myCourseList.js
+const api = require('../../utils/api/index.js')
+const { getUserInfo } = require('../../utils/common.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    items: ['待上课', '上课中', '已完成'],
+    currentTab: 0,
+    courseList: [],
+    completedCourseList: [],
+    inClassCourseList: [],
+    height: 0,
+    top: 0
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad () {
+    this.init()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  /* methods start */
+  init () {
+    this.data.userInfo = getUserInfo()
+    const statusBarHeight = wx.getStorageSync('statusBarHeight')
+    const titleBarHeight = wx.getStorageSync('titleBarHeight')
+    this.top = statusBarHeight + titleBarHeight
+    this._getTabList()
+    this._getHeightscroll()
+  },
+  _getTabList () {
+    this.data.items.forEach((item, index) => {
+      const params = {
+        type: 'my',
+        status: Number(index) + 1
+      }
+      this._getCourseList(params, index)
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  // 点击标题切换当前页时改变样式
+  _currentTab (e) {
+    var cur = e.currentTarget.dataset.current
+    if (this.currentTab === cur) {
+      return false
+    } else {
+      this._nextTab(cur)
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  _nextTab (cur) {
+    this.currentTab = cur
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  _getHeightscroll () {
+    // 创建节点选择器
+    var query = wx.createSelectorQuery()
+    // 选择id
+    query.select('#tab').boundingClientRect()
+    query.exec(function (height) {
+      // res就是 所有标签为mjltest的元素的信息 的数组
+      // 取高度
+      console.log(height, 'height')
+      wx.getSystemInfo({
+        success: res => {
+          this.height = res.windowHeight - height[0].height
+        }
+      })
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  _getCourseList (params, index) {
+    wx.showLoading({
+      title: '加载中'
+    })
+    api.getCourseList(params)
+      .then(res => {
+        switch (index) {
+          case 0:
+            this.setData({ courseList: res })
+            break
+          case 1:
+            this.setData({ inClassCourseList: res })
+            this.inClassCourseList = res
+            break
+          case 2:
+            this.setData({ completedCourseList: res })
+            break
+        }
+      })
+      .catch(error => {
+        console.warn(`获取课程列表：${error}`)
+      })
+      .finally(() => {
+        wx.hideLoading()
+      })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  _scrolltolowerExer (e) {
+    if (!this.data.loading[this.data.currentTab].loadMore) {
+      return
+    }
+    let obj = {
+      limit: this.data.limit,
+      parent_id: wx.getStorageSync('userInfo').id,
+      status: Number(this.data.currentTab) + 1
+    }
+    switch (Number(this.data.currentTab)) {
+      case 0:
+        obj.offset = this.data.courseList.length
+        break
+      case 1:
+        obj.offset = this.data.completedCourseList.length
+        break
+      case 2:
+        obj.offset = this.data.cancelCourseList.length
+        break
+    }
+    this._getCourseList(obj, this.data.currentTab)
   }
+  /* methods end */
+  
 })

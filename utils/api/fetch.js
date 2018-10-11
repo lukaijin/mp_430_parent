@@ -29,9 +29,11 @@ module.exports.fetch = (path = '', requestType = 'GET', params = {}, contentType
 				if (response.data.errcode === 0) {
 					resolve(response.data.data, response.data.errmsg)
 				 } else {
+					if (!openId) return // 如果是指定页面执行时，是没有open_id的
 					let error = new Error(response.data.errmsg)
 					error.errcode = response.data.errcode
 					error.errmsg = response.data.errmsg
+					console.log('response_error', error)
 					reject(error)
 				 }
 				// if (res.statusCode === 502 || res.statusCode === 400) {
@@ -42,7 +44,7 @@ module.exports.fetch = (path = '', requestType = 'GET', params = {}, contentType
 				// resolve(res.data);
 			},
 			fail: function (error) {
-				// console.log('_wx.request_fails', error)
+				console.log('_wx.request_fails', error)
 				wx.hideLoading()
 				wx.showModal({
 					content: '网络异常，请检查网络是否通畅'

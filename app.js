@@ -1,18 +1,25 @@
 const { getUserInfo, setUserInfo } = require('./utils/common.js')
-const api = require('./utils/api/index.js')
+// const api = require('./utils/api/index.js')
 require('./utils/wxPromise.js')
 //app.js
 App({
-  onLaunch (path) {
-    // console.log('onLaunch', path)
+  onLaunch (options) {
+    console.log('onLaunch', options)
     this.globalData = {
       userInfo: getUserInfo()
     }
-    // console.log('onLaunch_globalData', this.globalData)
+    console.log('onLaunch_globalData', this.globalData)
     this._getSystemInfo()
-    this.getCode()
-    const redirectUrl = this._redirectUrlHandle(path)
-    this._getSetting(redirectUrl)
+    const redirectUrl = this._redirectUrlHandle(options)
+    const notIndex = options.path.indexOf('pages/index/index') === -1
+    console.log('notIndex', notIndex)
+    if (notIndex && !this.globalData.userInfo.open_id) { // 判断有木有open_id
+      console.log('没有open_id噢！！！')
+      wx.reLaunch({
+       url: '/pages/index/index?redirectUrl=' + encodeURIComponent(`/${redirectUrl}`)
+     })
+     return
+   }
   },
   
   _getSystemInfo () {
@@ -35,14 +42,14 @@ App({
     })
   },
 
-  _redirectUrlHandle (path) {
+  _redirectUrlHandle (options) {
     let query = ''
-    for (let i in path.query) {
+    for (let i in options.query) {
       if (i) {
-        query = query + `${i}=${path.query[i]}&`
+        query = query + `${i}=${options.query[i]}&`
       }
     }
-    return query ? `${path.path}?${query}` : path.path
+    return query ? `${options.path}?${query}` : options.path
   },
   
   _getSetting(redirectUrl) { //查看是否授权过，更新授权状态
@@ -61,7 +68,7 @@ App({
           userInfo.gender = info.gender
           userInfo.nickname = info.nickName
           userInfo.province = info.province
-          _this.globalData.userInfo = userInfo
+          setUserInfo(Object.assign(_this.globalData.userInfo, userInfo))
           if (_this.userInfoReadyCallback) {
             _this.userInfoReadyCallback(res)
           }
@@ -72,33 +79,6 @@ App({
       //   url: '/pages/login/login?redirect_url=' + encodeURIComponent(`/${redirectUrl}`)
       // })
     }
-  },
-  
-  getCode () {
-    const _this = this
-    wx.login({
-      success: res => {
-        _this.login(res.code)
-      },
-      fail: () => {
-        _this.getCode()
-      }
-    })
-  },
-
-  login (code) {
-    let params = {
-      scode: code,
-      group_id: getUserInfo().group_id || null
-    }
-    api.login(params)
-      .then(res => {
-        setUserInfo(Object.assign(this.globalData.userInfo, res))
-        wx.hideLoading()
-      })
-      .catch(error => {
-        console.warn(`获取用户信息失败：${error}`)
-      })
   }
 
 })
