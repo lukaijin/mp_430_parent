@@ -2,7 +2,7 @@
 const regeneratorRuntime = require('../../utils/regenerator-runtime/runtime.js')
 const api = require('../../utils/api/index.js')
 const options = require('../../utils/options.js')
-const { getUserInfo, setUserInfo } = require('../../utils/common.js')
+const { getUserInfo, setUserInfo, wxLogin } = require('../../utils/common.js')
 const { dateFormat, getWeek, getRangTime } = require('../../utils/time.js')
 
 
@@ -20,6 +20,8 @@ Page({
   }, */
  
   data: {
+    userInfo: {},
+    auth: false,
     arrangeId: null,
     teacherId: null,
     type: 'homeCourse',
@@ -28,6 +30,7 @@ Page({
     followed: false,
     isShowDialog: false,
     isBackHome: false,
+    maxAge: null,
     course: {
       course_name: '',
       course_desc: '',
@@ -44,6 +47,7 @@ Page({
       sold_count: 0
     },
     courseOutline: [],
+    teacherTagArr: [],
     teacher: {
       teacher_headimg: null,
       teacher_name: '',
@@ -88,15 +92,20 @@ Page({
     if (query.isBackHome) this.setData({ isBackHome: true })
     this.setData({
       type: query.type,
+      userInfo: getUserInfo()
     })
-    this.data.userInfo = getUserInfo()
     this.data.arrangeId = parseInt(query.arrangeId)
     try {
       let CourseDetail = await this.getCourseDetail(this.data.arrangeId)
-      this.setData({ course: CourseDetail[0] })
+      let computedMaxAge = CourseDetail[0].match_age_min !== CourseDetail[0].match_age_max ? `-${CourseDetail[0].match_age_max}` : ''
+      this.setData({
+        course: CourseDetail[0],
+        maxAge: computedMaxAge
+       })
       this.data.teacherId = parseInt(CourseDetail[0].teacher_id)
       // 授课老师
       let TeacherInfo = await this.getTeacherInfo(this.data.teacherId)
+      let CommentTag = await this.getTeacherCommentTag(this.data.teacherId)
       let FollowInfo = await this.getTeacherFollowInfo(this.data.teacherId)
       let Stat = await this.getTeacherStat(this.data.teacherId)
       // 大纲
@@ -105,6 +114,7 @@ Page({
       let GroupList = await this.getGroupList()
       this.setData({
         teacher: TeacherInfo,
+        teacherTagArr: CommentTag.comment_tag,
         followed: FollowInfo.followed,
         stat: Stat,
         courseOutline: CourseOutline,
@@ -151,6 +161,9 @@ Page({
   getTeacherInfo (teacherId) {
     return api.getTeacherInfo(teacherId)
   },
+  getTeacherCommentTag (teacherId) {
+    return api.getTeacherCommentTag(teacherId)
+  },
   getTeacherStat (teacherId) {
     return api.getTeacherStat(teacherId)
   },
@@ -164,7 +177,7 @@ Page({
     })
     var params = {
       teacher_id: this.data.teacherId,
-      followed: followed
+      followed: Number(followed)
     }
     await api.updateTeacherFollowInfo(params)
     wx.showToast({
@@ -176,6 +189,11 @@ Page({
     let groupId = parseInt(this.data.userInfo.group_id)
     if (this.data.course.signup_status !== 1) { // 已报名或报满
       console.log('已报名或报满')
+      return false
+    }
+    if (!this.data.userInfo.nickName) { // 检测是否授权
+      this.auth = true
+      this.setData({ auth: true })
       return false
     }
     if (groupId < 0) { // 检测是否绑定学校
@@ -210,6 +228,32 @@ Page({
         }
       })
     }
+  },
+  getCode () {
+    wx.login({
+      success: res => {
+        this.data.code = res.code
+        // callback && callback(res.code)
+      },
+      fail: () => {
+        this.getCode()
+      }
+    })
+  },
+  handleAuthLogin (info) {
+    console.log('courseDetail_handleAuthLogin', info.detail)
+    wxLogin({
+      userInfo: info.detail.userInfo,
+      encryptedData: info.detail.encryptedData,
+      iv: info.detail.iv,
+      code: this.data.code,
+      callback: (updateUserInfo) => {
+        this.setData({
+          auth: false,
+          userInfo: updateUserInfo
+        })
+      }
+    })
   },
   async bindSchoolChange (e) {
     console.log('bindSchoolChange', e)

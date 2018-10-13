@@ -13,6 +13,6 @@
          <label class="money-del-price">￥{{info.arrange_original_price}}</label>
       </view>
       <view class="p quota">仅剩{{info.remainingQuota}}个名额</view>
-      <view class="button {{info.signup_status === 1 ? 'bg-40bf6a' : 'bg-ccc'}}">{{info.signup_desc}}</view>
+      <view class="button {{info.signup_status === 1 ? 'bg-green' : 'bg-ccc'}}">{{info.signup_desc}}</view>
    </view>
 </view>

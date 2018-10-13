@@ -1,0 +1,338 @@
+.course-container {
+  position: relative;
+  padding-bottom: 100rpx;
+  z-index: 1;
+}
+.course-container-top {
+  padding: 0 30rpx;
+}
+.course-container-top .li {
+  margin-top: 42rpx;
+  border-bottom: 1px solid #eeeeee;
+}
+/* 公司 */
+.company {
+  padding: 30rpx 0 40rpx;
+  border-bottom: 1px solid #EEEEEE;
+}
+.company .h2 {
+  width: 456rpx;
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-left: -14rpx;
+}
+.company .p-content {
+  padding-top: 25rpx;
+  padding-bottom: 26rpx;
+  line-height: 48rpx;
+}
+.company .p-num text {
+  font-size: 38rpx;
+  font-weight: bold;
+}
+.company .del-money {
+  padding-left: 18rpx;
+  font-size: 22rpx;
+  color: #aaaaaa;
+  text-decoration: line-through;
+  padding-top: 16rpx;
+}
+.company .company-foot-r {
+  font-size: 22rpx;
+  color: #aaaaaa;
+  padding-top: 12rpx;
+}
+/* 授课老师 */
+.lecture-teacher {
+  padding-bottom: 20rpx;
+  position: relative;
+}
+.lecture-teacher .lecture-head {
+  padding: 28rpx 0 0;
+  display: flex;
+  position: relative;
+}
+.lecture-teacher .lecture-head .icon-enter {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #cccccc;
+  font-size: 50rpx;
+}
+.lecture-teacher .lecture-head .head-img {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #C9C9C9;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 25rpx;
+}
+.lecture-teacher .lecture-head .head-img image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+.lecture-teacher .lecture-head .head-img::before {
+  content: '';
+  width: 36rpx;
+  height: 36rpx;
+  border: 6rpx solid #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 22rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+}
+.lecture-teacher .lecture-head .head-img::after {
+  content: '';
+  width: 38rpx;
+  height: 6rpx;
+  border-radius: 32rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 22rpx;
+  background-color: #ffffff;
+}
+.lecture-teacher .lecture-head-r .p-name-address {
+  display: flex;
+  padding-bottom: 20rpx;
+}
+.lecture-teacher .lecture-head-r .p-name-address .s-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  padding-right: 45rpx;
+}
+.lecture-teacher .lecture-head-r .p-name-address .icon-coordinates_fill,
+.lecture-teacher .lecture-head-r .p-name-address .text-hidden {
+  color: #bbbbbb;
+}
+.lecture-teacher .lecture-head-r .p-name-address .s-address {
+  display: flex;
+  align-items: center;
+}
+.lecture-teacher .lecture-head-r .p-name-address .text-hidden {
+  width: 260rpx;
+  color: #bbbbbb;
+}
+.lecture-teacher .lecture-head-r .p-name-address .icon-coordinates_fill {
+  padding-right: 10rpx;
+}
+.guanzhu-tag {
+  display: flex;
+  margin-top: 16rpx;
+}
+.guanzhu-tag .guanzhu-box {
+  width: 100rpx;
+  display: flex;
+  justify-content: center;
+  margin-right: 32rpx;
+}
+.guanzhu-tag .guanzhu-btn {
+  width: 80rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  font-size: 20rpx;
+  text-align: center;
+  border: 1px solid #40bf6a;
+  border-radius: 4rpx;
+  color: #40bf6a;
+}
+.guanzhu-tag .guanzhu-btn.has-active {
+  border-color: #cccccc;
+  color: #999999;
+}
+.guanzhu-tag .p-tag {
+  display: flex;
+  flex-wrap: wrap;
+}
+.guanzhu-tag .p-tag text {
+  padding: 7rpx 18rpx;
+  background-color: #F4F5F7;
+  margin-right: 20rpx;
+  font-size: 20rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+/* 课程详情 */
+.course-detail {
+  position: relative;
+}
+.course-detail .course-detail-content {
+  padding-top: 30rpx;
+  padding-bottom: 60rpx;
+}
+.course-detail .h3 {
+  font-size: 30rpx;
+  font-weight: 500;
+  padding-bottom: 30rpx;
+}
+.course-detail .p-tag text {
+  padding: 7rpx 18rpx;
+  background-color: #F4F5F7;
+  margin-right: 20rpx;
+  font-size: 20rpx;
+}
+.course-detail .p-info {
+  padding-top: 60rpx;
+}
+.course-detail .p-info .s-title,
+.course-detail .p-info .s-value {
+  display: block;
+  font-size: 30rpx;
+}
+.course-detail .p-info .s-title {
+  height: 62rpx;
+}
+.course-detail .doubt {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #FF9A49;
+  border-radius: 50%;
+  position: absolute;
+  right: 30rpx;
+  top: 87rpx;
+  text-align: center;
+}
+.course-detail .doubt .icon-wenhao {
+  color: #ffffff;
+  font-size: 38rpx;
+}
+/* 课程所属学校 */
+.course-loac-school .school-info {
+  padding: 45rpx 0 55rpx 50rpx;
+  position: relative;
+}
+.course-loac-school .school-info .text-hidden {
+  width: 506rpx;
+  display: block;
+}
+.course-loac-school .school-info .school-info-after {
+  width: 17rpx;
+  height: 17rpx;
+  border-top: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+/* 课程大纲 */
+.course-outline .course-outline-content {
+  padding-top: 38rpx;
+}
+.course-outline .outline-info {
+  height: 144rpx;
+  display: flex;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+.course-outline .outline-info .serial-num {
+  color: #cccccc;
+  font-size: 32rpx;
+  margin-right: 30rpx;
+}
+.course-outline .outline-info .outline-info-left {
+  width: 100%;
+}
+.course-outline .outline-info .outline-info-left .title {
+  width: 496rpx;
+  font-weight: 500;
+}
+.course-outline .outline-info .outline-info-time {
+  position: relative;
+  margin-top: 26rpx;
+}
+.course-outline .outline-info .outline-info-status {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+/* 课程图片 */
+.course-img {
+  margin-top: 42rpx;
+}
+.course-img .img-title {
+  padding: 0 30rpx 74rpx;
+}
+.course-img .chang-tu {
+  width: 100%;
+}
+.course-img .chang-tu image {
+  display: block;
+  width: 100%;
+}
+/* 按钮状态 */
+.course-btn {
+  width: 100%;
+  height: 107rpx;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: #ffffff;
+  border-top: 1px solid #eeeeee;
+  padding: 0 30rpx;
+  background-color: #ffffff;
+}
+.course-btn button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+.course-btn button::after {
+  border: none;
+}
+.course-btn .kefu-btn {
+  padding-left: 45rpx;
+  margin-right: 47rpx;
+}
+.course-btn .kefu-btn .icon-customerservice {
+  color: #333333;
+  font-size: 42rpx;
+  position: absolute;
+  left: 0;
+  top: -4rpx;
+}
+.course-btn .share-btn {
+  padding-left: 45rpx;
+}
+.course-btn .share-btn .icon-send {
+  color: #333333;
+  font-size: 42rpx;
+  position: absolute;
+  left: 0;
+  top: -4rpx;
+}
+.course-btn .sign-up-btn {
+  text-align: center;
+  position: relative;
+  width: 390rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  margin-left: 36rpx;
+}
+.course-btn .sign-up-btn .sign-up-picker {
+  width: 100%;
+  position: absolute;
+  height: 80rpx;
+  left: 0;
+  top: 0;
+}
+.course-btn .sign-up-btn .sign-up-picker .picker-text {
+  text-align: center;
+  color: transparent;
+  font-size: 34rpx;
+}
+.course-btn .sign-up-btn text {
+  color: #ffffff;
+  font-size: 34rpx;
+}
+/* tab */

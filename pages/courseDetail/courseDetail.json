@@ -1,8 +1,5 @@
 {
 	"usingComponents": {
-		"navigator-bar": "../../components/NavigatorBar/NavigatorBar",
-		"yx-title": "../../components/Title/Title",
-		"back-home-icon": "../../components/BackHomeIcon/BackHomeIcon",
-		"yx-dialog": "../../components/Dialog/Dialog"
+		"navigator-bar": "../NavigatorBar/NavigatorBar"
 	}
  }
