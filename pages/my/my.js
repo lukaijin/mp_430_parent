@@ -51,9 +51,11 @@ Page({
     })
   },
   handleAuthLogin (info) {
-    console.log('handleAuthLogin', info)
+    console.log('handleAuthLogin', info.detail)
     wxLogin({
-      userInfo: info.detail,
+      userInfo: info.detail.userInfo,
+      encryptedData: info.detail.encryptedData,
+      iv: info.detail.iv,
       code: this.data.code,
       callback: (updateUserInfo) => {
         this.setData({
@@ -100,10 +102,6 @@ Page({
         url: `/pages/${type}/${type}`
       })
     }
-  },
-  onToTeacherMp () {
-    console.log('onToTeacherMp')
-    if (!this.data.userInfo.nickName) this.setData({ auth: true })
   },
   async getTeacherInfoByPhone () {
     let res = await api.getTeacherInfoByPhone(this.data.userInfo.parent_phone)

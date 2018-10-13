@@ -48,7 +48,9 @@ const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
    })
    const params = {
      scode: object.code,
-     group_id: getUserInfo().group_id || null
+     group_id: getUserInfo().group_id || null,
+     iv: encodeURIComponent(object.iv),
+     encryptedData: encodeURIComponent(object.encryptedData) 
    }
    api.login(params)
      .then(res => {
@@ -62,6 +64,8 @@ const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
          wx_province: object.userInfo.province,
          wx_headimgurl: object.userInfo.avatarUrl
        }
+       object.userInfo.encryptedData = object.encryptedData
+       object.userInfo.iv = object.iv
        setUserInfo(Object.assign(res, object.userInfo))
       //  if (object.redirectUrl) {
       //    wx.switchTab({

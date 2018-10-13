@@ -1,25 +1,26 @@
 
 const config = require('../../config.js')
-// let getUserInfo = null
-// setTimeout(() => {
-// 	getUserInfo = require('../common.js').getUserInfo	
-// 	console.log('getUserInfo', getUserInfo)
-// })
+const formatParams = require('./formatParams.js').formatParams
 const getUserInfo = () => wx.getStorageSync('userInfo') || {}
 
 module.exports.fetch = (path = '', requestType = 'GET', params = {}, contentType = 'application/x-www-form-urlencoded') => {
 	const openId = getUserInfo().open_id
 	const parentId = parseInt(getUserInfo().parent_id)
 	let url = config.baseUrl + '/parent'
+
 	if (openId && parentId) {
 		url += path + `?open_id=${openId}&parent_id=${parentId}` 
 	} else {
 		url += path
 	}
+
+	let data = null
+	data = requestType === 'POST' ? formatParams(params) : params
+	
 	return new Promise((resolve, reject) => {
 		wx.request({
 			url: url,
-			data: params,
+			data: data,
 			method: requestType,
 			header: {
 				'content-type': contentType
@@ -33,7 +34,7 @@ module.exports.fetch = (path = '', requestType = 'GET', params = {}, contentType
 					let error = new Error(response.data.errmsg)
 					error.errcode = response.data.errcode
 					error.errmsg = response.data.errmsg
-					console.log('response_error', error)
+					console.warn(`接口报错:${path}`, error)
 					reject(error)
 				 }
 				// if (res.statusCode === 502 || res.statusCode === 400) {

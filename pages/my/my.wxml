@@ -56,11 +56,6 @@
         </view>
       </view>
 
-      <view class='minProgram' wx:if="{{!userInfo.nickName}}" bind:tap="onToTeacherMp">
-        <view class="navigator">
-            <label class="iconfont icon-link icons"></label><label>切换老师版</label>
-        </view>
-      </view>
       <view class='minProgram' wx:if="{{userInfo.parent_phone && userInfo.nickName}}">
         <navigator target="miniProgram" open-type="navigate" app-id="{{remote_app_id}}" path="{{remote_app_page}}" extra-data="" version="release" class="navigator">
             <label class="iconfont icon-link icons"></label><label>切换老师版</label>

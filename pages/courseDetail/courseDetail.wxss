@@ -16,6 +16,7 @@
   border-bottom: 1px solid #EEEEEE;
 }
 .company .h2 {
+  width: 456rpx;
   font-size: 38rpx;
   font-weight: bold;
   margin-left: -14rpx;
@@ -43,12 +44,21 @@
 }
 /* 授课老师 */
 .lecture-teacher {
-  padding-bottom: 60rpx;
+  padding-bottom: 20rpx;
   position: relative;
 }
 .lecture-teacher .lecture-head {
   padding: 28rpx 0 0;
   display: flex;
+  position: relative;
+}
+.lecture-teacher .lecture-head .icon-enter {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #cccccc;
+  font-size: 50rpx;
 }
 .lecture-teacher .lecture-head .head-img {
   width: 100rpx;
@@ -90,6 +100,7 @@
 }
 .lecture-teacher .lecture-head-r .p-name-address {
   display: flex;
+  padding-bottom: 20rpx;
 }
 .lecture-teacher .lecture-head-r .p-name-address .s-name {
   font-size: 30rpx;
@@ -111,48 +122,41 @@
 .lecture-teacher .lecture-head-r .p-name-address .icon-coordinates_fill {
   padding-right: 10rpx;
 }
-.lecture-teacher .lecture-head-r .p-tag {
-  padding-top: 20rpx;
-}
-.lecture-teacher .lecture-head-r .p-tag text {
-  padding: 7rpx 18rpx;
-  background-color: #F4F5F7;
-  margin-right: 20rpx;
-  font-size: 20rpx;
-}
-.lecture-teacher .icon-enter {
-  position: absolute;
-  right: -12rpx;
-  bottom: 130rpx;
-  color: #cccccc;
-  font-size: 50rpx;
-}
-.guanzhu-stat {
+.guanzhu-tag {
   display: flex;
-  align-items: center;
-  height: 36rpx;
-  line-height: 36rpx;
   margin-top: 16rpx;
 }
-.guanzhu-stat .guanzhu-box {
+.guanzhu-tag .guanzhu-box {
   width: 100rpx;
-  height: 100rpx;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-right: 32rpx;
 }
-.guanzhu-stat .guanzhu-btn {
+.guanzhu-tag .guanzhu-btn {
   width: 80rpx;
+  height: 36rpx;
+  line-height: 36rpx;
   font-size: 20rpx;
   text-align: center;
   border: 1px solid #40bf6a;
   border-radius: 4rpx;
   color: #40bf6a;
 }
-.guanzhu-stat .guanzhu-btn.has-active {
+.guanzhu-tag .guanzhu-btn.has-active {
   border-color: #cccccc;
   color: #999999;
+}
+.guanzhu-tag .p-tag {
+  display: flex;
+  flex-wrap: wrap;
+}
+.guanzhu-tag .p-tag text {
+  padding: 7rpx 18rpx;
+  background-color: #F4F5F7;
+  margin-right: 20rpx;
+  font-size: 20rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
 }
 /* 课程详情 */
 .course-detail {

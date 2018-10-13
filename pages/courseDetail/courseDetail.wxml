@@ -23,32 +23,34 @@
           <!-- 授课老师 -->
           <view class="li lecture-teacher">
             <yx-title title="授课老师"></yx-title>
-            <view class="lecture-head">
+            <view class="lecture-head" bind:tap="openTeacherIntroduction">
               <view class="head-img">
                 <image wx:if="{{teacher.teacher_headimg}}" src="{{teacher.teacher_headimg}}" ></image>
               </view>
               <view class="lecture-head-r">
-                <view class="p-name-address">
-                  <label class="s-name">{{teacher.teacher_name}}</label>
-                  <label class="s-address">
-                    <text class="iconfont icon-coordinates_fill"></text>
-                    <text class="text-hidden">{{teacher.group_name}}</text>
-                  </label>
-                </view>
-                <view class="p-tag">
-                  <text class="color-999" wx:for="{{teacher.specialty}}" wx:for-item="value" wx:key="{{value}}">{{value}}</text>
-                </view>
+                  <view class="p-name-address">
+                    <label class="s-name">{{teacher.teacher_name}}</label>
+                    <label class="s-address">
+                      <text class="iconfont icon-coordinates_fill"></text>
+                      <text class="text-hidden">{{teacher.group_name}}</text>
+                    </label>
+                  </view>
+                  <view class="fz-24 color-green">
+                    数学 · {{stat.teacher_years}}年教龄 · 推荐指数{{stat.recommend_index}} · 出勤分{{stat.attendance_score}}
+                  </view>
               </view>
+              <label class="iconfont icon-enter"></label>
             </view>
-            <view class="guanzhu-stat">
+            <view class="guanzhu-tag">
               <view class="guanzhu-box">
-                <label class="guanzhu-btn {{followed ? 'has-active': ''}}" bind:tap="updateTeacherFollowInfo">
+                <label class="guanzhu-btn {{followed ? 'has-active': ''}}" catch:tap="updateTeacherFollowInfo">
                   {{followed ? '已关注' : '关注'}}
                 </label>
               </view>
-              <view class="fz-22 color-999 stat">教过{{stat.student_count}}人 . 写过{{stat.report_count}}个课程报告 . {{stat.feedback_rate * 100}}%好评率</view>
+              <view class="p-tag">
+                <text class="color-999" wx:for="{{teacher.teacher_specialty}}" wx:for-item="value" wx:key="{{value}}">{{value}}</text>
+              </view>
             </view>
-            <label class="iconfont icon-enter" bind:tap="openTeacherIntroduction"></label>
           </view>
           <!-- 大纲 -->
           <view class="li course-outline">

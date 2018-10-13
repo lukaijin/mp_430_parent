@@ -32,7 +32,7 @@ Component({
   methods: {
     onGetuserinfo (event) {
       console.log('onGetuserinfo', event)
-      this.triggerEvent('login', event.detail.userInfo)
+      this.triggerEvent('login', event.detail)
     }
   }
 })
