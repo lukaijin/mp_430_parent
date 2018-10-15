@@ -1,0 +1,29 @@
+   <view class="order-container">
+     <view class="p fz-26 order-num">订单号：{{order.order_out_trade_no}}</view>
+      <view class="order-content">
+        <view class="order-content-l"><image wx:if="{{order.arrange_image}}" src="{{order.arrange_image}}"></image></view>
+        <view class="order-content-r">
+          <view class="h2 text-hidden">{{order.course_name}}</view>
+          <view class="p fz-24 color-999 p-time">{{order.startdate}}-{{order.enddate}}，{{order.outlineNum || 'x'}}次课</view>
+          <view class="p fz-24 p-money">￥{{order.arrange_discount_price}}</view>
+        </view>
+      </view>
+
+      <view class="place-an-order">
+        <label>下单时间</label>
+        <label class="color-999">{{order.order_time_start}}</label>
+      </view>
+      <view class="xu-payment">
+        <label>需付款</label>
+        <label class="fz-30 color-red">￥{{order.order_total_fee}}</label>
+      </view>
+      <view class="p fz-24 please-hour" wx:if="{{isOrderPayment}}">请在1小时内完成支付，逾期将会自动取消订单</view>
+      <view class="footer foot-payment" wx:if="{{isPayment}}">
+        <view class="p fz-30">合计金额：<label class="color-red">￥{{order.order_total_fee}}</label></view>
+        <label class="bg-orange payment-btn" data-order-id="11" bind:tap="onPayment">立即支付</label>
+      </view>
+      <footer class="foot-detail" wx:if="{{isOrderDetail}}">
+        <label class="color-999 del-btn" data-order-id="{{order.order_id}}" bind:tap="delOrder">删除订单</label>
+        <navigator class="color-green after-btn" url="/pages/concat/concat">申请售后</navigator>
+      </footer>
+   </view>

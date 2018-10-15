@@ -40,22 +40,31 @@ Component({
    * 组件的初始数据
    */
   data: {
-    statusBarHeight: '',
-    titleBarHeight: ''
+    statusBarHeight: '20',
+    titleBarHeight: '44',
+    navigatorHidden: false,
+    show: false
   },
 
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached () {
+      const pages = getCurrentPages()
+      console.log('pages', pages, pages.length - 1 === 0)
       this.setData({
         statusBarHeight: wx.getStorageSync('statusBarHeight'),
-        titleBarHeight: wx.getStorageSync('titleBarHeight')
+        titleBarHeight: wx.getStorageSync('titleBarHeight'),
+        navigatorHidden: pages.length - 1 === 0
       })
       console.log('statusBarHeight', this.data.statusBarHeight)
       console.log('titleBarHeight', this.data.titleBarHeight)
     },
     moved: function () { },
     detached: function () { },
+    ready () {
+      console.log('navigatorHidden', this.data.navigatorHidden)
+      this.setData({ show: true })
+    },
   },
   
   /**

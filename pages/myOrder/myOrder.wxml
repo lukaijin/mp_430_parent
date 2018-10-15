@@ -1,2 +1,17 @@
-<!--pages/myOrder/myOrder.wxml-->
-<text>pages/myOrder/myOrder.wxml</text>
+<view class="bg-f3f3f33 my-order">
+  <navigator-bar title="我的订单"></navigator-bar>
+  <view class="my-order-main">
+    <view class="header tab" style="top: {{statusBarHeight + titleBarHeight + 'px'}}">
+      <label class="{{type === 'unfinished' ? 'tab-active' : ''}}" data-type="unfinished" bind:tap="tabOrderList">未完成</label>
+      <label class="{{type === 'finished' ? 'tab-active' : ''}}" data-type="finished" bind:tap="tabOrderList">已完成</label>
+    </view>
+    <order-list wx:if="{{type === 'unfinished' && unfinishedList.length}}" orderList="{{unfinishedList}}"></order-list>
+    <order-list wx:elif="{{type === 'finished' && finishedList.length}}" orderList="{{finishedList}}"></order-list>
+    <view class="none-order" wx:else>
+      <view class="img"><image src="../../images/kongbaiyes.png"></image></view>
+      <view class="p fz-32 color-666">暂无订单</view>
+      <view class="p color-999">去选择你想要的课程吧</view>
+      <navigator class="course-btn" open-type="switchTab"  url="/pages/courseList/courseList">去课程查看</navigator>
+    </view>
+  </view>
+</view>

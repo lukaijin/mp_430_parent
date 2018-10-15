@@ -1,5 +1,6 @@
 {
 	"usingComponents": {
-		"navigator-bar": "../NavigatorBar/NavigatorBar"
+		"navigator-bar": "../../components/NavigatorBar/NavigatorBar",
+		"course-detail-page": "../../components/CourseDetailPage/CourseDetailPage"
 	}
  }

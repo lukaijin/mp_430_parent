@@ -1,0 +1,67 @@
+//out: ../pages/myOrder/myOrder.wxss, compress: false, sourceMap: false
+@import './var.less';
+
+.my-order {
+  min-height: 100%;
+}
+.my-order-main {
+  padding-top:108rpx;
+}
+.tab {
+  width: 100%;
+  height: 108rpx;
+  line-height: 108rpx;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  font-size: 34rpx;
+  color: #999999;
+  position: fixed;
+  left: 0;
+  z-index:2;
+  .tab-active {
+    color: @green;
+    position: relative;
+    &::before {
+      content: '';
+      width: 46rpx;
+      height: 6rpx;
+      background-color: @green;
+      position: absolute;
+      bottom: 0;
+      border-radius: 46rpx;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+// 暂无订单
+.none-order {
+  .img {
+    width: 142rpx;
+    height: 193rpx;
+    margin: 214rpx auto 0;
+    image {
+      width: 142rpx;
+      height: 193rpx;
+    }
+  }
+  .p {
+    text-align: center;
+    &:nth-of-type(2) {
+      padding-top: 38rpx;
+      padding-bottom: 25rpx;
+    }
+  }
+}
+.course-btn {
+  width: 297rpx;
+  line-height: 96rpx;
+  margin: 69rpx auto 0;
+  border-radius: 96rpx;
+  text-align: center;
+  color: #ffffff;
+  background-color: @green;
+  font-size: 34rpx;
+}

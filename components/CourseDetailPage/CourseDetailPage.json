@@ -1,4 +1,9 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "yx-title": "../Title/Title",
+    "back-home-icon": "../BackHomeIcon/BackHomeIcon",
+    "yx-dialog": "../Dialog/Dialog",
+    "auth-model": "../AuthModel/AuthModel"
+  }
 }

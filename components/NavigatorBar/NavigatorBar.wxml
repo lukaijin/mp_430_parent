@@ -4,7 +4,7 @@
      <view class="status-bar" style="height: {{statusBarHeight + 'px'}}"></view>
      <view wx:if='{{title}}' class="title-bar" style="height: {{titleBarHeight + 'px'}}">
        <view class="left-icon">
-         <navigator wx:if="{{!type}}" class="left-icon-navigator" open-type="navigateBack">
+         <navigator wx:if="{{!type && show}}" class="left-icon-navigator {{navigatorHidden ? 'navigator-hidden': ''}}" open-type="navigateBack">
            <label class="navigator-after" style="border-color: {{arrowColor}}"></label>
          </navigator>
        </view>
@@ -12,7 +12,7 @@
        <view class="right-icon"></view>
      </view>
      <view wx:else bind:tap="_toMessage" style="height: {{titleBarHeight + 'px'}}; line-height: {{titleBarHeight + 'px'}}">
-       <view class="iconfont left-msg icon-mail {{totalCount?'radius':''}}"></view>
+       <view wx:if="{{show}}" class="iconfont left-msg icon-mail {{totalCount?'radius':''}}"></view>
      </view>
    </view>
  </view>

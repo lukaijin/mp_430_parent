@@ -1,0 +1,115 @@
+.order-container {
+  padding: 0 30rpx;
+}
+.order-num {
+  padding-top: 29rpx;
+  padding-bottom: 44rpx;
+}
+.order-content {
+  display: flex;
+}
+.order-content .order-content-l {
+  width: 120rpx;
+  height: 160rpx;
+  margin-right: 28rpx;
+}
+.order-content .order-content-l image {
+  width: 120rpx;
+  height: 160rpx;
+}
+.order-content .order-content-r {
+  position: relative;
+}
+.order-content .order-content-r .h2 {
+  width: 456rpx;
+  margin-top: -3rpx;
+  height: 52rpx;
+  font-size: 30rpx;
+  color: #333333;
+}
+.order-content .order-content-r .p-time {
+  line-height: 36rpx;
+}
+.order-content .order-content-r .p-money {
+  position: absolute;
+  bottom: -3rpx;
+}
+.place-an-order {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 55rpx;
+  padding-bottom: 35rpx;
+  border-bottom: 1rpx solid #eeeeee;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+.xu-payment {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+  margin: 35rpx 0 40rpx 0;
+  font-weight: 500;
+}
+.please-hour {
+  text-align: right;
+  color: #bbbbbb;
+}
+.foot-payment {
+  width: 100%;
+  height: 107rpx;
+  line-height: 107rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid #EEEEEE;
+  box-sizing: border-box;
+}
+.foot-payment .p {
+  margin-left: 30rpx;
+}
+.foot-payment .payment-btn {
+  width: 260rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 130rpx;
+  color: #ffffff;
+  margin-right: 30rpx;
+}
+.foot-detail {
+  width: 100%;
+  height: 107rpx;
+  line-height: 107rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid #EEEEEE;
+  box-sizing: border-box;
+}
+.foot-detail .del-btn {
+  width: 260rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 130rpx;
+  margin-right: 20rpx;
+  border: 1rpx solid #cccccc;
+  box-sizing: border-box;
+}
+.foot-detail .after-btn {
+  width: 260rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 130rpx;
+  margin-right: 30rpx;
+  border: 1rpx solid #40BF6A;
+  box-sizing: border-box;
+}

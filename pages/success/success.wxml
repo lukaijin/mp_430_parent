@@ -1,0 +1,11 @@
+<view class="success-box">
+  <navigator-bar title="成功" titleColor="#ffffff"></navigator-bar>
+  <view class="success">
+    <view class="bg-green success-icon">
+      <label class="iconfont icon-duihao"></label>
+    </view>
+    <text class="fz-40 h3-title">课程报名成功</text>
+    <navigator url="{{'/pages/courseDetail/courseDetail?type=homeCourse&arrangeId='+arrangeId}}" class="bg-green fz-34 check-btn">查看课程详情</navigator>
+    <navigator url="/pages/courseList/courseList" open-type="switchTab" class="fz-34 color-333 course-list-btn">返回选课列表</navigator>
+  </view>
+</view>

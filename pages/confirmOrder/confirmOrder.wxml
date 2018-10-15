@@ -1,0 +1,2 @@
+<navigator-bar title="确认订单"></navigator-bar>
+<confirm-order isPayment="{{true}}" orderId="{{orderId}}"></confirm-order>

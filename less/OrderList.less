@@ -1,0 +1,86 @@
+//out: ../components/OrderList/OrderList.wxss, compress: false, sourceMap: false
+
+  // 列表
+  .order-ul {
+    padding: 0 30rpx 130rpx;
+    .order-time {
+      height: 70rpx;
+      line-height: 70rpx;
+      color: #bbbbbb;
+      font-size: 22rpx;
+      text-align: center;
+    }
+    .list {
+      padding: 29rpx 26rpx 26rpx 29rpx;
+      background-color: #ffffff;
+      border-radius: 8rpx;
+    }
+  }
+  // 订单号
+  .order-number {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40rpx;
+  }
+  // 内容
+  .order-content {
+    display: flex;
+    .order-content-img {
+      width: 120rpx;
+      height: 160rpx;
+      margin-right: 28rpx;
+      image {
+        width: 120rpx;
+        height: 160rpx;
+      }
+    }
+    .order-content-right {
+      position: relative;
+      .h2 {
+        width: 414rpx;
+        height: 50rpx;
+        font-size: 30rpx;
+        color: #333333;
+        margin-top: -3rpx;
+      }
+      .p-time {
+        line-height: 36rpx;
+      }
+      .p-money {
+        position: absolute;
+        bottom: -3rpx;
+      }
+    }
+  }
+  .real-payment {
+    padding-top: 20rpx;
+    text-align: right;
+    padding-bottom: 35rpx;
+    color: #333333;
+    font-size: 26rpx;
+  }
+  .order-btn {
+    display: flex;
+    justify-content: flex-end;
+    .del-order {
+      width: 160rpx;
+      line-height: 54rpx;
+      border: 1rpx solid #cccccc;
+      border-radius: 160rpx;
+      color: #999999;
+      font-size: 26rpx;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .go-payment {
+      width: 160rpx;
+      line-height: 54rpx;
+      border: 1rpx solid #40bf6a;
+      border-radius: 160rpx;
+      color: #40bf6a;
+      font-size: 26rpx;
+      text-align: center;
+      box-sizing: border-box;
+      margin-left: 20rpx;
+    }
+  }

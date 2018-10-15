@@ -1,0 +1,2 @@
+  <navigator-bar title="课程详情" ></navigator-bar>
+  <course-detail-page query="{{query}}"></course-detail-page>

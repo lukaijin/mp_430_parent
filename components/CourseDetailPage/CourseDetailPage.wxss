@@ -271,8 +271,7 @@
 .course-btn {
   width: 100%;
   height: 107rpx;
-  display: flex;
-  align-items: center;
+  box-sizing: border-box;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -290,25 +289,21 @@
   border: none;
 }
 .course-btn .kefu-btn {
-  padding-left: 45rpx;
-  margin-right: 47rpx;
+  margin-right: 40rpx;
+  flex: 1;
 }
 .course-btn .kefu-btn .icon-customerservice {
   color: #333333;
   font-size: 42rpx;
-  position: absolute;
-  left: 0;
-  top: -4rpx;
+  margin-right: 10rpx;
 }
 .course-btn .share-btn {
-  padding-left: 45rpx;
+  flex: 1;
 }
 .course-btn .share-btn .icon-send {
   color: #333333;
   font-size: 42rpx;
-  position: absolute;
-  left: 0;
-  top: -4rpx;
+  margin-right: 10rpx;
 }
 .course-btn .sign-up-btn {
   text-align: center;

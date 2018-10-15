@@ -1,6 +1,6 @@
 const regeneratorRuntime = require('../../utils/regenerator-runtime/runtime.js')
 const api = require('../../utils/api/index.js')
-let { wxLogin, getUserInfo, setNavigationBarColorAndTabBarStyle } = require('../../utils/common.js')
+let { wxLogin, getUserInfo, getSystemConfig } = require('../../utils/common.js')
 
 Page({
 
@@ -10,7 +10,8 @@ Page({
     parentInfo: {parent_name: ''},
     remote_app_id: '', // 'wxfdd778f2a9a0c054
     remote_app_page: '', // /pages/home/main
-    totalCount: 0
+    totalCount: 0,
+    allowComment: 0
   },
 
   onShow () {
@@ -34,8 +35,9 @@ Page({
       })
     }
     this.getCode()
-    this.getTeacherInfoByPhone()
+    this._getSystemConfig()
     this._getLatestMessageCount()
+    this.getTeacherInfoByPhone()
   },
 
   //methods方法 start
@@ -64,6 +66,13 @@ Page({
         })
       }
     })
+  },
+  _getSystemConfig () { // 是否开启评论功能
+    getSystemConfig()
+      .then(res => {
+        console.log(res, 'res123456')
+        this.setData({ allowComment: Number(res) })
+      })
   },
   _getLatestMessageCount () {
     api.getLatestMessageCount()

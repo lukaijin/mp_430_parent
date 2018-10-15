@@ -19,7 +19,7 @@ exports.getCourseList = (params) => {
             week = `${getDayOfWeek(item.nextcoursestarttime.substr(0, 10))}`
           }
           if (item.nextcourseendtime && item.nextcoursestarttime) {
-            time = `${item.nextcoursestarttime.substr(0, 10)} ，${item.nextcoursestarttime.substr(11, 9)}-${item.nextcourseendtime.substr(11, 9)}`
+            time = `${item.nextcoursestarttime.substr(0, 10)} ，${item.nextcoursestarttime.substr(11, 5)}-${item.nextcourseendtime.substr(11, 9)}`
           }
           courseList.push({
             arrangeId: item.arrange_id,
@@ -76,3 +76,6 @@ exports.getReportDetail = (params) => fetch('/ReportManager/getReportDetail', 'G
 
 // 提交作业
 exports.updateReporthomework = (params) => fetch('/ReportManager/updateReporthomework', 'POST', params)
+
+// 是否开启评论接口
+exports.getSystemConfig = () => fetch('/CommonManager/getSystemConfig', 'GET')

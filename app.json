@@ -17,7 +17,11 @@
     "pages/phone/phone",
     "pages/message/message",
     "pages/reportDetail/reportDetail",
-    "pages/teacher/teacher"
+    "pages/teacher/teacher",
+    "pages/confirmOrder/confirmOrder",
+    "pages/success/success",
+    "pages/orderPayment/orderPayment",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,5 +1,3 @@
-<!-- wx:if="{{isNavTitle}}" -->
-  <navigator-bar title="课程详情" ></navigator-bar>
     <view class="course-container">
       <view class="course-container-top">
         <view class="company">
@@ -25,7 +23,7 @@
             <yx-title title="授课老师"></yx-title>
             <view class="lecture-head" bind:tap="openTeacherIntroduction">
               <view class="head-img">
-                <image src="{{teacher.teacher_headimg || teacher.teacher.wx_headimgurl}}" ></image>
+                <image wx:if="{{teacher.teacher_headimg || teacher.teacher.wx_headimgurl}}" src="{{(teacher.teacher_headimg || teacher.teacher.wx_headimgurl) + '?x-oss-process=image/resize,m_fill,h_140,w_140'}}" ></image>
               </view>
               <view class="lecture-head-r">
                   <view class="p-name-address">
@@ -91,7 +89,7 @@
               </view>
               <view class="p-info">
                 <label class="s-title">课程获得知识点</label>
-                <label class="s-value color-999">{{course.course_know_point}}</label>
+                <text class="s-value color-999">{{course.course_know_point}}</text>
               </view>
               <view class="p-info">
                 <label class="s-title">适宜年龄</label>
@@ -127,15 +125,19 @@
             <yx-title title="课程图片"></yx-title>
           </view>
           <view class="chang-tu">
-            <image src="{{url}}" wx:for="{{course.course_photos}}" wx:for-item="url" wx:key="{{url}}" ></image>
+            <image src="{{url}}" mode="widthFix" wx:for="{{course.course_photos}}" wx:for-item="url" wx:key="{{url}}" ></image>
           </view>
         </view>
       </view>
       <!-- 按钮状态 -->
       <view>
-        <view wx:if="{{type === 'homeCourse'}}" class="course-btn">
-          <button open-type="contact" class="kefu-btn"><i class="iconfont icon-customerservice"></i><text class="fz-30">客服</text></button>
-          <button bind:tap="openPoster" class="share-btn"><i class="iconfont icon-send"></i><text class="fz-30">分享</text></button>
+        <view wx:if="{{type === 'homeCourse'}}" class="course-btn mix-flex-y-center">
+          <button open-type="contact" class="kefu-btn mix-flex-y-center">
+            <label class="iconfont icon-customerservice"></label><label class="fz-30">客服</label>
+          </button>
+          <button bind:tap="openPoster" class="share-btn mix-flex-y-center">
+            <label class="iconfont icon-send"></label><label class="fz-30">分享</label>
+          </button>
           <view bind:tap="onSignUp" class="sign-up-btn {{course.signup_status === 1 ? 'bg-orange' : 'bg-ccc'}}">
             <text>{{course.signup_desc}}</text>
             <picker disabled="{{isBindSchool}}" bind:change="bindSchoolChange" class="sign-up-picker" value="{{schoolIndex}}" range-key="group_name" range="{{options.school}}">

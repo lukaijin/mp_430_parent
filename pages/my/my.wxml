@@ -7,7 +7,10 @@
           <view class="phone" wx:if="{{userInfo.parent_phone}}" bind:tap="onAddPhone">{{userInfo.parent_phone}}<label class="iconfont icon-brush_fill"></label></view>
           <view class="phone-tips" wx:else>绑定手机号，享受更优质服务</view>
         </view>
-        <view class="avatar" data-type="profile" catch:tap="openPage"><image class="img" src="{{userInfo.avatarUrl || '../../images/head.jpg'}}"></image></view>
+        <view class="avatar" data-type="profile" catch:tap="openPage">
+          <image wx:if="{{userInfo.avatarUrl}}" class="img" src="{{userInfo.avatarUrl + '?x-oss-process=image/resize,m_fill,h_140,w_140' || '../../images/head.jpg'}}"></image>
+          <image wx:else class="img" src="../../images/head.jpg"></image>
+        </view>
       </view>
       <view class="info-list">
         <view class="info mix-flex-y-center" data-type="child" bind:tap="openPage">
@@ -28,7 +31,7 @@
           </view>
         </view>
 
-        <view class="info mix-flex-y-center" data-type="growthRecord" bind:tap="openPage">
+        <view class="info mix-flex-y-center" data-type="growthRecord" bind:tap="openPage" wx:if="{{allowComment}}">
           <view class="info-name">
             <view class="p"><text class="iconfont icon-dynamic"></text>成长记录</view>
           </view>

@@ -1,0 +1,24 @@
+ <view class="order-ul">
+    <view class="li" wx:for="{{orderList}}" wx:key="{{item.order_id}}">
+      <view class="order-time">{{item.order_time_start}}</view>
+      <view class="list">
+        <view class="order-number">
+          <label class="fz-26">订单号：{{item.order_out_trade_no}}</label>
+          <label class="fz-26 {{item.order_status !== '3' ? 'color-orange' : 'color-999'}}">{{options.orderStatus[item.order_status]}}</label>
+        </view>
+        <view class="order-content" data-order-id="{{item.order_id}}" data-order-status="{{item.order_status}}" bind:tap="openOrder">
+          <view class="order-content-img"><image src="{{item.arrange_image}}"></image></view>
+          <view class="order-content-right">
+            <view class="h2 text-hidden">{{item.course_name}}</view>
+            <view class="p fz-24 color-999 p-time">{{item.startdate}}-{{item.enddate}}，{{item.outlineNum || 'x'}}次课</view>
+            <view class="p fz-24 p-money">￥{{item.arrange_discount_price}}</view>
+          </view>
+        </view>
+        <view class="p real-payment">共1件商品，实付款: <label class="color-red">￥{{item.order_total_fee}}</label></view>
+        <view class="order-btn">
+          <label class="del-order" data-order-id="{{item.order_id}}" data-index="{{index}}" bind:tap="delOrder">删除订单</label>
+          <navigator class="go-payment" wx:if="{{item.order_status === '1'}}" url="{{'/pages/orderPayment/orderPayment?orderId='+item.order_id}}">去支付</navigator>
+        </view>
+      </view>
+    </view>
+  </view>

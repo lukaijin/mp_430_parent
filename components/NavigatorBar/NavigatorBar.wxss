@@ -4,6 +4,9 @@
   width: 100%;
   z-index: 9999;
 }
+.navigator-hidden {
+  display: none;
+}
 .right-icon {
   width: 100rpx;
   height: 100rpx;

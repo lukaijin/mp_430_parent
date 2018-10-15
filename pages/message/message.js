@@ -58,12 +58,17 @@ Page({
         })
       })
   },
-  _toReportDetail (id) {
+  _toReportDetail (e) {
+    console.log('_toReportDetail', e)
+    let reportId = e.currentTarget.dataset.reportId
     wx.navigateTo({
-      url: `/pages/reportDetail/reportDetail?id=${id}`
+      url: `/pages/reportDetail/reportDetail?id=${reportId}`
     })
   },
-  _toCourseSpace (arrangeId, teacherId) {
+  _toCourseSpace (e) {
+    console.log('_toCourseSpace', e)
+    let teacherId = e.currentTarget.dataset.teacherId
+    let arrangeId = e.currentTarget.dataset.arrangeId
     wx.navigateTo({
       url: `/pages/courseSpace/courseSpace?&teacherId=${teacherId}&arrangeId=${arrangeId}`
     })
@@ -71,7 +76,7 @@ Page({
   _setMessageRead (messageList) {
     let arr = []
     messageList.forEach(res => {
-      if (!res.had_read) {
+      if (!Number(res.had_read)) {
         arr.push(res.message_id)
       }
     })

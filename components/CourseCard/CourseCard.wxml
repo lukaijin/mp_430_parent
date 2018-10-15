@@ -1,6 +1,6 @@
 <view class="yx-course-card"  bind:tap="onOpenDetails">
    <view class="image">
-      <image class="img" mode="scaleToFill" src="{{info.arrange_image}}"></image>
+      <image class="img" mode="aspectFill" src="{{info.arrange_image + '?x-oss-process=image/resize,m_fill,h_240,w_180'}}"></image>
    </view>
    <view class="description">
       <view class="p title text-hidden">{{info.name}}</view>

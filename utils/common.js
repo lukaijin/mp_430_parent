@@ -1,5 +1,5 @@
 const api = require('./api/index.js')
-console.log('common.js_api', api)
+// console.log('common.js_api', api)
 
 // 获取code
 const getCode = (callback) => {
@@ -62,7 +62,7 @@ const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
          wx_city: object.userInfo.city,
          wx_country: object.userInfo.country,
          wx_province: object.userInfo.province,
-         wx_headimgurl: object.userInfo.avatarUrl
+         wx_headimgurl: object.userInfo.avatarUrl + '?x-oss-process=image/resize,m_fill,h_140,w_140'
        }
        object.userInfo.encryptedData = object.encryptedData
        object.userInfo.iv = object.iv
@@ -88,6 +88,18 @@ const setUserInfo = (userInfo = {}) => wx.setStorageSync('userInfo', userInfo)
       })
     })
  }
+  
+  const getSystemConfig = () => {
+    return new Promise((resolve, reject) => {
+      api.getSystemConfig()
+        .then(res => {
+          resolve(res.allow_comment)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  }
  
  /**
   * 授权登录的时候修改navigationbar的背景色，显示隐藏tabbar
@@ -143,6 +155,7 @@ const uploadImg = function (url) {
   getUserInfo,
   setUserInfo,
   wxLogin,
+  getSystemConfig,
   setNavigationBarColorAndTabBarStyle,
   uploadImg,
  }
