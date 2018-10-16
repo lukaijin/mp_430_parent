@@ -1,2 +1,2 @@
-<!--pages/orderDetail/orderDetail.wxml-->
-<text>pages/orderDetail/orderDetail.wxml</text>
+<navigator-bar title="订单详情"></navigator-bar>
+<order-detail isOrderDetail="{{true}}" orderId="{{orderId}}"></order-detail>

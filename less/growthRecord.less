@@ -1,0 +1,121 @@
+// out: ../pages/growthRecord/growthRecord.wxss, compress: false, sourceMap: false
+
+.content{
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  .content_item{
+    display: flex;
+    margin-top: 74rpx;
+    margin-bottom: 70rpx;
+    .left{
+      flex:0 0 126rpx;
+      .num {
+        font-size: 52rpx;
+        font-family: bold;
+        padding-right: 7rpx;
+      }
+      .nowTime{
+        font-size: 40rpx;
+        font-weight: bold;
+      }
+    }
+    .right{
+      .user_info{
+        display: flex;
+        font-size: 28rpx;
+        align-items: center;
+        font-weight:bold;
+        image{
+          width:70rpx;
+          height:70rpx;
+          border-radius:50%;
+          border:1px solid #eee;
+          margin-right: 18rpx;
+        }
+      }
+      .right_icon{
+        width:150rpx;
+        height:150rpx;
+        background:rgba(215,215,215,1);
+        line-height: 150rpx;
+        text-align: center;
+        font-size: 88rpx;
+        color:white;
+      }
+      .contents{
+        font-size: 28rpx;
+        margin-top: 24rpx;
+        .content_items{
+          label{
+            color:#FF4254;
+          }
+        }
+        .content_center {
+          margin-top: 26rpx;
+          display: flex;
+          padding: 20rpx 24rpx;
+          background: #FBFBFB;
+          image{
+            flex:0 0 120rpx;
+            width: 120rpx;
+            height: 160rpx;
+            margin-right: 22rpx;
+            border:1px solid #eee;
+          }
+          .right {
+            flex:1;
+            width:100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            button{
+              width:160rpx;
+              height:56rpx;
+              background:rgba(64,191,106,1);
+              border-radius:8rpx;
+              font-size: 24rpx;
+              color:white;
+              padding: 0;
+              margin: 0;
+              line-height: 56rpx;
+            }
+            .title{
+              width: 100%;
+              font-size: 30rpx;
+              font-weight: bold;
+              white-space:nowrap;
+              overflow:hidden;
+              text-overflow:ellipsis;
+            }
+            .desc{
+              font-size: 26rpx;
+              color:#999999;
+            }
+            button:after{
+              border:none;
+            }
+          }
+        }
+        .img_list {
+          display: flex;
+          flex-wrap: wrap;
+          margin-top: 30rpx;
+          image{
+            width:177rpx;
+            height:177rpx;
+            margin-right: 12rpx;
+            margin-bottom: 20rpx;
+            border:1px solid #eee;
+          }
+          image:nth-child(3n+3){
+            margin-right: 0rpx;
+          }
+        }
+
+      }
+    }
+  }
+}
+

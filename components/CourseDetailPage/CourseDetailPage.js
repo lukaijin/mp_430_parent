@@ -26,6 +26,13 @@ Component({
       observer: function(newVal, oldVal, changedPath) {
         console.log('properties_isInitCourse', newVal, oldVal, changedPath)
      }
+    },
+    guanzhuTeacher: {
+      type: Number,
+      value: -1,
+      observer: function(newVal, oldVal, changedPath) {
+        console.log('properties_guanzhuTeacher', newVal, oldVal, changedPath)
+      }
     }
   },
 
@@ -35,7 +42,14 @@ Component({
   //     if (newVal === true) {
   //       this.init()
   //     }
-  //   }
+  //   },
+  // guanzhuTeacher (newVal, oldVal) {
+  //   console.log('watch_course_guanzhu', newVal, oldVal)
+  //   this.getTeacherFollowInfo(this.teacherId)
+  //     .then(info => {
+  //       this.followed = info.followed
+  //     })
+  // }
   // },
   
   /**
@@ -96,6 +110,12 @@ Component({
       // if (this.data.isInitCourse) {
         // this.init(this.data.query)
       // }
+      if (this.data.teacherId) {
+        this.getTeacherFollowInfo(this.data.teacherId)
+        .then(FollowInfo => {
+          this.setData({ followed: FollowInfo.followed })
+        })
+      }
      },
     moved: function () { },
     detached: function () { },

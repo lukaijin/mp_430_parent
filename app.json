@@ -21,7 +21,8 @@
     "pages/confirmOrder/confirmOrder",
     "pages/success/success",
     "pages/orderPayment/orderPayment",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/publish/publish"
   ],
   "window": {
     "backgroundTextStyle": "light",

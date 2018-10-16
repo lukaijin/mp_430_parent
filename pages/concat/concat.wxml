@@ -1,2 +1,25 @@
-<!--pages/concat/concat.wxml-->
-<text>pages/concat/concat.wxml</text>
+<view class="concat-box">
+  <navigator-bar
+    title="联系我们"
+    bgColor="#40BF6A"
+    headerBgColor="#40BF6A"
+    arrowColor="#ffffff"
+    titleColor="#40BF6A">
+  </navigator-bar>
+  <view class="concat">
+    <view class="header mix-flex-center">
+      <view class="p">客服服务热线</view>
+      <view class="p tel" bind:tap="callPhone">Tel：{{phone}}</view>
+    </view>
+
+    <view class="bottom">
+      <view class="p time">客服在线时间：周一至周五，9:00~18:00</view>
+
+      <view class="p">为了给您提供更优质的服务，请在服务时间来电咨询。非工作时间，建议留言至微信客服，我们会第一时间给您解决问题。</view>
+
+      <view class="p wechat" bind:longpress="setClipboardData">客服微信：{{wechat}}</view>
+
+      <view class="p tips">（微信号长按可复制)</view>
+    </view>
+  </view>
+</view>

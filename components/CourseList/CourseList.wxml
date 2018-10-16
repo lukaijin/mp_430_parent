@@ -1,0 +1,30 @@
+<view class="title">
+  <view class="teacher_info">
+    <view class="main" wx:for="{{courseList}}" wx:key="{{index}}" data-arrange-id="{{item.arrangeId}}" data-teacher-id="{{item.teacher_id}}" bind:tap="_toCourseSpace">
+      <view class='main_item-content'>
+        <view class="time color_gray-1">
+          <view>{{item.time}}</view>
+          <view>{{item.week}}</view>
+        </view>
+        <view class="fz-36 name">{{item.name}}</view>
+        <view class="subject color-999">
+          <text wx:for="{{item.abilityTag}}" wx:for-item="items" wx:for-index="indexs" wx:key="{{indexs}}">{{items.ability_name}}</text>
+        </view>
+      </view>
+      <view class="main_item-header">
+        <view class="main_item-header-top">
+          <view class="fz-24">授课老师：{{item.teacher_name}}</view>
+          <view class="fz-24 color-orange">已上课/总课时：{{item.coursefinishcount}}/{{item.coursetotalcount}}</view>
+        </view>
+         <view class="color-999 fz-24">上课地点：{{item.location}}</view>
+      </view>
+    </view>
+    <view class="nothing" wx:if="{{courseList.length == 0}}">
+      <view class="nothing_img">
+        <image src="../../images/kecheng.png" mode="widthFix"></image>
+      </view>
+      <view class="fz-32 color-999">暂时没有课要上哦，去选课吧~</view>
+      <view class="fz-34 btns" bind:tap="_selectClass">点我选课</view>
+    </view>
+  </view>
+</view>

@@ -30,7 +30,7 @@ exports.getCourseList = (params) => {
             signup_status: item.signup_status,
             abilityTag: item.abilityinfo,
             remainingQuota: item.remain_signup_num,
-            location: item.location,
+            location: item.arrange_loc,
             course_id: item.course_id,
             coursefinishcount: item.coursefinishcount,
             coursetotalcount: item.coursetotalcount,

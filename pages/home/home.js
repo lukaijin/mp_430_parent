@@ -41,6 +41,13 @@ Page({
       this.setData({ titleColor:  '#333333'})
     }
   },
+  onShareAppMessage () {
+    return {
+      title: `欢迎来到${this.data.schoolName}，让我们一起关注孩子的成长吧！`,
+      imageUrl: `https://oss.xinjijiaoyu.com/430-parent/uedu_weapp/photo/wx0e886225c0f71b79.o6zAJs0l2NXCDBbJrkk275vIVNHU.5f0qoxwD9mcJ96470cbdc00544f05b36f70a0cbf710d.jpg`,
+      path: `/pages/home/main`
+    }
+  },
   /* methods start */
   init () {
     this.setData({ userInfo: getUserInfo() })

@@ -1,24 +1,24 @@
   <view class="my-course-list">
     <navigator-bar title="我的课程"></navigator-bar>
-    <scroll-view scroll-x="{{true}}" class="tab-h" id="tab" style="top:{{ top + 'px' }}">
+    <scroll-view scroll-x="{{true}}" class="tab-h" id="tab" style="top: {{ top + 'px' }}">
       <view class="tab ">
-        <view class="tab-item fz-34"
-          class="{{currentTab == index ? 'active' : 'color_gray'}}"
+        <view
+          wx:for="{{items}}"
+          class="tab-item fz-34 {{currentTab == index ? 'active' : 'color_gray'}}"
           data-current="{{index}}"
           bind:tap="_currentTab"
-          wx:for="{{items}}" 
           wx:key="{{item}}">
           {{item}}
         </view>
       </view>
     </scroll-view>
-    <view class="list" style="margin-top{{ top + 'px' }}">
-      <view style="height{{ height - top + 'px'}}">
-        <scroll-view scroll-y  style="height{{height - top + 'px'}}" bindscrolltolower="_scrolltolowerExer">
-          <!-- <course-list courseList ="{{courseList}}" wx:if="{{currentTab == 0}}"></course-list>
-          <course-list courseList ="{{inClassCourseList}}" wx:if="{{currentTab == 1}}" bindtoReport="toReport" ></course-list>
-          <course-list courseList ="{{completedCourseList}}" wx:if="{{currentTab == 2}}"></course-list> -->
-        </scroll-view>
+    <view class="list" style="margin-top: {{ top + 'px' }}">
+      <view>
+        <course-list courseList ="{{courseList}}" wx:if="{{currentTab == 0}}"></course-list>
+        <course-list courseList ="{{inClassCourseList}}" wx:if="{{currentTab == 1}}" bindtoReport="toReport" ></course-list>
+        <course-list courseList ="{{completedCourseList}}" wx:if="{{currentTab == 2}}"></course-list>
+        <!-- <scroll-view scroll-y  style="height: {{height - top + 'px'}}" bindscrolltolower="_scrolltolowerExer">
+        </scroll-view> -->
       </view>
     </view>
   </view>

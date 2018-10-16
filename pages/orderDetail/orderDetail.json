@@ -1,1 +1,6 @@
-{}
+{
+	"usingComponents": {
+    "navigator-bar": "../../components/NavigatorBar/NavigatorBar",
+    "order-detail": "../../components/Order/Order"
+	}
+ }

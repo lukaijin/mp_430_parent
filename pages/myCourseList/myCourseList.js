@@ -25,7 +25,7 @@ Page({
     this.data.userInfo = getUserInfo()
     const statusBarHeight = wx.getStorageSync('statusBarHeight')
     const titleBarHeight = wx.getStorageSync('titleBarHeight')
-    this.top = statusBarHeight + titleBarHeight
+    this.setData({ top: statusBarHeight + titleBarHeight })
     this._getTabList()
     this._getHeightscroll()
   },
@@ -42,7 +42,7 @@ Page({
   // 点击标题切换当前页时改变样式
   _currentTab (e) {
     var cur = e.currentTarget.dataset.current
-    if (this.currentTab === cur) {
+    if (this.data.currentTab === cur) {
       return false
     } else {
       this._nextTab(cur)
@@ -50,10 +50,11 @@ Page({
   },
 
   _nextTab (cur) {
-    this.currentTab = cur
+    this.setData({ currentTab: cur })
   },
 
   _getHeightscroll () {
+    const _this = this
     // 创建节点选择器
     var query = wx.createSelectorQuery()
     // 选择id
@@ -64,7 +65,7 @@ Page({
       console.log(height, 'height')
       wx.getSystemInfo({
         success: res => {
-          this.height = res.windowHeight - height[0].height
+          _this.setData({ height: res.windowHeight - height[0].height })
         }
       })
     })
@@ -82,7 +83,6 @@ Page({
             break
           case 1:
             this.setData({ inClassCourseList: res })
-            this.inClassCourseList = res
             break
           case 2:
             this.setData({ completedCourseList: res })

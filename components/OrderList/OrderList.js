@@ -3,6 +3,9 @@ const api = require('../../utils/api/index.js')
 const options = require('../../utils/options.js')
 
 Component({
+  options: {
+    addGlobalClass:true
+  },
   /**
    * 组件的属性列表
    */

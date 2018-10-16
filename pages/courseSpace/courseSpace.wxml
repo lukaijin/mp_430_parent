@@ -1,2 +1,36 @@
-<!--pages/courseSpace/courseSpace.wxml-->
-<text>pages/courseSpace/courseSpace.wxml</text>
+  <view class="course-space" wx:if="{{isShow}}">
+    <navigator-bar title="课程空间" headerBgColor="{{headerBgColor}}" titleColor="{{titleColor}}" arrowColor="{{arrowColor}}"></navigator-bar>
+    <view class="course-space_item {{currentTab === 1?'position_absolute':''}}" style="'top': {{statusBarHeight+titleBarHeight +'px'}}">
+      <scroll-view scroll-x="{{true}}" class="tab-h">
+        <view class="tab font_size-32 font_weight">
+          <view class="tab-item {{currentTab === index ? 'active' : '' }}" wx:for="{{items}}" data-current="{{index}}" bind:tap="_currentTab"  wx:key="{{index}}">
+            {{item}}
+          </view>
+        </view>
+      </scroll-view>
+      <view class="content">
+          <!-- 最新報告 -->
+          <view hidden="{{currentTab !== 0}}" class="new_reports">
+            <!-- <report-list :reportList ="newReportList" @sendLike="_like" @longtap="_deteilComment" :typeList="typeList" :orShowTime='orShowTime' @previewImage='_previewImage' :allowComment="allowComment"></report-list> -->
+          </view>
+          <!-- 课程介绍 -->
+          <view hidden="{{currentTab !== 1}}">
+              <course-detail-page
+                isInitCourse="{{isInitCourse}}"
+                guanzhuTeacher="{{guanzhuTeacher}}"
+                bind:sendGuanzhuCourse="_sendGuanzhuCourse"
+              ></course-detail-page>
+          </view>
+          <!-- 老师介绍 -->
+          <view hidden="{{currentTab !== 2}}">
+            <!-- <teacher-info
+              :isInitTeacher="isInitTeacher"
+              :teacherCurrentTabIndex="teacherCurrentTabIndex"
+              :guanzhuCourse="guanzhuCourse"
+              @sendGuanzhuTacher="_sendGuanzhuTacher"
+            >
+            </teacher-info> -->
+          </view>
+      </view>
+    </view>
+  </view>

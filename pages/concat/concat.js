@@ -5,62 +5,51 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    phone: '181-2677-8040',
+    wechat: 'czyxgfkf'
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  /* methods start */
+  callPhone () {
+    const phone = this.data.phone.replace(/-/g, '')
+    wx.makePhoneCall({
+      phoneNumber: phone,
+      success: () => {
+        wx.showToast({
+          title: '拉起拨号成功',
+          icon: 'none'
+        })
+      },
+      fail: () => {
+        wx.showToast({
+          title: '拉起拨号失败',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+        wx.showToast({
+          title: '拉起拨号成功',
+          icon: 'none'
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  setClipboardData () {
+    wx.setClipboardData({
+      data: this.data.wechat,
+      success: res => {
+        wx.getClipboardData({
+          success: res => {
+          }
+        })
+      },
+      fail: () => {
+        wx.showToast({
+          title: '客服微信复制失败',
+          icon: 'none'
+        })
+      }
+    })
   }
+  /* methods end */
 })

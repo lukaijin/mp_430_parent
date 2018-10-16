@@ -1,2 +1,55 @@
-<!--pages/growthRecord/growthRecord.wxml-->
-<text>成长记录</text>
+  <view class='growth-record' wx:if='{{isShow}}'>
+    <navigator-bar title="成长记录"></navigator-bar>
+    <view class="content">
+        <view class="content_item" >
+           <view class="left">
+             <label class="nowTime">今天</label>
+           </view>
+           <view class="right">
+              <view class="iconfont icon-camera-fill right_icon" bind:tap="_toPublish"></view>
+           </view>
+        </view>
+         <view class="content_item" wx:for="{{growthList}}" wx:key="{{index}}">
+           <view class="left">
+              <view wx:if="{{item.showTime}}"><label class="num">{{item.day}}</label><label class="fz-24">{{item.month}}月</label></view>
+           </view>
+           <view class="right">
+              <view class="right_info">
+                <view class='user_info'>
+                  <image wx:if="{{item.wx_headimgurl || item.teacher_headimg}}" src="{{(item.wx_headimgurl || item.teacher_headimg) + '?x-oss-process=image/resize,m_fill,h_140,w_140'}}"></image>
+                  <view>{{item.wx_nickname || item.teacher_name}}</view>
+                </view>
+              </view>
+              <view class="contents">
+                <view class="content_items">
+                  {{item.moment_content || item.share_word}}
+                  <label wx:for="{{item.aate_list}}" wx:for-item="student" wx:for-index="studentIndex" wx:key="{{studentIndex}}">@{{student.wx_nickname}}</label>
+                </view>
+                <view class="content_center" wx:if="{{item.growth_type != 1}}" data-report-id="{{item.report_id}}" bind:tap="_toReportDetail">
+                    <image wx:if="{{item.arrange_image}}" src="{{item.arrange_image}}"></image>
+                    <view class="right">
+                      <view class="title">{{item.course_name}}</view>
+                      <view class="desc">点击查看孩子的学习情况吧</view>
+                      <button>{{typeList[item.growth_type]}}</button>
+                    </view>
+                </view>
+                 <view class='img_list' wx:else>
+                   <image
+                     class="img_list-item"
+                     wx:for="{{item.moment_images}}"
+                     wx:for-index="j"
+                     wx:for-item="img"
+                     src="{{img + '?x-oss-process=image/resize,m_fill,h_150,w_150'}}"
+                     data-item="{{img}}"
+                     data-index="{{index}}"
+                     data-j="{{j}}"
+                     bind:tap="_previewImage"
+                     wx:key="{{j}}"
+                   >
+                   </image>
+                </view>
+              </view>
+           </view>
+        </view>
+    </view>
+  </view>

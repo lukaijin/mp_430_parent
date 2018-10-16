@@ -1,0 +1,19 @@
+  <view wx:if='{{isShow}}'>
+    <navigator-bar title="发表记录"></navigator-bar>
+     <view class="publish" >
+        <view class="text-box">
+            <text>{{currentInput}}</text>
+            <textarea class="weui-textarea" placeholder-style="color: #cccccc;" placeholder="分享新鲜事"  maxlength="1000" placeholder-class="active" bind:input="_getInput"/>
+        </view>
+        <view class="upload">
+          <view class="iconUpload" bind:tap="_chooseImage" wx:if="{{file.length<9}}">
+            <label class="iconfont icon-jiahao"></label>
+          </view>
+          <view class="loadImg border_gray-01" wx:for="{{file}}" data-index="{{index}}" bind:tap="_previewImage" wx:key="{{index}}">
+            <image  class="upLoad_img" src="{{item+'?x-oss-process=image/resize,m_fill,h_75,w_75'}}" data-imgindex="{{index}}" mode="aspectFill"/>
+            <label class="iconfont icon-close closeBtns" data-index="{{index}}" catch:tap="_delImage"></label>
+          </view>
+      </view>
+      <button class="submit {{!currentInput && file.length === 0 ?'actives' : 'actives_1'}}" bind:tap="_submit">发表</button>
+      </view>
+  </view>

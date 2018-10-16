@@ -69,9 +69,11 @@ Page({
     console.log('_toCourseSpace', e)
     let teacherId = e.currentTarget.dataset.teacherId
     let arrangeId = e.currentTarget.dataset.arrangeId
-    wx.navigateTo({
-      url: `/pages/courseSpace/courseSpace?&teacherId=${teacherId}&arrangeId=${arrangeId}`
-    })
+    if (teacherId && arrangeId) {
+      wx.navigateTo({
+        url: `/pages/courseSpace/courseSpace?&teacherId=${teacherId}&arrangeId=${arrangeId}`
+      })
+    }
   },
   _setMessageRead (messageList) {
     let arr = []
