@@ -10,11 +10,11 @@
       </scroll-view>
       <view class="content">
           <!-- 最新報告 -->
-          <view hidden="{{currentTab !== 0}}" class="new_reports">
+          <view hidden="{{!(currentTab === 0)}}" class="new_reports">
             <!-- <report-list :reportList ="newReportList" @sendLike="_like" @longtap="_deteilComment" :typeList="typeList" :orShowTime='orShowTime' @previewImage='_previewImage' :allowComment="allowComment"></report-list> -->
           </view>
           <!-- 课程介绍 -->
-          <view hidden="{{currentTab !== 1}}">
+          <view hidden="{{!(currentTab === 1)}}">
             <course-detail-page
               isInitCourse="{{isInitCourse}}"
               query="{{query}}"
@@ -24,11 +24,12 @@
             </course-detail-page>
           </view>
           <!-- 老师介绍 -->
-          <view hidden="{{currentTab !== 2}}">
-            <teacher-info
+          <view hidden="{{!(currentTab === 2)}}">
+            <teacher-page
               isInitTeacher="{{isInitTeacher}}"
+              query="{{query}}"
             >
-            </teacher-info>
+            </teacher-page>
             <!-- :teacherCurrentTabIndex="teacherCurrentTabIndex"
             :guanzhuCourse="guanzhuCourse"
             @sendGuanzhuTacher="_sendGuanzhuTacher" -->

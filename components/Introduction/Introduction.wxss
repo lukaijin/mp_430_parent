@@ -1,0 +1,30 @@
+.introduction-container {
+  padding-bottom: 135rpx;
+}
+.introduction-container .p-tag {
+  padding: 7rpx 18rpx;
+  background-color: #F4F5F7;
+  margin-right: 20rpx;
+  font-size: 20rpx;
+}
+.introduction-container .p-info {
+  padding-top: 60rpx;
+}
+.introduction-container .p-info .s-title,
+.introduction-container .p-info .s-value {
+  display: block;
+  font-size: 30rpx;
+}
+.introduction-container .p-info .s-title {
+  height: 62rpx;
+}
+.introduction-container .h2 {
+  height: 70rpx;
+  font-size: 30rpx;
+}
+.introduction-container .li {
+  margin-top: 65rpx;
+}
+.introduction-container .content-wxparse {
+  color: #666666;
+}

@@ -1,2 +1,71 @@
-<!--components/TeacherPage/TeacherPage.wxml-->
-<text>components/TeacherPage/TeacherPage.wxml</text>
+<view class="teacher-container">
+  <view class="teacher-info-box"></view>
+  <view class="teacher-info">
+    <section class="teacher-info-l">
+      <view class="head"><image wx:if="{{teacherInfo.teacher_headimg || teacherInfo.wx_headimgurl}}" src="{{(teacherInfo.teacher_headimg || teacherInfo.wx_headimgurl) + '?x-oss-process=image/resize,m_fill,h_140,w_140'}}"></image></view>
+      <view class="teacher-info-content">
+        <view class="p p-name-subject">
+          <label class="fz-32">{{teacherInfo.teacher_name}}</label>
+          <label class="line">|</label>
+          <label class="fz-26 color-666">{{teacherInfo.teacher_specialty.length? teacherInfo.teacher_specialty[0] : ''}}</label>
+        </view>
+        <label class="s-address">
+          <text class="iconfont icon-coordinates_fill"></text>
+          <text class="text-hidden">{{teacherInfo.group_name}}</text>
+        </label>
+      </view>
+    </section>
+    <view class="guanzhu-btn {{followed ? 'bg-ccc' : 'bg-orange'}}" bind:tap="updateTeacherFollowInfo">
+      <label hidden="{{!followed}}">已关注</label>
+      <label class="none-gz" hidden="{{followed}}">
+        <text class="iconfont icon-jiahao"></text>
+        <text class="none-gz-text">关注</text>
+      </label>
+    </view>
+    <view class="teacher-stats">
+      <view class="ul">
+        <view class="li">
+          <view class="p">{{stat.teacher_years}}</view>
+          <view class="p">教龄</view>
+        </view>
+        <view class="li">
+          <view class="p">{{stat.attendance_score}}</view>
+          <view class="p">出勤分</view>
+        </view>
+        <view class="li">
+          <view class="p">{{stat.follower_count}}</view>
+          <view class="p">粉丝</view>
+        </view>
+        <view class="li">
+          <view class="p">{{stat.recommend_index}}</view>
+          <view class="p">推荐指数</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="teacher-shadow"></view>
+  <view class="teacher-tab">
+    <view class="ul">
+      <view class="li {{indexType === 0 ? active : ''}}" data-tab-index="0" bind:tap="onTab">老师信息</view>
+      <view class="li {{indexType === 1 ? active : ''}}" data-tab-index="1" bind:tap="onTab" wx:if="{{allowComment}}">家长评价</view>
+      <!-- <view class="li {{indexType === 3 ? active : ''}}" bind:tap="onTab(3)">优选评语</view> -->
+      <view class="li {{indexType === 2 ? active : ''}}" data-tab-index="2" bind:tap="onTab">可授课程</view>
+    </view>
+    <view class="box2" hidden="{{!(indexType === 0)}}">
+      <introduction teacherInfo="{{teacherInfo}}"></introduction>
+    </view>
+    <view class="box3" wx:if="{{indexType === 1}}">
+      <!-- :isCommentList="isCommentList" -->
+        <!-- :isReloadComment="isReloadComment" -->
+      <!-- <evaluate
+        :isMoreComment="isMoreComment"
+        :arrangeId="arrangeId"
+        :teacherId="teacherId"
+        bind:previewImage="onPreviewImage"
+      ></evaluate> -->
+    </view>
+    <view class="box4" hidden="{{!(indexType === 2)}}">
+        <!-- <yx-course-card v-for="item in courseList" :key="item.arrangeId" :info="item"></yx-course-card> -->
+    </view>
+  </view>
+</view>

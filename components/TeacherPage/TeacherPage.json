@@ -1,4 +1,8 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "introduction": "../../components/Introduction/Introduction",
+    "evaluate": "../../components/Evaluate/Evaluate",
+    "course-card": "../../components/CourseCard/CourseCard"
+  }
 }

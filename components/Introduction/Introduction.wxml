@@ -1,0 +1,38 @@
+   <view class="introduction-container">
+      <view class="p p-info">
+        <label class="s-title">教龄</label>
+        <label class="s-value color-999">{{teacherInfo.teacher_years}}年以上教龄</label>
+      </view>
+      <view class="p p-info">
+        <label class="s-title">学位</label>
+        <label class="s-value color-999">{{teacherInfo.teacher_education}}</label>
+      </view>
+      <view class="p p-info">
+        <label class="s-title">推荐指数</label>
+        <label class="s-value color-999">{{teacherInfo.recommend_index}}</label>
+      </view>
+      <view class="p p-info">
+        <label class="s-title">出勤分</label>
+        <label class="s-value color-999">{{teacherInfo.attendance_score}}</label>
+      </view>
+      <view class="ul">
+         <view class="li teacher-experience">
+            <view class="h2">教学经历</view>
+            <text class="color-999 content" hidden="{{!teacherInfo.teacher_experience}}">
+              {{teacherInfo.teacher_experience}}
+            </text>
+         </view>
+         <view class="li teacher-outcome">
+            <view class="h2">教学成果</view>
+            <text class="color-999 content" hidden="{{!teacherInfo.teacher_outcome}}">
+              {{teacherInfo.teacher_outcome}}
+            </text>
+         </view>
+         <view class="li teacher-feature">
+            <view class="h2">教学特点</view>
+            <text class="color-999 content" hidden="{{!teacherInfo.teacher_feature}}">
+              {{teacherInfo.teacher_feature}}
+            </text>
+         </view>
+      </view>
+   </view>

@@ -1,1 +1,158 @@
-/* components/TeacherPage/TeacherPage.wxss */
+.teacher-container {
+  padding: 0 30rpx;
+  position: relative;
+}
+/* 老师信息 */
+.teacher-info-box {
+  width: 100%;
+  height: 283rpx;
+  background-color: #40bf6a;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.teacher-shadow {
+  width: 600rpx;
+  height: 20rpx;
+  box-shadow: rgba(0, 0, 0, 0.05) 0rpx 6rpx 10rpx;
+  margin: -20rpx auto 0;
+  position: relative;
+  z-index: 1;
+  background-color: #f90;
+}
+.teacher-info {
+  border-radius: 20rpx;
+  background: #ffffff;
+  padding: 38rpx 38rpx 50rpx 38rpx;
+  position: relative;
+  top: 40rpx;
+  z-index: 2;
+  margin-bottom: 40rpx;
+}
+.teacher-info-l {
+  display: flex;
+}
+.teacher-info-l .head {
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #cccccc;
+  border-radius: 50%;
+  margin-right: 28rpx;
+}
+.teacher-info-l .head image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 1px solid #F4F5F7;
+}
+.teacher-info-l .teacher-info-content .p-name-subject {
+  padding-bottom: 20rpx;
+}
+.teacher-info-l .teacher-info-content .p-name-subject label {
+  display: inline-block;
+}
+.teacher-info-l .teacher-info-content .p-name-subject label:first-child {
+  font-weight: bold;
+}
+.teacher-info-l .teacher-info-content .p-name-subject .line {
+  color: #eeeeee;
+  padding: 0 21rpx 0 17rpx;
+}
+.s-address {
+  display: flex;
+  align-items: center;
+}
+.s-address .icon-coordinates_fill,
+.s-address .text-hidden {
+  color: #bbbbbb;
+}
+.s-address .text-hidden {
+  width: 260rpx;
+}
+.s-address .icon-coordinates_fill {
+  padding-right: 10rpx;
+}
+.tag {
+  display: inline-block;
+  padding: 0 17rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #F4F5F7;
+  color: #999999;
+  font-size: 22rpx;
+  margin-right: 10rpx;
+  border-radius: 4rpx;
+}
+.guanzhu-btn {
+  width: 120rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  position: absolute;
+  top: 77rpx;
+  right: 38rpx;
+}
+.guanzhu-btn .none-gz {
+  padding-left: 28rpx;
+}
+.guanzhu-btn .none-gz .icon-jiahao {
+  font-size: 21rpx;
+  color: #ffffff;
+  position: absolute;
+  left: 24rpx;
+}
+.guanzhu-btn .none-gz .none-gz-text {
+  color: #ffffff;
+}
+/* 老师统计数据 */
+.teacher-stats {
+  margin-top: 50rpx;
+}
+.teacher-stats .ul {
+  display: flex;
+  justify-content: space-between;
+}
+.teacher-stats .ul .li {
+  text-align: center;
+}
+.teacher-stats .ul .li > .p:first-child {
+  padding-bottom: 25rpx;
+  font-size: 36rpx;
+}
+.teacher-stats .ul .li > .p:last-child {
+  font-size: 24rpx;
+  color: #999999;
+}
+/* tab */
+.teacher-tab {
+  margin-top: 45rpx;
+}
+.teacher-tab .ul {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  border-bottom: 1rpx solid #eeeeee;
+}
+.teacher-tab .ul .li {
+  text-align: center;
+  padding: 0 39rpx 26rpx;
+  font-size: 32rpx;
+}
+.teacher-tab .ul .li.active {
+  position: relative;
+  color: #40bf6a;
+}
+.teacher-tab .ul .li.active::after {
+  content: '';
+  height: 5rpx;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #40bf6a;
+  border-radius: 5rpx;
+}

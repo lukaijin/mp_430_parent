@@ -1,2 +1,12 @@
-<!--pages/teacher/teacher.wxml-->
-<text>pages/teacher/teacher.wxml</text>
+<navigator-bar
+  title="老师主页"
+  bgColor="#40BF6A"
+  headerBgColor="#40BF6A"
+  arrowColor="#ffffff"
+  titleColor="#ffffff">
+</navigator-bar>
+<teacher-page 
+  isInitTeacher="{{isInitTeacher}}"
+  query="{{query}}"
+>
+</teacher-page>
