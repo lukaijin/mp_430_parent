@@ -3,6 +3,6 @@
   "usingComponents": {
     "introduction": "../../components/Introduction/Introduction",
     "evaluate": "../../components/Evaluate/Evaluate",
-    "course-card": "../../components/CourseCard/CourseCard"
+    "yx-course-card": "../../components/CourseCard/CourseCard"
   }
 }

@@ -87,7 +87,9 @@ Component({
   },
 
   lifetimes: {
-    ready () { },
+    ready () {
+      this.setData({ isCommentList: true })
+    },
     moved () { },
     detached () { },
   },
@@ -105,13 +107,14 @@ Component({
     async init (query) {
       this.data.arrangeId = parseInt(query.arrangeId)
       this.data.teacherId = parseInt(query.teacherId)
+      this.setData({ arrangeId: this.data.arrangeId, teacherId: this.data.teacherId})
       let ID = this.data.teacherId
       let TeacherInfo = await this.getTeacherInfo(ID)
       let FollowInfo = await this.getTeacherFollowInfo(ID)
       let Stat = await this.getTeacherStat(ID)
-      TeacherInfo.teacher_experience = TeacherInfo.teacher_experience.replace(/<br\/>/g, '\n')
-      TeacherInfo.teacher_outcome = TeacherInfo.teacher_outcome.replace(/<br\/>/g, '\n')
-      TeacherInfo.teacher_feature = TeacherInfo.teacher_feature.replace(/<br\/>/g, '\n')
+      TeacherInfo.teacher_experience = TeacherInfo.teacher_experience ? TeacherInfo.teacher_experience.replace(/<br\/>/g, '\n') : ''
+      TeacherInfo.teacher_outcome = TeacherInfo.teacher_outcome ? TeacherInfo.teacher_outcome.replace(/<br\/>/g, '\n') : ''
+      TeacherInfo.teacher_feature = TeacherInfo.teacher_feature ? TeacherInfo.teacher_feature.replace(/<br\/>/g, '\n') : ''
       this.setData({
         teacherInfo: TeacherInfo,
         followed: FollowInfo.followed,
@@ -161,9 +164,9 @@ Component({
       wx.hideLoading()
     },
     onTab (e) {
-      let index = e.currentTarget.dataset.tabIndex
+      let index = parseInt(e.currentTarget.dataset.tabIndex)
       if (this.data.indexType === index) return
-      this.data.indexType = index
+      this.setData({ indexType: index })
       switch (index) {
         case 0:
           // this.isCommentList = false

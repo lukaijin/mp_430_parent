@@ -1,2 +1,15 @@
-<!--components/Evaluate/Evaluate.wxml-->
-<text>components/Evaluate/Evaluate.wxml</text>
+<view class="evaluate-container">
+  <view class="ul tab-evaluate">
+      <view class="li {{type === 'all'? 'active' : ''}}" data-type="all" bind:tap="onTab">全部({{all_count}})</view>
+      <view class="li {{type === 'good'? 'active' : ''}}" data-type="good" bind:tap="onTab">满意({{good_count}})</view>
+      <view class="li {{type === 'medium'? 'active' : ''}}" data-type="medium" bind:tap="onTab">一般({{medium_count}})</view>
+      <view class="li {{type === 'bad'? 'active' : ''}}" data-type="bad" bind:tap="onTab">不满意({{bad_count}})</view>
+  </view>
+  <evaluate-attitude wx:if="{{type === 'all'}}" commentList="{{allCommentList}}" bind:previewImage="onPreviewImage"></evaluate-attitude>
+  <evaluate-attitude wx:if="{{type === 'good'}}" commentList="{{goodCommentList}}" bind:previewImage="onPreviewImage"></evaluate-attitude>
+  <evaluate-attitude wx:if="{{type === 'medium'}}" commentList="{{mediumCommentList}}" bind:previewImage="onPreviewImage"></evaluate-attitude>
+  <evaluate-attitude wx:if="{{type === 'bad'}}" commentList="{{badCommentList}}" bind:previewImage="onPreviewImage"></evaluate-attitude>
+  <label wx:if="{{canComment}}" class="evaluate-btn" bind:tap="openCommentPage">
+    <text class="iconfont icon-brush1"></text>
+  </label>
+</view>

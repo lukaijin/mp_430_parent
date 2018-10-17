@@ -22,7 +22,8 @@
     "pages/success/success",
     "pages/orderPayment/orderPayment",
     "pages/orderDetail/orderDetail",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/teacherComment/teacherComment"
   ],
   "window": {
     "backgroundTextStyle": "light",
