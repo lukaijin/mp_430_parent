@@ -56,6 +56,16 @@ Page({
         this.setData({ finishedList: res })
       }
       wx.hideLoading()
+    },
+    _sendOrder (e) {
+      let index = e.detail
+      if (this.data.type === 'unfinished') {
+        this.data.unfinishedList.splice(index, 1)
+        this.setData({ unfinishedList: this.data.unfinishedList })
+      } else {
+        this.data.finishedList.splice(index, 1)
+        this.setData({ finishedList: this.data.finishedList })
+      }
     }
   /* methods end */
 })

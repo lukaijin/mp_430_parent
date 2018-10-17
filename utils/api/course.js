@@ -23,6 +23,7 @@ exports.getCourseList = (params) => {
           }
           courseList.push({
             arrangeId: item.arrange_id,
+            arrange_id: item.arrange_id,
             name: item.course_name,
             date: date,
             arrange_image: item.arrange_image,

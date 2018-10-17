@@ -5,8 +5,8 @@
       <label class="{{type === 'unfinished' ? 'tab-active' : ''}}" data-type="unfinished" bind:tap="tabOrderList">未完成</label>
       <label class="{{type === 'finished' ? 'tab-active' : ''}}" data-type="finished" bind:tap="tabOrderList">已完成</label>
     </view>
-    <order-list wx:if="{{type === 'unfinished' && unfinishedList.length}}" orderList="{{unfinishedList}}"></order-list>
-    <order-list wx:elif="{{type === 'finished' && finishedList.length}}" orderList="{{finishedList}}"></order-list>
+    <order-list wx:if="{{type === 'unfinished' && unfinishedList.length}}" orderList="{{unfinishedList}}" bind:sendOrder="_sendOrder"></order-list>
+    <order-list wx:elif="{{type === 'finished' && finishedList.length}}" orderList="{{finishedList}}" bind:sendOrder="_sendOrder"></order-list>
     <view class="none-order" wx:else>
       <view class="img"><image src="../../images/kongbaiyes.png"></image></view>
       <view class="p fz-32 color-666">暂无订单</view>

@@ -23,6 +23,15 @@ page {
   align-items: center;
   margin-bottom: 29rpx;
 }
+.main_item-header .location-box {
+  display: flex;
+  align-items: flex-start;
+}
+.main_item-header .location-box .location {
+  display: block;
+  flex: 0 0 120rpx;
+  width: 120rpx;
+}
 .main_item-header view {
   display: flex;
   align-items: center;

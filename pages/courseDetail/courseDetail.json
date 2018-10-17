@@ -1,6 +1,8 @@
 {
 	"usingComponents": {
 		"navigator-bar": "../../components/NavigatorBar/NavigatorBar",
-		"course-detail-page": "../../components/CourseDetailPage/CourseDetailPage"
+		"course-detail-page": "../../components/CourseDetailPage/CourseDetailPage",
+    "back-home-icon": "../../components/BackHomeIcon/BackHomeIcon",
+    "auth-model": "../../components/AuthModel/AuthModel"
 	}
  }

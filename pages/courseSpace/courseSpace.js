@@ -39,10 +39,9 @@ Page({
     isShow: false,
     isPreviewImage: false,
     heights: 0,
+    query: {},
     isInitCourse: false,
     isInitTeacher: false,
-    notInitCurrentCourse: false,
-    notInitCurrentTeacher: false,
     teacherCurrentTabIndex: 0,
     allowComment: 0,
     guanzhuCourse: -1,
@@ -55,6 +54,7 @@ Page({
     const titleBarHeight = wx.getStorageSync('titleBarHeight')
     this.data.heights = device.windowHeight - (statusBarHeight + titleBarHeight)
     this.data.arrangeId = option.arrangeId
+    this.setData({ query: option })
   },
 
   onShow (option) {
@@ -74,9 +74,11 @@ Page({
       this.setData({ isPreviewImage: false })
       return
     }
-    this.setData({ newReportList: [] })
-    this.data.statusBarHeight = wx.getStorageSync('statusBarHeight')
-    this.data.titleBarHeight = wx.getStorageSync('titleBarHeight')
+    this.setData({ 
+      newReportList: [],
+      statusBarHeight: wx.getStorageSync('statusBarHeight'),
+      titleBarHeight: wx.getStorageSync('titleBarHeight')
+    })
     this._init()
     // this._getWishList()
     this._newReportList()
@@ -129,24 +131,10 @@ Page({
       this.setData({ currentTab: cur })
       switch (cur) {
         case 1:
-          if (!this.data.notInitCurrentCourse) {
-            this.setData({
-              notInitCurrentCourse: true,
-              isInitCourse: true
-            })
-          } else {
-            this.setData({ isInitCourse: false })
-          }
+          if (!this.data.isInitCourse) this.setData({ isInitCourse: true })
           break
         case 2:
-          if (!this.notInitCurrentTeacher) {
-            this.setData({
-              notInitCurrentTeacher: true,
-              isInitTeacher: true
-            })
-          } else {
-            this.setData({ isInitTeacher: false })
-          }
+          if (!this.data.isInitTeacher) this.setData({ isInitTeacher: true })
           break
       }
     }

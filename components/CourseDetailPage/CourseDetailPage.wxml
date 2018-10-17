@@ -23,7 +23,7 @@
             <yx-title title="授课老师"></yx-title>
             <view class="lecture-head" bind:tap="openTeacherIntroduction">
               <view class="head-img">
-                <image wx:if="{{teacher.teacher_headimg || teacher.teacher.wx_headimgurl}}" src="{{(teacher.teacher_headimg || teacher.teacher.wx_headimgurl) + '?x-oss-process=image/resize,m_fill,h_140,w_140'}}" ></image>
+                <image wx:if="{{teacher.teacher_headimg || teacher.wx_headimgurl}}" src="{{(teacher.teacher_headimg || teacher.wx_headimgurl) + '?x-oss-process=image/resize,m_fill,h_140,w_140'}}" ></image>
               </view>
               <view class="lecture-head-r">
                   <view class="p-name-address">
@@ -129,31 +129,7 @@
           </view>
         </view>
       </view>
-      <!-- 按钮状态 -->
-      <view>
-        <view wx:if="{{type === 'homeCourse'}}" class="course-btn mix-flex-y-center">
-          <button open-type="contact" class="kefu-btn mix-flex-y-center">
-            <label class="iconfont icon-customerservice"></label><label class="fz-30">客服</label>
-          </button>
-          <button bind:tap="openPoster" class="share-btn mix-flex-y-center">
-            <label class="iconfont icon-send"></label><label class="fz-30">分享</label>
-          </button>
-          <view bind:tap="onSignUp" class="sign-up-btn {{course.signup_status === 1 ? 'bg-orange' : 'bg-ccc'}}">
-            <text>{{course.signup_desc}}</text>
-            <picker disabled="{{isBindSchool}}" bind:change="bindSchoolChange" class="sign-up-picker" value="{{schoolIndex}}" range-key="group_name" range="{{options.school}}">
-              <view class="text-hidden picker-text">
-                绑定学校
-              </view>
-            </picker>
-          </view>
-        </view>
-        <!-- <button wx:else-if="type === 'myCourse'" bind:tap="openPoster" class="share-btn">
-          <i class="iconfont icon-send"></i><text>分享</text>
-        </button> -->
-      </view>
-      <!-- 返回首页 -->
-      <back-home-icon isBackHome="{{isBackHome}}"></back-home-icon>
+      <slot name="foot"></slot>
       <!-- 弹框 -->
       <yx-dialog isShowDialog="{{isShowDialog}}" tagsInfo="{{course.abilityinfo}}" bind:close="handleClose"></yx-dialog>
-      <auth-model wx:if="{{auth && !userInfo.nickName}}" auth="{{auth}}" userInfo="{{userInfo}}" bindlogin="handleAuthLogin"></auth-model>
     </view>

@@ -54,8 +54,9 @@ Component({
               order_id: orderId
             }
             await api.deleteOrder(params)
-            this.data.orderList.splice(index, 1)
-            this.setData({ orderList: this.data.orderList })
+            this.triggerEvent('sendOrder', index)
+            // this.data.orderList.splice(index, 1)
+            // this.setData({ orderList: this.data.orderList })
             wx.showToast({
               title: '删除成功',
               icon: 'none'

@@ -1,0 +1,71 @@
+//out: ../../pages/courseDetail/courseDetail.wxss, compress: false, sourceMap: false
+
+.course-detail {
+  position: relative;
+  min-height: 100%;
+  z-index: 2;
+}
+/* 按钮状态 */
+.course-btn { // 课程列表入口
+  width: 100%;
+  height: 107rpx;
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: #ffffff;
+  border-top: 1px solid #eeeeee;
+  padding: 0 30rpx;
+  background-color: #ffffff;
+  z-index: 2;
+  button {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    &::after {
+       border: none;
+    }
+  }
+  .kefu-btn {
+    margin-right: 40rpx;
+    flex: 1;
+    .icon-customerservice {
+      color: #333333;
+      font-size: 42rpx;
+      margin-right: 10rpx;
+    }
+  }
+  .share-btn {
+    flex: 1;
+    .icon-send {
+      color: #333333;
+      font-size: 42rpx;
+      margin-right: 10rpx;
+    }
+  }
+  .sign-up-btn {
+    text-align: center;
+    position: relative;
+    width: 390rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 40rpx;
+    margin-left: 36rpx;
+    .sign-up-picker {
+      width: 100%;
+      position: absolute;
+      height: 80rpx;
+      left: 0;
+      top: 0;
+      .picker-text {
+        text-align: center;
+        color: transparent;
+        font-size: 34rpx;
+      }
+    }
+    text {
+      color: #ffffff;
+      font-size: 34rpx;
+    }
+  }
+}

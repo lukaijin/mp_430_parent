@@ -29,7 +29,7 @@ Component({
   methods: {
     onOpenDetails () {
       wx.navigateTo({
-        url: `/pages/courseDetail/courseDetail?type=homeCourse&arrangeId=${this.data.info.arrangeId}`
+        url: `/pages/courseDetail/courseDetail?type=homeCourse&arrangeId=${this.data.info.arrange_id}&teacherId=${this.data.info.teacher_id}`
       })
     }
   }

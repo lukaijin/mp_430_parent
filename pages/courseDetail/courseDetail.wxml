@@ -1,2 +1,29 @@
+<view class="course-detail">
   <navigator-bar title="课程详情" ></navigator-bar>
-  <course-detail-page query="{{query}}"></course-detail-page>
+  <course-detail-page query="{{query}}" isInitCourse="{{isInitCourse}}" bind:sendSignupStatus="_sendSignupStatus">
+      <!-- 按钮状态 -->
+    <view wx:if="{{type === 'homeCourse'}}" slot="foot" class="course-btn mix-flex-y-center">
+      <button open-type="contact" class="kefu-btn mix-flex-y-center">
+        <label class="iconfont icon-customerservice"></label><label class="fz-30">客服</label>
+      </button>
+      <button bind:tap="openPoster" class="share-btn mix-flex-y-center">
+        <label class="iconfont icon-send"></label><label class="fz-30">分享</label>
+      </button>
+      <view bind:tap="onSignUp" class="sign-up-btn {{course.signup_status === 1 ? 'bg-orange' : 'bg-ccc'}}">
+        <text>{{course.signup_desc}}</text>
+        <picker disabled="{{isBindSchool}}" bind:change="bindSchoolChange" class="sign-up-picker" value="{{schoolIndex}}" range-key="group_name" range="{{options.school}}">
+          <view class="text-hidden picker-text">
+            绑定学校
+          </view>
+        </picker>
+      </view>
+    </view>
+  </course-detail-page>
+  <!-- <button wx:else-if="type === 'myCourse'" bind:tap="openPoster" class="share-btn">
+    <i class="iconfont icon-send"></i><text>分享</text>
+  </button> -->
+  <!-- 返回首页 -->
+  <back-home-icon isBackHome="{{isBackHome}}"></back-home-icon>
+  <!-- 授权登录 -->
+  <auth-model wx:if="{{auth && !userInfo.nickName}}" auth="{{auth}}" userInfo="{{userInfo}}" bindlogin="handleAuthLogin"></auth-model>
+</view>
