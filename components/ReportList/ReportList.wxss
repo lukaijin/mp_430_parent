@@ -1,54 +1,184 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('iconfont.eot?t=1538127267899');
+  /* IE9*/
+  src: url('iconfont.eot?t=1538127267899#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('data:application/x-font-woff;charset=utf-8;base64,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') format('woff'), url('iconfont.ttf?t=1538127267899') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('iconfont.svg?t=1538127267899#iconfont') format('svg');
+  /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-jiahao:before {
+  content: "\e613";
+}
+.icon-duihao:before {
+  content: "\e633";
+}
+.icon-11fanhuisvg:before {
+  content: "\e65d";
+}
+.icon-activity:before {
+  content: "\e6de";
+}
+.icon-barrage:before {
+  content: "\e6e3";
+}
+.icon-brush:before {
+  content: "\e6e5";
+}
+.icon-brush_fill:before {
+  content: "\e6e6";
+}
+.icon-collection_fill:before {
+  content: "\e6ea";
+}
+.icon-coordinates_fill:before {
+  content: "\e6ec";
+}
+.icon-customerservice:before {
+  content: "\e6f1";
+}
+.icon-document:before {
+  content: "\e6f3";
+}
+.icon-dynamic:before {
+  content: "\e6f4";
+}
+.icon-enter:before {
+  content: "\e6f8";
+}
+.icon-group:before {
+  content: "\e6ff";
+}
+.icon-like_fill:before {
+  content: "\e707";
+}
+.icon-like:before {
+  content: "\e708";
+}
+.icon-lock:before {
+  content: "\e709";
+}
+.icon-mail:before {
+  content: "\e70a";
+}
+.icon-message:before {
+  content: "\e70c";
+}
+.icon-mine:before {
+  content: "\e70e";
+}
+.icon-mobilephone:before {
+  content: "\e70f";
+}
+.icon-picture:before {
+  content: "\e716";
+}
+.icon-send:before {
+  content: "\e726";
+}
+.icon-icon_duihao-mian:before {
+  content: "\e63d";
+}
+.icon-link:before {
+  content: "\e7e2";
+}
+.icon-close:before {
+  content: "\e64f";
+}
+.icon-read-fill:before {
+  content: "\e861";
+}
+.icon-camera-fill:before {
+  content: "\e86f";
+}
+.icon-shouye:before {
+  content: "\e610";
+}
+.icon-laba:before {
+  content: "\e658";
+}
+.icon-wenhao:before {
+  content: "\e629";
+}
+.icon-more:before {
+  content: "\e659";
+}
+.icon-more1:before {
+  content: "\e65a";
+}
+.icon-xiala:before {
+  content: "\e65b";
+}
+.icon-brush1:before {
+  content: "\e65c";
+}
 image {
   border: 1px solid #eee;
 }
-.header {
+.teacher_info {
+  margin-top: 70rpx;
+  border-bottom: 1px solid #eee;
+}
+.teacher_info:first-child {
+  margin-top: 0;
+}
+.teacher_info:last-child {
+  border-bottom: none;
+}
+.teacher_info .header {
   display: flex;
   align-items: center;
   font-size: 28rpx;
   font-weight: bold;
 }
-.header .info_img {
+.teacher_info .header .info_img {
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
   margin-right: 18rpx;
 }
-.content {
+.teacher_info .content {
   margin-top: 24rpx;
   font-size: 28rpx;
 }
-.content .content_item {
+.teacher_info .content .content_item {
+  display: flex;
   margin-bottom: 32rpx;
 }
-.content .like_list {
+.teacher_info .content .like_list {
   display: flex;
 }
-.content .like_list image {
+.teacher_info .content .like_list image {
   width: 150rpx;
   height: 200rpx;
   margin: 0 20rpx 20rpx 0;
 }
-.content .content_report {
+.teacher_info .content .content_report {
   width: 690rpx;
   display: flex;
   background: #FBFBFB;
   padding: 20rpx;
   box-sizing: border-box;
 }
-.content .content_report image {
+.teacher_info .content .content_report image {
   width: 120rpx;
   height: 160rpx;
   flex: 0 0 120rpx;
   margin-right: 22rpx;
 }
-.content .content_report .report_item {
+.teacher_info .content .content_report .report_item {
   flex: 0 0 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
 }
-.content .content_report .report_item .title {
+.teacher_info .content .content_report .report_item .title {
   font-size: 30rpx;
   font-weight: bold;
   text-overflow: ellipsis;
@@ -58,24 +188,25 @@ image {
   overflow: hidden;
   /*超出的部分显示...*/
 }
-.content .content_report .report_item .tip {
+.teacher_info .content .content_report .report_item .tip {
   font-size: 26rpx;
   color: #999;
 }
-.content .content_report .report_item .report_btns {
+.teacher_info .content .content_report .report_item .report_btns {
   width: 160rpx;
   height: 56rpx;
   background: #40bf6a;
   border-radius: 8rpx;
-  color: white;
-  font-size: 24rpx;
   line-height: 56rpx;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.content .icons {
+.teacher_info .content .content_report .report_item .report_btns text {
+  color: white;
+}
+.teacher_info .content .icons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -83,23 +214,23 @@ image {
   margin-bottom: 36rpx;
   position: relative;
 }
-.content .icons .like_icons {
+.teacher_info .content .icons .like_icons {
   text-align: right;
   font-size: 48rpx;
   margin-right: 45rpx;
   display: flex;
   align-items: center;
 }
-.content .icons .like_icons .like_num {
+.teacher_info .content .icons .like_icons .like_num {
   font-size: 28rpx;
   color: #333;
   margin-left: 17rpx;
 }
-.content .icons .comment_icons {
+.teacher_info .content .icons .comment_icons {
   text-align: right;
   font-size: 48rpx;
 }
-.content .icons .add_animation {
+.teacher_info .content .icons .add_animation {
   width: 58rpx;
   height: 28rpx;
   background: #ff4254;
@@ -112,16 +243,16 @@ image {
   right: 118rpx;
   top: -30rpx;
 }
-.content .like_headimg {
+.teacher_info .content .like_headimg {
   display: flex;
   justify-content: space-between;
   font-size: 24rpx;
   margin-bottom: 42rpx;
 }
-.content .like_headimg .headimgurl_list {
+.teacher_info .content .like_headimg .headimgurl_list {
   display: flex;
 }
-.content .like_headimg .headimgurl_list .mode_img {
+.teacher_info .content .like_headimg .headimgurl_list .mode_img {
   width: 30rpx;
   height: 30rpx;
   background: #eeeeee;
@@ -136,7 +267,7 @@ image {
   align-items: center;
   color: #ccc;
 }
-.content .like_headimg .headimgurl_list image {
+.teacher_info .content .like_headimg .headimgurl_list image {
   width: 30rpx;
   height: 30rpx;
   border-radius: 50%;
@@ -145,58 +276,48 @@ image {
   position: relative;
   left: 10rpx;
 }
-.content .teacher_info {
-  margin-top: 70rpx;
-  border-bottom: 1px solid #eee;
-}
-.content .teacher_info:first-child {
-  margin-top: 0;
-}
-.content .teacher_info:last-child {
-  border-bottom: none;
-}
-.content .teacher_info .repy_content {
+.teacher_info .content .repy_content {
   margin-top: 9rpx;
 }
-.content .teacher_info .repy_content .repy_content-list {
+.teacher_info .content .repy_content .repy_content-list {
   border-bottom: 1px solid #eee;
   margin-top: 30rpx;
 }
-.content .teacher_info .repy_content .repy_content-list:last-child {
+.teacher_info .content .repy_content .repy_content-list:last-child {
   border: none;
 }
-.content .teacher_info .repy_content .repy_content-list div .reply_image {
+.teacher_info .content .repy_content .repy_content-list view .reply_image {
   display: flex;
   flex-wrap: wrap;
 }
-.content .teacher_info .repy_content .repy_content-list div .reply_image .reply_image-item {
+.teacher_info .content .repy_content .repy_content-list view .reply_image .reply_image-item {
   width: 150rpx;
   height: 150rpx;
   margin: 20rpx 20rpx 0rpx 0;
 }
-.content .teacher_info .repy_content .repy_content-list div .repyItem {
+.teacher_info .content .repy_content .repy_content-list view .repyItem {
   font-size: 28rpx;
   display: flex;
   align-items: center;
 }
-.content .teacher_info .repy_content .repy_content-list div .repyItem .repyItem_image {
+.teacher_info .content .repy_content .repy_content-list view .repyItem .repyItem_image {
   width: 50rpx;
   height: 50rpx;
   border-radius: 50%;
   border: 1px solid #eee;
   margin-right: 19rpx;
 }
-.content .teacher_info .repy_content .repy_content-list div .repyItem .right {
+.teacher_info .content .repy_content .repy_content-list view .repyItem .right {
   color: #999999;
 }
-.content .teacher_info .repy_content .repy_content-list div .repy_contents {
+.teacher_info .content .repy_content .repy_content-list view .repy_contents {
   margin-left: 69rpx;
   padding-bottom: 42rpx;
 }
-.content .teacher_info .repy_content .repy_content-list div .repy_contents .repy_contents-item {
+.teacher_info .content .repy_content .repy_content-list view .repy_contents .repy_contents-item {
   margin-top: 17rpx;
 }
-.content .teacher_info .repy_content .repy_content-list div .repy_contents .reply {
+.teacher_info .content .repy_content .repy_content-list view .repy_contents .reply {
   width: 100rpx;
   height: 48prx;
   background: #eeeeee;
@@ -206,7 +327,7 @@ image {
   font-size: 26rpx;
   margin-top: 22rpx;
 }
-.content .teacher_info .repy_content .repy_content-list div .repy_item-content {
+.teacher_info .content .repy_content .repy_content-list view .repy_item-content {
   width: 621rpx;
   background: #eeeeee;
   padding: 27rpx 16rpx 7rpx;
@@ -214,17 +335,17 @@ image {
   box-sizing: border-box;
   margin-bottom: 69rpx;
 }
-.content .teacher_info .repy_content .repy_content-list div .repy_item-content .mains {
+.teacher_info .content .repy_content .repy_content-list view .repy_item-content .mains {
   margin-bottom: 20rpx;
 }
-.content .teacher_info .repy_content .repy_content-list div .repy_item-content .mains .main {
+.teacher_info .content .repy_content .repy_content-list view .repy_item-content .mains .main {
   display: flex;
 }
-.content .teacher_info .repy_content .repy_content-list div .repy_item-content .mains .main .name {
+.teacher_info .content .repy_content .repy_content-list view .repy_item-content .mains .main .name {
   color: #40BF6A;
   font-size: 28rpx;
 }
-.content .teacher_info .repy_content .repy_content-list div .repy_item-content .mains .main .content {
+.teacher_info .content .repy_content .repy_content-list view .repy_item-content .mains .main .content {
   font-size: 28rpx;
   margin-top: 0rpx;
 }

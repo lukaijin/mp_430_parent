@@ -11,7 +11,7 @@
       <view class="content">
           <!-- 最新報告 -->
           <view hidden="{{!(currentTab === 0)}}" class="new_reports">
-            <report-list reportList ="{{newReportList}}" sendLike="_like" longtap="_deteilComment" typeList="{{typeList}}" orShowTime='{{orShowTime}}' previewImage='_previewImage' allowComment="{{allowComment}}"></report-list>
+            <report-list reportList ="{{newReportList}}" bindsendLike="_like" bindlongtap="_deteilComment" typeList="{{typeList}}" orShowTime='{{orShowTime}}' bindpreviewImage='_previewImage' allowComment="{{allowComment}}"></report-list>
           </view>
           <!-- 课程介绍 -->
           <view hidden="{{!(currentTab === 1)}}">

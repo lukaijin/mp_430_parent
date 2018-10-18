@@ -24,7 +24,8 @@
     "pages/orderDetail/orderDetail",
     "pages/publish/publish",
     "pages/teacherComment/teacherComment",
-    "pages/poster/poster"
+    "pages/poster/poster",
+    "pages/comment/comment"
   ],
   "window": {
     "backgroundTextStyle": "light",

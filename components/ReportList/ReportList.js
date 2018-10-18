@@ -40,42 +40,54 @@ Component({
     _toComment(e) {
       let repyItem = e.currentTarget.dataset.repyitem
       let reportId = e.currentTarget.dataset.reportid
-      let replyId = e.currentTarget.dataset.replyId
-      if (repyItem.from_user_id === wx.getStorageSync('userInfo').parent_id) {
-        return
+      let replyId = e.currentTarget.dataset.replyid
+      if (repyItem) {
+        if (repyItem.from_user_id === wx.getStorageSync('userInfo').parent_id) {
+          return
+        }
+        wx.navigateTo({
+          url: `/pages/comment/comment?to_user_id=${repyItem.from_user_id}&report_id=${reportId}&to_user_type=${repyItem.from_user_type}&parent_reply_id=${replyId}&from_user_id=${repyItem.to_user_id}`
+        })
+      } else {
+        wx.navigateTo({
+          url: `/pages/comment/comment?report_id=${reportId}`
+        })
       }
-      wx.navigateTo({
-        url: `/pages/comment/main?to_user_id=${repyItem.from_user_id}&report_id=${reportId}&to_user_type=${repyItem.from_user_type}&parent_reply_id=${replyId}&from_user_id=${repyItem.to_user_id}`
-      })
     },
     _previewImage(e) {
-      let imagesIndex = e.currentTarget.dataset.imagesindex
-      let index = e.currentTarget.dataset.index
-      let repyIndex = e.currentTarget.dataset.repyindex
-      let contentIndex = e.currentTarget.dataset.contentindex
-      this.reLoad = true
-      this.$emit('previewImage', imagesIndex, index, repyIndex, contentIndex)
+      let info = {
+        imagesIndex: e.currentTarget.dataset.imagesindex,
+        index: e.currentTarget.dataset.index,
+        repyIndex: e.currentTarget.dataset.repyindex,
+        contentIndex: e.currentTarget.dataset.contentindex
+      }
+      this.triggerEvent('previewImage', info) //myevent自定义名称事件，父组件中使用
     },
     _toReportDetail(e) {
       let reportId = e.currentTarget.dataset.reportid
       wx.navigateTo({
-        url: '/pages/report-detail/main?id=' + reportId
+        url: '/pages/reportDetail/reportDetail?id=' + reportId
       })
     },
     _updateReportZan(e) {
       let info = {
         report_id: e.currentTarget.dataset.reportid,
-        like: !e.currentTarget.dataset.orlike,
+        like: Number(!e.currentTarget.dataset.orlike),
         index: e.currentTarget.dataset.index
       }
-      this.$emit('sendLike', info)
+      this.triggerEvent('sendLike',  info) //myevent自定义名称事件，父组件中使用
     },
     _longtap(e) {
-      info.report_id = e.currentTarget.dataset.reportid
-      info.repyIndex = e.currentTarget.dataset.repyindex
-      info.index = e.currentTarget.dataset.index
-      info.contentIndex = e.currentTarget.dataset.contentindex
-      this.$emit('longtap', info)
+      let info = {
+        report_id: e.currentTarget.dataset.reportid,
+        repyIndex: e.currentTarget.dataset.repyindex,
+        index: e.currentTarget.dataset.index,
+        contentIndex: e.currentTarget.dataset.contentindex,
+        from_user_type: e.currentTarget.dataset.repyitem.from_user_type,
+        from_user_id: e.currentTarget.dataset.repyitem.from_user_id,
+        report_reply_id: e.currentTarget.dataset.repyitem.report_reply_id
+      }
+      this.triggerEvent('longtap',  info) //myevent自定义名称事件，父组件中使用
     }
   }
 })
