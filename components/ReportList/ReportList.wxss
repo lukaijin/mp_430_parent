@@ -1,1 +1,236 @@
-/* components/ReportList/ReportList.wxss */
+image {
+  border: 1px solid #eee;
+}
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.header .info_img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 18rpx;
+}
+.content {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+}
+.content .content_item {
+  margin-bottom: 32rpx;
+}
+.content .like_list {
+  display: flex;
+}
+.content .like_list image {
+  width: 150rpx;
+  height: 200rpx;
+  margin: 0 20rpx 20rpx 0;
+}
+.content .content_report {
+  width: 690rpx;
+  display: flex;
+  background: #FBFBFB;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.content .content_report image {
+  width: 120rpx;
+  height: 160rpx;
+  flex: 0 0 120rpx;
+  margin-right: 22rpx;
+}
+.content .content_report .report_item {
+  flex: 0 0 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.content .content_report .report_item .title {
+  font-size: 30rpx;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  /*只是起到注解作用*/
+  white-space: nowrap;
+  /*不让文本换行*/
+  overflow: hidden;
+  /*超出的部分显示...*/
+}
+.content .content_report .report_item .tip {
+  font-size: 26rpx;
+  color: #999;
+}
+.content .content_report .report_item .report_btns {
+  width: 160rpx;
+  height: 56rpx;
+  background: #40bf6a;
+  border-radius: 8rpx;
+  color: white;
+  font-size: 24rpx;
+  line-height: 56rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content .icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 28rpx;
+  margin-bottom: 36rpx;
+  position: relative;
+}
+.content .icons .like_icons {
+  text-align: right;
+  font-size: 48rpx;
+  margin-right: 45rpx;
+  display: flex;
+  align-items: center;
+}
+.content .icons .like_icons .like_num {
+  font-size: 28rpx;
+  color: #333;
+  margin-left: 17rpx;
+}
+.content .icons .comment_icons {
+  text-align: right;
+  font-size: 48rpx;
+}
+.content .icons .add_animation {
+  width: 58rpx;
+  height: 28rpx;
+  background: #ff4254;
+  border-radius: 14rpx;
+  line-height: 28rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: white;
+  position: absolute;
+  right: 118rpx;
+  top: -30rpx;
+}
+.content .like_headimg {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  margin-bottom: 42rpx;
+}
+.content .like_headimg .headimgurl_list {
+  display: flex;
+}
+.content .like_headimg .headimgurl_list .mode_img {
+  width: 30rpx;
+  height: 30rpx;
+  background: #eeeeee;
+  border-radius: 50%;
+  margin-left: -10rpx;
+  position: relative;
+  left: 10rpx;
+  line-height: 30rpx;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ccc;
+}
+.content .like_headimg .headimgurl_list image {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  margin-left: -10rpx;
+  position: relative;
+  left: 10rpx;
+}
+.content .teacher_info {
+  margin-top: 70rpx;
+  border-bottom: 1px solid #eee;
+}
+.content .teacher_info:first-child {
+  margin-top: 0;
+}
+.content .teacher_info:last-child {
+  border-bottom: none;
+}
+.content .teacher_info .repy_content {
+  margin-top: 9rpx;
+}
+.content .teacher_info .repy_content .repy_content-list {
+  border-bottom: 1px solid #eee;
+  margin-top: 30rpx;
+}
+.content .teacher_info .repy_content .repy_content-list:last-child {
+  border: none;
+}
+.content .teacher_info .repy_content .repy_content-list div .reply_image {
+  display: flex;
+  flex-wrap: wrap;
+}
+.content .teacher_info .repy_content .repy_content-list div .reply_image .reply_image-item {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 20rpx 20rpx 0rpx 0;
+}
+.content .teacher_info .repy_content .repy_content-list div .repyItem {
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+.content .teacher_info .repy_content .repy_content-list div .repyItem .repyItem_image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  border: 1px solid #eee;
+  margin-right: 19rpx;
+}
+.content .teacher_info .repy_content .repy_content-list div .repyItem .right {
+  color: #999999;
+}
+.content .teacher_info .repy_content .repy_content-list div .repy_contents {
+  margin-left: 69rpx;
+  padding-bottom: 42rpx;
+}
+.content .teacher_info .repy_content .repy_content-list div .repy_contents .repy_contents-item {
+  margin-top: 17rpx;
+}
+.content .teacher_info .repy_content .repy_content-list div .repy_contents .reply {
+  width: 100rpx;
+  height: 48prx;
+  background: #eeeeee;
+  border-radius: 24rpx;
+  line-height: 48rpx;
+  text-align: center;
+  font-size: 26rpx;
+  margin-top: 22rpx;
+}
+.content .teacher_info .repy_content .repy_content-list div .repy_item-content {
+  width: 621rpx;
+  background: #eeeeee;
+  padding: 27rpx 16rpx 7rpx;
+  margin-left: 69rpx;
+  box-sizing: border-box;
+  margin-bottom: 69rpx;
+}
+.content .teacher_info .repy_content .repy_content-list div .repy_item-content .mains {
+  margin-bottom: 20rpx;
+}
+.content .teacher_info .repy_content .repy_content-list div .repy_item-content .mains .main {
+  display: flex;
+}
+.content .teacher_info .repy_content .repy_content-list div .repy_item-content .mains .main .name {
+  color: #40BF6A;
+  font-size: 28rpx;
+}
+.content .teacher_info .repy_content .repy_content-list div .repy_item-content .mains .main .content {
+  font-size: 28rpx;
+  margin-top: 0rpx;
+}
+.avtive {
+  color: #FF4254;
+}
+.avtive_1 {
+  color: #333;
+}
