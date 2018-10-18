@@ -1,6 +1,6 @@
   <view class="profile-box">
     <navigator-bar title="孩子资料"></navigator-bar>
-    <view hidden="{{!iscropper}}" class='cropper' style="top: {{statusBarHeight + titleBarHeight + 'px'}}">
+    <view hidden="{{!(iscropper)}}" class='cropper' style="top: {{statusBarHeight + titleBarHeight + 'px'}}">
        <view class="cropper-wrapper">
          <canvas
             canvas-id="{{cropperOpt.id}}"

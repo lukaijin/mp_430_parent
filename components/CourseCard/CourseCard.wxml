@@ -1,4 +1,4 @@
-<view class="yx-course-card"  bind:tap="onOpenDetails">
+<view class="yx-course-card {{isLastOnce ? 'none-border' : ''}}"  bind:tap="onOpenDetails">
    <view class="image">
       <image class="img" mode="aspectFill" src="{{info.arrange_image + '?x-oss-process=image/resize,m_fill,h_240,w_180'}}"></image>
    </view>

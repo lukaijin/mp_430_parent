@@ -1,0 +1,73 @@
+  <section class="poster-container">
+    <navigator-bar title="海报制作"></navigator-bar>
+    <!-- 图片裁切 start-->
+    <view hidden="{{!(iscropper)}}" class='cropper' style="top: {{statusBarHeight + titleBarHeight + 'px'}}">
+       <view class="cropper-wrapper">
+         <canvas
+            canvas-id="{{cropperOpt.id}}"
+            bindtouchstart="touchstart"
+            bindtouchmove="touchmove"
+            bindtouchend="touchend"
+            disable-scroll="{{true}}"
+            style="width:{{cropperOpt.width}}px;height:{{cropperOpt.height}}px;background-color: rgba(0, 0, 0, 0.8)">
+         </canvas>
+         <view class="cropper-buttons">
+            <view
+                     class="upload"
+                     bindtap="uploadTap">
+                  上传图片
+            </view>
+            <view
+                     class="getCropperImage"
+                     bindtap="getCropperImage">
+                  生成图片
+            </view>
+         </view>
+      </view>
+
+      <view class="cropper-buttons" id='footer'>
+        <view class="upload" bind:tap="uploadTap"> 重新选择 </view>
+        <view class="getCropperImage" bind:tap="getCropperImage">确定</view>
+      </view>
+    </view>
+    <!-- 图片裁切 end -->
+
+    <view id="posterBg" class="poster-bg" style="top: {{ statusBarHeight + titleBarHeight + 'px'}}; background-image: {{'url('+pageShowImgList.bigBj+')'}}">
+      <view class="choose-img {{isHideUpload ? 'hide-upload' : ''}}" bind:tap="uploadTap">
+        <view class="iconfont icon-picture"></view>
+        <label>点击更换图片</label>
+      </view>
+      <view class="dahai-mimi">
+        <view class="dahai-mimi-in">
+          <view class="title-school">
+            <view wx:if="{{courseInfo.course_name.length >= 6}}" class="h2">{{courseName}}...</view>
+            <view wx:else class="h2">{{courseInfo.course_name}}</view>
+            <view class="p school">
+              <label class="iconfont icon-coordinates_fill"></label>
+              <label wx:if="{{school.length >= 10}}" class="fz-22 color-999">{{school}}...</label>
+              <label wx:else class="fz-22 color-999">{{school}}</label>
+            </view>
+          </view>
+          <view class="p p-text">{{courseInfo.poster_desc1}}</view>
+          <view class="p">{{courseInfo.poster_desc2}}</view>
+        </view>
+      </view>
+      <view class="baby">
+        <view class="baby-in">
+          <view class="baby-in-content">
+            <view class="baby-in-l">
+              <view class="p p-text">我家宝贝已经报名了，</view>
+              <view class="p">你也赶快来吧！ <label class="arrow-tip"><label class="iconfont icon-more1"></label></label></view>
+            </view>
+            <view class="baby-in-r"><image wx:if="{{pageShowImgList.wxacodeunlimit}}" src="{{pageShowImgList.wxacodeunlimit}}"></image></view>
+          </view>
+        </view>
+      </view>
+      <label wx:if="{{!imagePath}}" class="poster-btn" bind:tap="_onCreate">生成海报</label>
+      <label wx:if="{{imagePath && !saveImgBtnHidden}}" class="poster-btn" bind:tap="_onDown">下载图片分享</label>
+      <button wx:if="{{imagePath && !openSettingBtnHidden}}" type='primary' class='poster-btn' open-type="openSetting" bind:opensetting='handleSetting'>去授权</button>
+    </view>
+    <view class="canvas-box" id="mjltest">
+      <canvas style="width: {{width + 'px'}}; height: {{height + 'px'}}" canvas-id="mycanvas" />
+    </view>
+  </section>

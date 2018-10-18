@@ -306,11 +306,13 @@ Page({
     //   })
     // }
   },
-  _sendGuanzhuCourse (num) {
+  _sendGuanzhuCourse (e) {
+    let num = e.detail
     console.log('_sendGuanzhuCourse', num)
     this.setData({ guanzhuCourse: num })
   },
-  _sendGuanzhuTacher (num) {
+  _sendGuanzhuTacher (e) {
+    let num = e.detail
     console.log('_sendGuanzhuTacher', num)
     this.setData({ guanzhuTeacher: num })
   }

@@ -1,1 +1,68 @@
-/* components/Evaluate/Evaluate.wxss */
+.tab-evaluate {
+  display: flex;
+  margin-top: 48rpx;
+  margin-bottom: 50rpx;
+}
+.tab-evaluate .li {
+  padding: 16rpx 22rpx;
+  background-color: rgba(64, 191, 106, 0.15);
+  border-radius: 54rpx;
+  text-align: center;
+  font-size: 24rpx;
+}
+.tab-evaluate .li.active {
+  background-color: #40bf6a;
+  color: #ffffff;
+}
+.tab-evaluate .li:not(:last-child) {
+  margin-right: 30rpx;
+}
+.teacher-answer {
+  padding: 26rpx 0 30rpx 0;
+  background-color: #EEEEEE;
+  display: flex;
+}
+.teacher-answer .teacher-answer-name {
+  color: #40bf6a;
+  padding-left: 16rpx;
+  padding-right: 20rpx;
+  flex: 1;
+}
+.teacher-answer .teacher-answer-name .reply-text {
+  color: #333333;
+}
+.teacher-answer .teacher-answer-r {
+  flex: 7;
+}
+.teacher-answer .teacher-answer-r .p1 {
+  line-height: 42rpx;
+  padding-right: 20rpx;
+}
+.teacher-answer .teacher-answer-img {
+  font-size: 0;
+}
+.teacher-answer .teacher-answer-img .img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  background-color: #cccccc;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+}
+.evaluate-btn {
+  width: 100rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  position: fixed;
+  bottom: 58rpx;
+  right: 30rpx;
+  border-radius: 50%;
+  background-color: rgba(64, 191, 106, 0.7);
+  color: #ffffff;
+  font-size: 32rpx;
+  text-align: center;
+}
+.evaluate-btn .icon-brush1 {
+  font-size: 58rpx;
+  color: #ffffff;
+}

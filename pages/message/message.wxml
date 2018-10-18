@@ -4,9 +4,9 @@
       <view class="message_list" wx:for="{{messageList}}" wx:key="{{index}}" wx:if='messageList.length !== 0' data-arrange-id="{{item.report_reply.arrange_id}}" data-teacher-id="{{item.report_reply.teacher_id}}" bind:tap="_toCourseSpace">
         <view class="header">
           <view class="header_item">
-            <image src="{{item.from_headimg || item.from_user_wx_headimg}}" class="user_img"></image>
+            <image src="{{item.from_user_child_headimgurl || item.from_headimg || item.from_user_wx_headimg}}" class="user_img"></image>
             <view class="header_title">
-              <label class="name">{{item.from_user_name || item.from_wx_nickname}}</label>
+              <label class="name">{{item.from_user_child_name || item.from_user_name || item.from_user_wx_nickname}}</label>
               <label wx:if="{{item.message_type == 1}}">@了你</label>
               <label wx:if="{{(item.message_type ==2 && item.report_reply.other_reply_images)}}">对你进行了图片评论</label>
               <label wx:if="{{(item.message_type ==2 && !item.report_reply.other_reply_images)}}">回复了你</label>

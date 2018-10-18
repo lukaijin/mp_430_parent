@@ -1,0 +1,38 @@
+  <view class="evaluate-content">
+    <view class="ul evaluate-content-ul">
+      <view class="li" wx:for="{{commentList}}" wx:key="{{index}}">
+        <view class="li-head">
+          <view class="li-head-l">
+            <image wx:if="{{item.parent_headimgurl}}" src="{{item.parent_headimgurl}}"></image>
+            <label class="color-666">{{item.parent_name ? item.parent_name : ''}}</label>
+          </view>
+          <label class="color-aaa fz-24">{{item.comment_time}}</label>
+        </view>
+        <view class="li-content">
+          {{item.comment_content}}
+        </view>
+        <view class="teacher-answer" wx:if="{{item.reply_content && item.reply_images.length}}">
+          <view class="teacher-answer-name {{item.reply_images.length ? 'active-width' : ''}}">
+            {{item.teacher_name}}: <label class="reply-text" hidden="!(!item.reply_images.length)">{{item.reply_content}}</label>
+          </view>
+          <view class="teacher-answer-r" hidden="!(item.reply_images.length)">
+            <view class="p1">{{item.reply_content}}</view>
+            <view class="teacher-answer-img" hidden="!(item.reply_images.length)">
+              <image
+                class="img"
+                wx:for="{{item.reply_images}}"
+                wx:for-index="yndex"
+                wx:for-item="img"
+                wx:key="{{yndex}}"
+                src="{{img}}"
+                data-img="{{img}}"
+                data-imgs="{{item.reply_images}}"
+                bind:tap="onPreviewImage"
+              >
+              </image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>

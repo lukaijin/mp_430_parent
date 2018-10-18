@@ -1,2 +1,36 @@
-<!--pages/mechanismDetail/mechanismDetail.wxml-->
-<text>pages/mechanismDetail/mechanismDetail.wxml</text>
+  <view class="mechanism-container">
+    <navigator-bar title="学校/机构详情"></navigator-bar>
+    <view class="mechanism-detail">
+      <view class="mechanism">
+        <view class="mechanism-l">
+          <image wx:if="{{mechanism.group_logo}}" src="{{mechanism.group_logo + '?x-oss-process=image/resize,m_fill,h_160,w_160'}}" mode="aspectFill"></image>
+        </view>
+        <view class="mechanism-r">
+          <view class="h2">{{mechanism.group_name}}</view>
+          <view class="p p1">创办时间：{{mechanism.group_create_date}}年</view>
+          <view class="p p2">
+            <label>在校学生：{{mechanism.group_student_count}}人</label>
+            <label class="s2"></label>
+            <label>在校教师：{{mechanism.group_teacher_count}}人</label>
+          </view>
+          <view class="p location-box"><label class="location">地址：</label><label>{{mechanism.group_loc}}</label></view>
+        </view>
+      </view>
+    </view>
+    <view class="mechanism-content">
+      <view class="ul tab">
+        <view class="li {{indexType === 0 ? 'active' : ''}}" data-index="{{0}}" bind:tap="onTab">详情</view>
+        <view class="li {{indexType === 1 ? 'active' : ''}}" data-index="{{1}}" bind:tap="onTab">课程</view>
+      </view>
+      <view class="material" hidden="{{!(indexType === 0)}}">
+        <view class="h2">学校/机构简介</view>
+        <view class="article">{{mechanism.group_desc}}</view>
+        <view class="material-img" wx:for="{{mechanism.group_image}}" wx:for-item="path" wx:key="{{path}}">
+          <image src="{{path}}" mode="widthFix"></image>
+        </view>
+      </view>
+      <view class="course" hidden="{{!(indexType === 1)}}">
+        <yx-course-card wx:for="{{courseList}}" isLastOnce="{{index == courseList.length - 1}}" wx:key="{{item.arrangeId}}" info="{{item}}"></yx-course-card>
+      </view>
+    </view>
+  </view>

@@ -1,0 +1,29 @@
+.evaluate-content-ul {
+  margin-bottom: 200rpx;
+}
+.evaluate-content-ul .li:not(:last-child) {
+  border-bottom: 1px solid #EEEEEE;
+  padding-bottom: 46rpx;
+  margin-bottom: 44rpx;
+}
+.evaluate-content-ul .li-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.evaluate-content-ul .li-head .li-head-l {
+  display: flex;
+  align-items: center;
+}
+.evaluate-content-ul .li-head .li-head-l image {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #cccccc;
+  border-radius: 50%;
+  margin-right: 25rpx;
+}
+.evaluate-content-ul .li-content {
+  padding-top: 36rpx;
+  padding-bottom: 30rpx;
+  line-height: 50rpx;
+}

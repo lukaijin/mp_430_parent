@@ -13,6 +13,10 @@ Component({
     info: {
       type: Object,
       value: {}
+    },
+    isLastOnce: {
+      type: Boolean,
+      value: false
     }
   },
 

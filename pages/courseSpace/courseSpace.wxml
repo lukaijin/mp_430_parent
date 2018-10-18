@@ -18,9 +18,9 @@
             <course-detail-page
               isInitCourse="{{isInitCourse}}"
               query="{{query}}"
+              guanzhuTeacher="{{guanzhuTeacher}}"
+              bind:sendGuanzhuCourse="_sendGuanzhuCourse"
             >
-            <!-- guanzhuTeacher="{{guanzhuTeacher}}"
-            bind:sendGuanzhuCourse="_sendGuanzhuCourse" -->
             </course-detail-page>
           </view>
           <!-- 老师介绍 -->
@@ -28,11 +28,11 @@
             <teacher-page
               isInitTeacher="{{isInitTeacher}}"
               query="{{query}}"
+              teacherCurrentTabIndex="{{teacherCurrentTabIndex}}"
+              guanzhuCourse="{{guanzhuCourse}}"
+              bind:sendGuanzhuTacher="_sendGuanzhuTacher"
             >
             </teacher-page>
-            <!-- :teacherCurrentTabIndex="teacherCurrentTabIndex"
-            :guanzhuCourse="guanzhuCourse"
-            @sendGuanzhuTacher="_sendGuanzhuTacher" -->
           </view>
       </view>
     </view>

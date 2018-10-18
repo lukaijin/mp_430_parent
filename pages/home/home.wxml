@@ -70,7 +70,7 @@
 		 </view>
 
 		 <view class="course-list-wrap">
-			<yx-course-card wx:for="{{courseList}}" wx:key="{{index + 1}}" info="{{item}}"></yx-course-card>
+			<yx-course-card wx:for="{{courseList}}" isLastOnce="{{index == courseList.length - 1}}" wx:key="{{index + 1}}" info="{{item}}"></yx-course-card>
 		 </view>
 	  </view>
 	</view>

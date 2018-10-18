@@ -22,7 +22,9 @@
     "pages/success/success",
     "pages/orderPayment/orderPayment",
     "pages/orderDetail/orderDetail",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/teacherComment/teacherComment",
+    "pages/poster/poster"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -30,6 +32,12 @@
     "navigationBarTitleText": "成长优选",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
+  },
+  "plugins": {
+    "wxparserPlugin": {
+      "version": "0.1.0",
+      "provider": "wx9d4d4ffa781ff3ac"
+    }
   },
   "tabBar": {
     "color": "#333333",

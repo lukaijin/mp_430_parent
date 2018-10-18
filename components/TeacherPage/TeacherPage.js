@@ -4,6 +4,9 @@ const  { getSystemConfig } = require('../../utils/common.js')
 
 
 Component({
+  options: {
+    addGlobalClass: true
+  },
   /**
    * 组件的属性列表
    */
@@ -11,45 +14,45 @@ Component({
     query: {
       type: Object,
       value: {},
-      observer: function(newVal, oldVal, changedPath) {
+      observer (newVal, oldVal, changedPath) {
         console.log('teacherPage_properties_query', newVal, oldVal, changedPath)
      }
     },
     isInitTeacher: {
       type: Boolean,
       value: false,
-      observer: function(newVal, oldVal, changedPath) {
+      observer (newVal, oldVal, changedPath) {
         console.log('properties_isInitTeacher', newVal, oldVal, changedPath)
         if (newVal === true) {
           this.init(this.data.query)
+          this.getSystemConfig()
         }
       }
     },
     teacherCurrentTabIndex: {
       type: Number,
-      value: 0
+      value: 0,
+      observer (newIndex, oldIndex, changedPath) {
+        console.log('properties__teacherCurrentTabIndex', newIndex, oldIndex, changedPath)
+        if (newIndex === 1) {
+          this.setData({ indexType: 1 })
+        }
+      }
     },
     guanzhuCourse: {
       type: Number,
-      value: -1
+      value: -1,
+      observer (newVal, oldVal, changedPath) {
+        console.log('properties__guanzhuCourse', newVal, oldVal, changedPath)
+        console.log('properties__guanzhuCourse__teacherId', this.data.query)
+        let teacherId = parseInt(this.data.query.teacherId)
+        this.getTeacherFollowInfo(teacherId)
+        .then(info => {
+          this.setData({ followed: info.followed })
+        })
+      }
     }
   },
-
-  // watch: {
-  //   teacherCurrentTabIndex (newIndex, oldIndex) {
-  //     if (newIndex === 1) {
-  //       this.indexType = 1
-  //       this.isReloadComment = true
-  //     }
-  //   },
-  //   guanzhuCourse (newVal, oldVal) {
-  //     console.log('watch_teacher_guanzhu', newVal, oldVal)
-  //     this.getTeacherFollowInfo(this.teacherId)
-  //       .then(info => {
-  //         this.followed = info.followed
-  //       })
-  //   }
-  // },
   
   /**
    * 组件的初始数据
@@ -87,7 +90,9 @@ Component({
   },
 
   lifetimes: {
-    ready () { },
+    ready () {
+      this.setData({ isCommentList: true })
+    },
     moved () { },
     detached () { },
   },
@@ -103,20 +108,23 @@ Component({
 
   methods: {
     async init (query) {
+      wx.showLoading({title: '加载中...'})
       this.data.arrangeId = parseInt(query.arrangeId)
       this.data.teacherId = parseInt(query.teacherId)
+      this.setData({ arrangeId: this.data.arrangeId, teacherId: this.data.teacherId})
       let ID = this.data.teacherId
       let TeacherInfo = await this.getTeacherInfo(ID)
       let FollowInfo = await this.getTeacherFollowInfo(ID)
       let Stat = await this.getTeacherStat(ID)
-      TeacherInfo.teacher_experience = TeacherInfo.teacher_experience.replace(/<br\/>/g, '\n')
-      TeacherInfo.teacher_outcome = TeacherInfo.teacher_outcome.replace(/<br\/>/g, '\n')
-      TeacherInfo.teacher_feature = TeacherInfo.teacher_feature.replace(/<br\/>/g, '\n')
+      TeacherInfo.teacher_experience = TeacherInfo.teacher_experience ? TeacherInfo.teacher_experience.replace(/<br\/>/g, '\n') : ''
+      TeacherInfo.teacher_outcome = TeacherInfo.teacher_outcome ? TeacherInfo.teacher_outcome.replace(/<br\/>/g, '\n') : ''
+      TeacherInfo.teacher_feature = TeacherInfo.teacher_feature ? TeacherInfo.teacher_feature.replace(/<br\/>/g, '\n') : ''
       this.setData({
         teacherInfo: TeacherInfo,
         followed: FollowInfo.followed,
         stat: Stat
       })
+      wx.hideLoading()
     },
     getSystemConfig () { // 是否开启评论功能
       getSystemConfig()
@@ -161,9 +169,9 @@ Component({
       wx.hideLoading()
     },
     onTab (e) {
-      let index = e.currentTarget.dataset.tabIndex
+      let index = parseInt(e.currentTarget.dataset.tabIndex)
       if (this.data.indexType === index) return
-      this.data.indexType = index
+      this.setData({ indexType: index })
       switch (index) {
         case 0:
           // this.isCommentList = false
