@@ -47,8 +47,7 @@
   <view class="teacher-tab">
     <view class="ul">
       <view class="li {{indexType === 0 ? 'active' : ''}}" data-tab-index="0" bind:tap="onTab">老师信息</view>
-      <!-- wx:if="{{allowComment}}" -->
-      <view class="li {{indexType === 1 ? 'active' : ''}}" data-tab-index="1" bind:tap="onTab" >家长评价</view>
+      <view class="li {{indexType === 1 ? 'active' : ''}}" data-tab-index="1" bind:tap="onTab" wx:if="{{allowComment}}">家长评价</view>
       <!-- <view class="li {{indexType === 3 ? 'active' : ''}}" bind:tap="onTab(3)">优选评语</view> -->
       <view class="li {{indexType === 2 ? 'active' : ''}}" data-tab-index="2" bind:tap="onTab">可授课程</view>
     </view>

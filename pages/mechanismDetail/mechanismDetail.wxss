@@ -1,1 +1,121 @@
-/* pages/mechanismDetail/mechanismDetail.wxss */
+.mechanism-container {
+  min-height: 100%;
+}
+.mechanism {
+  display: flex;
+  padding: 30rpx;
+  border-bottom: 20rpx solid #f5f5f5;
+  align-items: center;
+}
+.mechanism .mechanism-l {
+  flex: 0 0 160rpx;
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 20rpx;
+}
+.mechanism .mechanism-l image {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+}
+.mechanism .mechanism-r .h2 {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: -3rpx;
+}
+.mechanism .mechanism-r .p {
+  font-size: 22rpx;
+}
+.mechanism .mechanism-r .p1 {
+  color: #666666;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+.mechanism .mechanism-r .p2 {
+  padding-bottom: 11rpx;
+  display: flex;
+  align-items: center;
+}
+.mechanism .mechanism-r .p2 label {
+  font-size: 22rpx;
+  color: #666666;
+}
+.mechanism .mechanism-r .p2 .s2 {
+  display: inline-block;
+  width: 4rpx;
+  height: 4rpx;
+  background-color: #666666;
+  border-radius: 2rpx;
+  margin-left: 23rpx;
+  margin-right: 17rpx;
+}
+.mechanism .mechanism-r .location-box {
+  display: flex;
+}
+.mechanism .mechanism-r .location-box label {
+  font-size: 22rpx;
+  color: #aaaaaa;
+}
+.mechanism .mechanism-r .location-box .location {
+  display: block;
+  width: 66rpx;
+  flex: 0 0 66rpx;
+}
+/* 内容 */
+.mechanism-content {
+  padding: 0 30rpx 0;
+}
+.mechanism-content .tab {
+  display: flex;
+  justify-content: space-around;
+}
+.mechanism-content .tab .li {
+  width: 204rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  text-align: center;
+  font-size: 32rpx;
+  position: relative;
+}
+.mechanism-content .tab .li.active {
+  color: #40bf6a;
+}
+.mechanism-content .tab .li.active::after {
+  content: '';
+  width: 204rpx;
+  height: 4rpx;
+  background: #40bf6a;
+  border-radius: 2rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+/* 详情 */
+.material {
+  padding-bottom: 170rpx;
+}
+.material .h2 {
+  padding-top: 55rpx;
+  padding-bottom: 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.material .article {
+  font-size: 28rpx;
+  line-height: 56rpx;
+  padding-bottom: 22rpx;
+}
+.material .material-img {
+  width: 100%;
+  margin-top: 20rpx;
+}
+.material .material-img image {
+  width: 100%;
+}
+/* 课程 */
+.course {
+  margin-top: 14prx;
+  padding-bottom: 106rpx;
+}

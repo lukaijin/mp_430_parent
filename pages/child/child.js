@@ -63,13 +63,22 @@ Page({
         console.log(`current canvas context: ${ctx}`)
         wx.hideToast()
     })
+
+    this.getChildInfo()
+    this.setData({
+      statusBarHeight: wx.getStorageSync('statusBarHeight'),
+      titleBarHeight: wx.getStorageSync('titleBarHeight')
+    })
+    
   },
 
-  onReady () {
-    this.getChildInfo()
-    this.statusBarHeight = wx.getStorageSync('statusBarHeight')
-    this.titleBarHeight = wx.getStorageSync('titleBarHeight')
-  },
+  // onReady () {
+  //   this.getChildInfo()
+  //   this.setData({
+  //     statusBarHeight: wx.getStorageSync('statusBarHeight'),
+  //     titleBarHeight: wx.getStorageSync('titleBarHeight')
+  //   })
+  // },
 
   onShow () {
     if (wx.getStorageSync('childSrc')) {

@@ -35,19 +35,15 @@ Component({
       value: -1,
       observer: function(newVal, oldVal, changedPath) {
         console.log('properties_guanzhuTeacher', newVal, oldVal, changedPath)
+        console.log('properties_guanzhuTeacher_teacherId', this.data.query)
+        let teacherId = parseInt(this.data.query.teacherId)
+        this.getTeacherFollowInfo(teacherId)
+        .then(info => {
+          this.setData({ followed: info.followed })
+        })
       }
     }
   },
-
-    // watch: {
-  // guanzhuTeacher (newVal, oldVal) {
-  //   console.log('watch_course_guanzhu', newVal, oldVal)
-  //   this.getTeacherFollowInfo(this.teacherId)
-  //     .then(info => {
-  //       this.followed = info.followed
-  //     })
-  // }
-  // },
   
   /**
    * 组件的初始数据
@@ -88,7 +84,8 @@ Component({
     },
     options: {
       outlineStatus: options.outlineStatus
-    }
+    },
+    guanzhu: -1
   },
   
   lifetimes: {
@@ -191,6 +188,8 @@ Component({
         followed: Number(followed)
       }
       await api.updateTeacherFollowInfo(params)
+      this.data.guanzhu++
+      this.triggerEvent('sendGuanzhuCourse', this.data.guanzhu)
       wx.showToast({
         title: this.data.followed ? '已关注' : '取消关注',
         duration: 2000

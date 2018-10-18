@@ -1,2 +1,13 @@
-<!--pages/discountDetail/discountDetail.wxml-->
-<text>pages/discountDetail/discountDetail.wxml</text>
+  <view class="discount-detail">
+    <navigator-bar title="活动详情"></navigator-bar>
+    <view class="discount-detail-in">
+      <view class="h2">{{discount.discount_title}}</view>
+      <view class="h3">{{discount.discount_desc}}</view>
+      <view class="p color-ccc fz-22">{{discount.update_time}}</view>
+      <view class="wx-parse-box" wx:if="{{discount.discount_content}}">
+        <wxparser rich-text="{{discount.discount_content}}" />
+      </view>
+    </view>
+    <button class="share-btn" open-type="share">分享</button>
+    <back-home-icon isBackHome="{{isBackHome}}"></back-home-icon>
+  </view>
