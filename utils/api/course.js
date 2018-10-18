@@ -1,5 +1,5 @@
 const fetch = require('./fetch.js').fetch
-let { dateFormat, getDayOfWeek } = require('../time.js')
+const { dateFormat, getDayOfWeek } = require('../time.js')
 
 /**
  * 获取课程列表

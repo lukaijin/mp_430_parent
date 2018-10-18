@@ -192,7 +192,8 @@ Component({
       }
     },
     onPreviewImage (e) {
-      // img, imgs
+      let img = e.detail.img
+      let imgs = e.detail.imgs
       this.data.isPreviewImage = true
       wx.previewImage({
         current: img, // 当前显示图片的http链接

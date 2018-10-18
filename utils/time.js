@@ -4,7 +4,7 @@ const formatNumber = n => {
  }
  
  const dateFormat = (time, pattern = 'YYYY/MM/DD') => {
-   time = time.toString()
+   time = time ? time.toString() : ''
    let date = new Date(Date.parse(time.replace(/-/g, '/')))
    let year = date.getFullYear()
    let month = date.getMonth() + 1

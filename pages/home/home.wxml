@@ -1,5 +1,5 @@
 <view class="home">
-	<navigator-bar title="{{schoolName.slice(0, 8) || '成长优选'}}" titleColor="{{titleColor}}" type="{{1}}"></navigator-bar>
+	<navigator-bar title="{{schoolNameSlice || '成长优选'}}" titleColor="{{titleColor}}" type="{{1}}"></navigator-bar>
 	<!-- 学校 -->
 	<view wx:if="{{schoolName}}" class="school-title">
 	  <view class="h2">{{schoolName}}</view>
@@ -66,7 +66,7 @@
 	  <view class="course-list" wx:if="{{courseList.length}}">
 		 <view class="title-box mix-flex-y-center">
 			<view class="title">最热课程</view>
-			<view bind:tap="moreCourse">更多<label class="iconfont icon-enter"></label></view>
+			<view class="p" bind:tap="moreCourse">更多<label class="iconfont icon-enter"></label></view>
 		 </view>
 
 		 <view class="course-list-wrap">

@@ -55,6 +55,7 @@ Component({
     isShowDialog: false,
     maxAge: null,
     course: {
+      group_id: null,
       course_name: '',
       course_desc: '',
       price: 0,
@@ -203,7 +204,8 @@ Component({
         url: `/pages/teacher/teacher?arrangeId=${this.data.arrangeId}&teacherId=${this.data.course.teacher_id}`
       })
     },
-    openMechanismPage (groupId) {
+    openMechanismPage (e) {
+      let groupId = e.currentTarget.dataset.groupId
       wx.navigateTo({
         url: `/pages/mechanismDetail/mechanismDetail?groupId=${groupId}`
       })

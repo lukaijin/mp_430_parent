@@ -109,7 +109,7 @@
             </label>
           </view>
           <!-- 课程所属学校 -->
-          <view class="li course-loac-school" bind:tap="openMechanismPage(course.group_id)">
+          <view class="li course-loac-school" data-group-id="{{course.group_id}}" bind:tap="openMechanismPage">
             <yx-title title="课程所属学校"></yx-title>
             <view class="school-info">
               <label class="fz-34 color-999 text-hidden">{{course.group_name}}</label>

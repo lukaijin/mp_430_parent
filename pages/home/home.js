@@ -19,6 +19,7 @@ Page({
     newMessageList: [],
     userInfo: {},
     schoolName: '',
+    schoolNameSlice: '',
     schoolList: [],
     schoolId: 0,
     titleColor: '#ffffff'
@@ -95,7 +96,7 @@ Page({
     api.getSchoolInfo(groupId)
       .then((res) => {
         console.log(res, 'getSchoolInfo')
-        this.setData({ schoolName: res.group_name })
+        this.setData({ schoolName: res.group_name, schoolNameSlice: res.group_name.slice(0, 8) })
       })
       .catch(error => {
         console.warn(`获取学校信息失败：${error}`)

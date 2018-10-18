@@ -1,5 +1,4 @@
  const api = require('../../utils/api/index.js')
- const dayjs = require('../../utils/dayjs/dayjs.min.js')
  const { getSystemConfig } = require('../../utils/common.js')
 
 

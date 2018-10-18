@@ -253,8 +253,9 @@ Component({
     },
     onPreviewImage (e) {
       console.log('onPreviewImage', e)
-      // let img, imgs
-      // this.triggerEvent('previewImage', {img, imgs})
+      let img = e.detail.img
+      let imgs = e.detail.imgs
+      this.triggerEvent('previewImage', {img, imgs})
     },
     openCommentPage () {
       wx.navigateTo({
