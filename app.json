@@ -25,7 +25,11 @@
     "pages/publish/publish",
     "pages/teacherComment/teacherComment",
     "pages/poster/poster",
+<<<<<<< HEAD
     "pages/comment/comment"
+=======
+    "pages/submitWork/submitWork"
+>>>>>>> e1be4ad2cc6b2d34eb79e36d857eadbbb161693e
   ],
   "window": {
     "backgroundTextStyle": "light",
