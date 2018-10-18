@@ -1,2 +1,16 @@
-<!--pages/submitWork/submitWork.wxml-->
-<text>pages/submitWork/submitWork.wxml</text>
+  <view wx:if="{{isShow}}">
+    <navigator-bar title="发表记录"></navigator-bar>
+    <view class="uploads">
+      <view class="upload">
+        <view class="iconUpload" bind:tap="_chooseImage" wx:if="{{file.length<9}}">
+          <label class="iconfont icon-jiahao"></label>
+        </view>
+        <view class="loadImg border_gray-01"  wx:for="{{file}}" data-index="{{index}}" bind:tap="_previewImage"  wx:key="{{item}}">
+          <image class="upLoad_img" src="{{item}}" data-imgindex="{{index}}" mode="aspectFill"></image>
+          <label class="iconfont icon-close closeBtns" data-index="{{index}}" catch:tap="_delImage"></label>
+        </view>
+      </view>
+      <button bind:tap="_submit" class="submit">发表</button>
+    </view>
+
+  </view>
