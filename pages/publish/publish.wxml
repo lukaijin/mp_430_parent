@@ -2,8 +2,8 @@
     <navigator-bar title="发表记录"></navigator-bar>
      <view class="publish" >
         <view class="text-box">
-            <text>{{currentInput}}</text>
-            <textarea class="weui-textarea" placeholder-style="color: #cccccc;" placeholder="分享新鲜事"  maxlength="1000" placeholder-class="active" bind:input="_getInput"/>
+          <text>{{currentInput}}</text>
+          <textarea class="weui-textarea" placeholder-style="color: #cccccc;" placeholder="分享新鲜事"  maxlength="1000" placeholder-class="active" bindinput="_getInput"/>
         </view>
         <view class="upload">
           <view class="iconUpload" bind:tap="_chooseImage" wx:if="{{file.length<9}}">

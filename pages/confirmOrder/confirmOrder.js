@@ -1,4 +1,3 @@
-// pages/confirmOrder/confirmOrder.js
 Page({
 
   /**

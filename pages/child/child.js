@@ -156,8 +156,10 @@ Page({
     this.setData({ ['child.child_birthday']: e.detail.value })
   },
   bindGenderChange (e) {
+    console.log('bindGenderChange', e)
+    this.data.genderIndex = parseInt(e.detail.value)
     this.setData({
-      genderIndex: parseInt(e.detail.value),
+      genderIndex: this.data.genderIndex,
       ['child.child_sex']: this.data.genderIndex + 1
     })
   },
