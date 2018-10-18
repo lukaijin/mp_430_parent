@@ -23,6 +23,7 @@ Page({
     saveImgBtnHidden: false,
     openSettingBtnHidden: true,
     isHideUpload: false,
+    courseName: '',
     courseInfo: {
       course_name: '',
       poster_desc1: '',
@@ -178,7 +179,7 @@ Page({
     wx.showLoading({title: '渲染中...'})
     try {
       let res = await api.getPosterInfo(arrangeId)
-      this.setData({ courseInfo: res })
+      this.setData({ courseInfo: res, courseName: res.course_name.slice(0, 6) })
     } catch (err) {
       console.info(err)
     }
@@ -222,6 +223,7 @@ Page({
     })
   },
   _getLocalImg (key, path) { // 所有要绘制的图片都先转化为本地图片
+    console.log('_getLocalImg', path)
     wx.getImageInfo({
       src: path,
       success: res => {

@@ -1,2 +1,113 @@
-<!--pages/reportDetail/reportDetail.wxml-->
-<text>报告详情</text>
+  <view class="report-detail" wx:if="{{isShow}}">
+    <navigator-bar title="课程报告"></navigator-bar>
+    <view class="header" style="">
+      <image class ="top" mode="widthFix" src="https://oss.xinjijiaoyu.com/430/uedu_weapp/photo/wx0e886225c0f71b79.o6zAJs0l2NXCDBbJrkk275vIVNHU.CifHg8vexB4peeaa0a6bb60e56034c0ae93931968bd1.png"></image>
+      <image class ="bottom" mode="widthFix" src="https://oss.xinjijiaoyu.com/430/uedu_weapp/photo/wx0e886225c0f71b79.o6zAJs0l2NXCDBbJrkk275vIVNHU.tIU5JJ1hTHLA884b34bfc684b1d7d22ed48fe572116e.png"></image>
+      <image class="model" mode="widthFix" src="https://oss.xinjijiaoyu.com/430/uedu_weapp/photo/wx0e886225c0f71b79.o6zAJs0l2NXCDBbJrkk275vIVNHU.vCEOBxRWxmLc8a3c8c15d5868d60d96fe16102c939b5.png"></image>
+      <view class="header_item">
+        <view class="header_border-1">
+          <view class="header_border-2">
+            <view class="title">老师评语</view>
+            <view class="content">{{repotDetail.reportDetail.evaluation}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="content">
+      <view class="content_items">
+        <view class="title">课程信息</view>
+        <view class="content_item"><label class="course_title">课程名称：</label>{{repotDetail.reportDetail.course_name}}</view>
+        <view class="content_item"><label class="course_title">时间：</label>{{repotDetail.reportDetail.day}}，{{repotDetail.reportDetail.time}}，{{repotDetail.reportDetail.week}}</view>
+        <view class="content_item"><label class="course_title">授课老师：</label>{{repotDetail.reportDetail.teacher_name}}</view>
+        <view class="content_item"><label class="course_title">课程详情：</label>{{repotDetail.reportDetail.outline_content}}</view>
+        <view class="content_item"><label class="course_title">课程总量/余量：</label>共{{repotDetail.reportDetail.coursetotalcount}}节/余{{repotDetail.reportDetail.coursetotalcount - repotDetail.reportDetail.coursefinishcount}}节</view>
+      </view>
+      <view class="content_items" bind:tap='_toSchool'>
+        <view class="title">课程所属学校</view>
+        <view class='school'>
+          <view>{{repotDetail.reportDetail.group_name}}</view>
+          <view class="iconfont icon-enter right_icons"></view>
+        </view>
+      </view>
+      <view class="content_items" wx:if='{{repotDetail.reportDetail.report_ability_data.length != 0}}'>
+        <view class="title">能力获得</view>
+        <view class="ability">
+          <label wx:for="{{repotDetail.reportDetail.report_ability_data}}" wx:key="{{item}}">{{item.ability_name}}</label>
+        </view>
+      </view>
+      <view class="content_items">
+        <view class="title">知识获得</view>
+        <view class="knowlege">
+          <text>{{repotDetail.reportDetail.course_know_point}}</text>
+        </view>
+      </view>
+      <view class="content_items">
+        <view class="title">
+          <label>知识学习时长</label>
+          <label class='tip'>超越{{repotDetail.reportDetail.ahead_value}}%的小朋友</label>
+        </view>
+
+        <view class="knowleges">
+          <progress percent="{{timeLong}}" stroke-width="14" style="width:690rpx;" activeColor='#40BF6A' class="progress"/>
+          <view class="time" style="left: {{timeLongPosition + 'rpx'}}">
+            <image src="https://oss.xinjijiaoyu.com/430/uedu_weapp/photo/wx0e886225c0f71b79.o6zAJs0l2NXCDBbJrkk275vIVNHU.p3kOx4m1aJGE8b09bb99d0cf7fc5f1e4b2e9659dd3f3.png" mode='widthFix' class="time_icons"></image>
+            <label>{{repotDetail.reportDetail.coursehashours}}h</label>
+          </view>
+        </view>
+      </view>
+      <view class="content_items" wx:if="{{repotDetail.reportDetail.report_ability_data.length != 0}}">
+        <view class="title">能力锻炼值</view>
+        <view class="progress">
+          <view class="progress_item" wx:for="{{repotDetail.reportDetail.report_ability_data}}" wx:for-index="abilityIndex" wx:key="{{abilityIndex}}">
+            <label class="progress_name">{{item.ability_name}}</label>
+            <view class="progress_duration">
+              <progress percent="{{(item.duration/repotDetail.reportDetail.coursetotalhours)*100}}" stroke-width="9" style="width:462rpx;" activeColor="{{abilityIndex % 2 === 0?'#40BF6A':'#FF9A49'}}"/>
+            </view>
+
+            <label class="duration">{{item.duration}}h</label>
+          </view>
+        </view>
+
+      </view>
+      <view class="content_items">
+        <view class="title">课堂表现</view>
+        <view class="performance">
+          <view>{{repotDetail.reportDetail.performance}}</view>
+          <view class="image_list">
+            <image src="https://oss.xinjijiaoyu.com/430/uedu_weapp/photo/wx0e886225c0f71b79.o6zAJs0l2NXCDBbJrkk275vIVNHU.x4EX5ubHBpINa3a943a8873c813dece47b597d2ec528.png" wx:for='{{repotDetail.reportDetail.red_flower}}' wx:key='{{items}}' mode="widthFix"></image>
+          </view>
+        </view>
+      </view>
+      <view class="content_items">
+        <view class="title">课后作业</view>
+        <view class="homework">
+          <text>{{repotDetail.reportDetail.homework}}</text>
+          <view class="upload" wx:if="{{repotDetail.reportDetail.homework_needimgs}}">
+            <view class="iconUpload" bind:tap="_submit" wx:if="{{repotDetail.reportDetail.homework_needimgs}}">
+              <label class="iconfont icon-jiahao"></label>
+            </view>
+            <view class="loadImg border_gray-01" wx:for="{{repotDetail.reportDetail.homework_images}}" data-index="{{index}}" bind:tap="_previewImage" wx:key="{{item}}">
+              <image bind:load="_imgLoad" class="upLoad_img" src="{{item}}" data-imgindex="{{index}}" mode="aspectFill" wx:if="{{item && !imgLoading}}"></image>
+              <label class="iconfont icon-cuohao  color_sky" bind:tap="delImage" data-id="{{index}}"></label>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="content_items" wx:if="{{repotDetail.reportDetail.class_imgs.length != 0}}">
+        <view class="title">课堂照片</view>
+        <view class="course_img">
+            <image src="{{item}}"  mode="widthFix" wx:for="{{repotDetail.reportDetail.class_imgs}}" wx:for-index="imgIndex" wx:key="{{imgIndex}}"></image>
+        </view>
+      </view>
+    </view>
+    <view class="footer">
+      <!-- <view class="share" bind:tap='_toShare'>
+        <view class="iconfont icon-picture share_icons"></view>
+        <view>晒一晒</view>
+      </view> -->
+      <view class="btns">
+        <button bind:tap="_submit" class="submit {{!repotDetail.reportDetail.homework_needimgs ? 'disabled' : ''}}">提交作业</button>
+        <button bind:tap='_goSpace' class="go">去留言</button>
+      </view>
+    </view>
+  </view>

@@ -1,2 +1,152 @@
-<!--pages/teacherComment/teacherComment.wxml-->
-<text>pages/teacherComment/teacherComment.wxml</text>
+  <view>
+    <navigator-bar title="老师评价"></navigator-bar>
+    <view class="teacher-container">
+        <!-- 老师信息 -->
+        <view class="teacher-info">
+          <view class="head"><image wx:if="{{teacherInfo.teacher_headimg || teacherInfo.wx_headimgurl}}" src="{{(teacherInfo.teacher_headimg || teacherInfo.wx_headimgurl) + '?x-oss-process=image/resize,m_fill,h_140,w_140'}}"></image></view>
+          <view class="teacher-info-content">
+            <view class="p p-name-subject">
+              <view class="i fz-32">{{teacherInfo.teacher_name}}</view>
+              <label class="s-address">
+                <text class="iconfont icon-coordinates_fill"></text>
+                <text class="text-hidden">{{teacherInfo.group_name}}</text>
+              </label>
+            </view>
+            <view class="p fz-24 color-green">
+              {{teacherInfo.teacher_specialty[0]}} · {{stat.teacher_years}}年教龄 · 推荐指数{{stat.recommend_index}} · 出勤分{{stat.attendance_score}}
+            </view>
+            <view class="teacher-tag">
+              <label class="teacher-tag-in" wx:for="{{teacherTagArr}}" wx:for-item="tag" wx:key="{{tag}}">{{tag}}</label>
+            </view>
+          </view>
+        </view>
+
+        <!-- 满意度评价 -->
+        <view class="comment-star">
+          <view class="ul comment-star-ul">
+            <view class="li">
+              <view class="h2">满意度评价</view>
+              <view class="more-star">
+                <label
+                  wx:for="{{defaults.starArr}}"
+                  wx:key="{{num}}"
+                  wx:for-item="num"
+                  wx:for-index="i"
+                  class="star {{comment.comment_score > i ? 'star-active': ''}}"
+                  data-num="{{num}}"
+                  bind:tap="onStar"
+                >
+                  <text class="iconfont icon-collection_fill"></text>
+                </label>
+              </view>
+              <label class="star-tip">{{status[comment.comment_score]}}</label>
+            </view>
+          </view>
+          <view class="textarea-box">
+            <!-- <view v-show="toggleTextarea" class="textarea">
+              <label v-show="comment.comment_content">{{comment.comment_content}}</label>
+              <label v-show="!comment.comment_content" class="color-ccc">请输入对老师的评价</label>
+            </view> -->
+            <textarea placeholder-style="color: #cccccc; font-size: 30rpx;" placeholder="请输入对老师的评价" bindinput="onCommentContent" value="{{comment.comment_content}}" />
+            <label class="zi-num">{{comment.comment_content.length}}/300</label>
+          </view>
+        </view>
+
+        <!-- 给老师打标签 -->
+        <view class="hit-tag">
+          <view class="hit-tag-in">
+            <view class="p clearfix tag-top">
+              <label class="fl h3">课程报告</label>
+              <label class="fr fz-24 {{!isLoadingReport ? 'color-orange' : 'color-ccc'}}" data-type="report" bind:tap="onAnotherBatch">换一批</label>
+            </view>
+            <view class="ul tag-ul">
+              <view
+                class="li {{comment.comment_report_tag_id === item.comment_tag_id ? 'checked-active': '' }}"
+                wx:for="{{defaults.report}}"
+                wx:key="{{item.comment_tag_id}}"
+                data-id="{{item.comment_tag_id}}"
+                data-type="report"
+                bind:tap="onChecked"
+              >
+                {{item.comment_tag_content}}
+              </view>
+            </view>
+          </view>
+          <view class="hit-tag-in">
+            <view class="p clearfix tag-top">
+              <label class="fl h3">教学态度</label>
+              <label class="fr fz-24 {{!isLoadingAttitude ? 'color-orange' : 'color-ccc'}}" data-type="attitude" bind:tap="onAnotherBatch">换一批</label>
+            </view>
+            <view class="ul tag-ul">
+              <view
+                class="li {{comment.comment_attitude_tag_id === item.comment_tag_id ? 'checked-active' : ''}}"
+                wx:for="{{defaults.attitude}}"
+                wx:key="{{item.comment_tag_id}}"
+                data-id="{{item.comment_tag_id}}"
+                data-type="attitude"
+                bind:tap="onChecked"
+                >
+                {{item.comment_tag_content}}
+              </view>
+            </view>
+          </view>
+          <view class="hit-tag-in">
+            <view class="p clearfix tag-top">
+              <label class="fl h3">能力提升</label>
+              <label class="fr fz-24 {{!isLoadingAbility ? 'color-orange' : 'color-ccc'}}" data-type="ability" bind:tap="onAnotherBatch">换一批</label>
+            </view>
+            <view class="ul tag-ul">
+              <view
+                class="li {{comment.comment_ability_tag_id === item.comment_tag_id ? 'checked-active' : ''}}"
+                wx:for="{{defaults.ability}}"
+                wx:key="{{item.comment_tag_id}}"
+                data-id="{{item.comment_tag_id}}"
+                data-type="ability"
+                bind:tap="onChecked"
+                >
+                {{item.comment_tag_content}}
+              </view>
+            </view>
+          </view>
+          <view class="hit-tag-in">
+            <view class="p clearfix tag-top">
+              <label class="fl h3">知识获得</label>
+              <label class="fr fz-24 {{!isLoadingKnowledge ? 'color-orange' : 'color-ccc'}}" data-type="knowledge" bind:tap="onAnotherBatch">换一批</label>
+            </view>
+            <view class="ul tag-ul">
+              <view
+                class="li {{comment.comment_knowledge_tag_id === item.comment_tag_id ? 'checked-active' : ''}}"
+                wx:for="{{defaults.knowledge}}"
+                wx:key="{{item.comment_tag_id}}"
+                data-id="{{item.comment_tag_id}}"
+                data-type="knowledge"
+                bind:tap="onChecked"
+                >
+                {{item.comment_tag_content}}
+              </view>
+            </view>
+          </view>
+          <view class="hit-tag-in">
+            <view class="p clearfix tag-top">
+              <label class="fl h3">主题实践</label>
+              <label class="fr fz-24 {{!isLoadingSubject ? 'color-orange' : 'color-ccc'}}" data-type="subject" bind:tap="onAnotherBatch">换一批</label>
+            </view>
+            <view class="ul tag-ul">
+              <view
+                class="li {{comment.comment_subject_tag_id === item.comment_tag_id ? 'checked-active' : ''}}"
+                wx:for="{{defaults.subject}}"
+                wx:key="{{item.comment_tag_id}}"
+                data-id="{{item.comment_tag_id}}"
+                data-type="subject"
+                bind:tap="onChecked"
+                >
+                {{item.comment_tag_content}}
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 综合评星 -->
+        <label class="submit-btn" bind:tap="addTeacherComment">提交</label>
+    </view>
+  </view>
