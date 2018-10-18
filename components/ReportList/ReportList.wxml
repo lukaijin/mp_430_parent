@@ -15,13 +15,13 @@
         <image src="{{imgItem}}"  wx:for="{{item.img_list}}" wx:for-index="indexs" wx:for-item="imgItem" wx:key="{{imgItem}}" data-index="{{indexs}}" data-reportIndex="{{index}}" bindtap="_previewImage" />
       </view>
       <view wx:if="{{type === 0}}" class="content_report" bindtap="_toReportDetail" data-reportId="{{item.report_id}}">
-        <image src="{{item.arrange_image}}" style="" />
+        <image src="{{item.arrange_image}}" style=""></image>
         <view class="report_item">
           <view class='title'>{{item.course_name}}</view>
           <view class="tip">快点击孩子头像查看这几节课的情况吧</view>
-          <view class="report_btns ">
-            <span>{{typeList[item.report_type]}}</span>
-            <span class='iconfont icon-enter'></span>
+          <view class="report_btns">
+            <text class="fz-24">{{typeList[item.report_type]}}</text>
+            <text class='iconfont icon-enter fz-32'></text>
           </view>
         </view>
       </view>
@@ -30,7 +30,7 @@
         <view class="iconfont icon-like_fill avtive like_icons" wx:if="{{item.is_like}}" bindtap="_updateReportZan" data-reportid="{{item.report_id}}" data-orlike="{{item.is_like}}" data-index="{{index}}">
           <text class="like_num">{{item.like_list.length}}</text>
         </view>
-        <view class="iconfont icon-like avtive_1 like_icons " else bindtap="_updateReportZan" data-reportid="{{item.report_id}}" data-orlike="{{item.is_like}}" data-index="{{index}}">
+        <view class="iconfont icon-like avtive_1 like_icons " bindtap="_updateReportZan" data-reportid="{{item.report_id}}" data-orlike="{{item.is_like}}" data-index="{{index}}" wx:else>
           <text wx:if="{{item.like_list.length != 0}}" class="like_num">{{item.like_list.length}}</text>
         </view>
         <view class="iconfont icon-message comment_icons" bindtap="_toComment" data-reportId="{{item.report_id}}" wx:if="{{allowComment}}"></view>
@@ -38,7 +38,7 @@
       <view class="like_headimg"wx:if="{{item.like_list.length != 0}}">
         <view>{{item.like_list.length}}个人已点赞</view>
         <view class="headimgurl_list">
-          <image src="{{itemImage.wx_headimgurl}}?x-oss-process=image/resize,m_fill,h_140,w_140" wx:for="{{item.like_list}}" wx:for-item="itemImage" wx:for-index="{{indexImage}}" wx:key="{{indexImage}}" style="'z-index':10-{{indexImage}}" wx:if="{{indexImage< 5}}" />
+          <image src="{{(itemImage.child_headimgurl || itemImage.wx_headimgurl) + '?x-oss-process=image/resize,m_fill,h_140,w_140'}}" wx:for="{{item.like_list}}" wx:for-item="itemImage" wx:for-index="indexImage" wx:key="{{indexImage}}" style="'z-index':10-{{indexImage}}" wx:if="{{indexImage< 5}}" />
           <view wx:if="{{item.like_list.length>=6}}" class="mode_img">
             <text>...</text>
           </view>
@@ -49,38 +49,38 @@
           <view>
             <view wx:if="{{!(repyItem.to_user_name && repyItem.to_user_type)}}">
               <view class="repyItem">
-                <image class="repyItem_image" src="{{(repyItem.from_headimgurl || repyItem.from_wx_headimgurl) + '?x-oss-process=image/resize,m_fill,h_140,w_140'}}" />
+                <image class="repyItem_image" src="{{(repyItem.from_child_headimgurl || repyItem.from_headimgurl || repyItem.from_wx_headimgurl) + '?x-oss-process=image/resize,m_fill,h_140,w_140'}}" />
                 <view class="right">
-                  {{repyItem.from_user_name ||repyItem.from_wx_nickname}}
+                  {{repyItem.from_child_name || repyItem.from_user_name ||repyItem.from_wx_nickname}}
                 </view>
               </view>
-              <view class="repy_contents" longpress="_longtap" data-repyItem="{{repyItem}}" data-reportId="{{item.report_id}}" data-repyIndex="{{repyIndex}}" data-index="{{index}}">
+              <view class="repy_contents" bindlongpress="_longtap" data-repyItem="{{repyItem}}" data-reportId="{{item.report_id}}" data-repyIndex="{{repyIndex}}" data-index="{{index}}">
                 <view class='repy_contents-item'>{{repyItem.reply_content}}</view>
                 <view wx:if='{{repyItem.reply_images}}' class="reply_image">
-                  <image src="{{reply_images + '?x-oss-process=image/resize,m_fill,h_150,w_150'}}" wx:for="repyItem.reply_images" wx:key='{{imagesIndex}}' wx:for-item="reply_images" wx:for-index="imagesIndex" class="reply_image-item" bindtap="_previewImage" data-imagesIndex="{{imagesIndex}}" data-index="{{index}}" data-repyIndex="{{repyIndex}}"/>
+                  <image src="{{reply_images}}?x-oss-process=image/resize,m_fill,h_150,w_150" wx:for="{{repyItem.reply_images}}" wx:key='{{imagesIndex}}' wx:for-item="reply_images" wx:for-index="imagesIndex" class="reply_image-item" bindtap="_previewImage" data-imagesIndex="{{imagesIndex}}" data-index="{{index}}" data-repyIndex="{{repyIndex}}"/>
                 </view>
-                <view class="reply" bindtap="_toComment" data-repyItem="{{repyItem}}" data-reportId="{{item.report_id}}" data-ReplyId = "{{repyItem.report_reply_id}}">回复</view>
+                <view class="reply" bindtap="_toComment" data-repyItem="{{repyItem}}" data-reportId="{{item.report_id}}" data-replyId = "{{repyItem.report_reply_id}}">回复</view>
               </view>
               <view class='repy_item-content'wx:if="{{repyItem.send_reply_list.length != 0}}">
-                <view wx:for="{{repyItem.send_reply_list}}" wx:key="{{contentIndex}}"  data-contentIndex="{{contentIndex}}"  data-repyItem="{{repyContent}}" data-reportId="{{item.report_id}}" data-ReplyId = "{{repyItem.report_reply_id}}"  data-repyIndex="{{repyIndex}}" data-index="{{index}}" data-contentIndex="{{contentIndex}}" longpress="_longtap"  bindtap="_toComment" >
+                <view wx:for="{{repyItem.send_reply_list}}" wx:for-item="repyContent" wx:for-index="contentIndex" wx:key="{{contentIndex}}"  data-contentIndex="{{contentIndex}}"  data-repyItem="{{repyContent}}" data-reportId="{{item.report_id}}" data-replyId = "{{repyItem.report_reply_id}}"  data-repyIndex="{{repyIndex}}" data-index="{{index}}" data-contentIndex="{{contentIndex}}" bindlongpress="_longtap"  bindtap="_toComment">
                   <view wx:if="{{repyContent.to_user_id === repyItem.from_user_id && repyContent.to_user_type === repyItem.from_user_type}}" class='mains'>
                     <view class="main">
-                      <view class="name">{{repyContent.from_user_name || repyContent.from_wx_nickname}}：</view>
+                      <view class="name">{{repyContent.from_child_name || repyContent.from_user_name || repyContent.from_wx_nickname}}：</view>
                       <view class="content">{{repyContent.reply_content}}</view>
                     </view>
                     <view wx:if='{{repyContent.reply_images}}' class="reply_image">
-                      <image src="{{content_image+'?x-oss-process=image/resize,m_fill,h_150,w_150'}}" wx:for="{{repyContent.reply_images}}" wx:key='{{content_index}}' wx:for-item="content_image" wx:for-index="content_index" class="reply_image-item" bindtap="_previewImage" data-imagesIndex="{{imagesIndex}}" data-index="{{index}}" data-repyIndex="{{repyIndex}}" data-contentIndex="{{contentIndex}}" data-content_index="{{content_index}}"
+                      <image src="{{content_image+'?x-oss-process=image/resize,m_fill,h_150,w_150'}}" wx:for="{{repyContent.reply_images}}" wx:key='{{content_index}}' wx:for-item="content_image" wx:for-index="content_index" class="reply_image-item" catchtap="_previewImage" data-imagesIndex="{{content_index}}" data-index="{{index}}" data-repyIndex="{{repyIndex}}" data-contentIndex="{{contentIndex}}" data-content_index="{{content_index}}"
                       />
                     </view>
                   </view>
-                  <view else class='mains'>
+                  <view  class='mains' wx:else>
                     <view class="main">
-                      <view class="name">{{repyContent.from_user_name || repyContent.from_wx_nickname}}
-                        <span style="color:#333;margin:0 10rpx;">回复</span>{{repyContent.to_user_name || repyContent.to_wx_nickname}}：</view>
+                      <view class="name">{{repyContent.from_child_name || repyContent.from_user_name || repyContent.from_wx_nickname}}
+                        <span style="color:#333;margin:0 10rpx;">回复</span>{{repyContent.to_child_name || repyContent.to_user_name || repyContent.to_wx_nickname}}：</view>
                       <view class="content">{{repyContent.reply_content}}</view>
                     </view>
                     <view wx:if='repyContent.reply_images' class="reply_image">
-                      <image src="{{content_image+'?x-oss-process=image/resize,m_fill,h_150,w_150'}}" wx:for="repyContent.reply_images" wx:key='content_index' wx:for-index="{{content_index}}" wx:for-item="{{content_image}}" class="reply_image-item" bindtap="_previewImage" data-contentIndex="{{contentIndex}}" data-index="{{index}}" data-content_index="{{content_index}}" data-repyIndex="{{repyIndex}}"
+                      <image src="{{content_image+'?x-oss-process=image/resize,m_fill,h_150,w_150'}}" wx:for="{{repyContent.reply_images}}" wx:key='content_index' wx:for-index="content_index" wx:for-item="content_image" class="reply_image-item" catchtap="_previewImage" data-contentIndex="{{contentIndex}}" data-index="{{index}}" data-content_index="{{content_index}}" data-repyIndex="{{repyIndex}}"
                       />
                     </view>
                   </view>

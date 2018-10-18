@@ -98,12 +98,12 @@ Page({
         this.setData({ allowComment: Number(res) })
       })
   },
-  _extract () {
-    this.setData({ orShowPopul_1: true })
-  },
-  _close1 () {
-    this.setData({ orShowPopul_1: false })
-  },
+  // _extract () {
+  //   this.setData({ orShowPopul_1: true })
+  // },
+  // _close1 () {
+  //   this.setData({ orShowPopul_1: false })
+  // },
   _init () {
     this.data.offset = 0
     this.data.limit = 3
@@ -141,49 +141,49 @@ Page({
   _next () {
     this.setData({ next: true })
   },
-  _formSubmit (e) {
-    if (!this.data.value) {
-      wx.showToast({
-        url: '请先填写心愿'
-      })
-    }
-    if (!e.detail.value.scroll) {
-      wx.showToast({
-        url: '请先填写心愿积分且不为0'
-      })
-    }
-    let parmes = {
-      wish_score: e.detail.value.scroll,
-      wish_desc: this.data.value,
-      arrange_id: this.data.arrangeId
-    }
-    this.setData({ next: true })
-    this._setWish(parmes)
-  },
+  // _formSubmit (e) {
+  //   if (!this.data.value) {
+  //     wx.showToast({
+  //       url: '请先填写心愿'
+  //     })
+  //   }
+  //   if (!e.detail.value.scroll) {
+  //     wx.showToast({
+  //       url: '请先填写心愿积分且不为0'
+  //     })
+  //   }
+  //   let parmes = {
+  //     wish_score: e.detail.value.scroll,
+  //     wish_desc: this.data.value,
+  //     arrange_id: this.data.arrangeId
+  //   }
+  //   this.setData({ next: true })
+  //   this._setWish(parmes)
+  // },
   _inputValue (e) {
     this.setData({ value: e.detail.value })
   },
-  _setWish (parmes) {
-    wx.showLoading({
-      text: '加载中...'
-    })
-    api.setWish(parmes).then(res => {
-      wx.hideLoading()
-      this._getWishList()
-    })
-  },
-  _getWishList (e) {
-    let parmes = {
-      arrange_id: this.data.arrangeId
-    }
-    api.getWishList(parmes).then(res => {
-      this.setData({
-        wishList: res.classmate_wish,
-        myWish: res.my_wish,
-        courseTotalScore: res.course_total_score
-       })
-    })
-  },
+  // _setWish (parmes) {
+  //   wx.showLoading({
+  //     text: '加载中...'
+  //   })
+  //   api.setWish(parmes).then(res => {
+  //     wx.hideLoading()
+  //     this._getWishList()
+  //   })
+  // },
+  // _getWishList (e) {
+  //   let parmes = {
+  //     arrange_id: this.data.arrangeId
+  //   }
+  //   api.getWishList(parmes).then(res => {
+  //     this.setData({
+  //       wishList: res.classmate_wish,
+  //       myWish: res.my_wish,
+  //       courseTotalScore: res.course_total_score
+  //      })
+  //   })
+  // },
   _newReportList () {
     let parmes = {
       arrange_id: this.data.arrangeId,
@@ -203,50 +203,60 @@ Page({
       })
     })
   },
-  _like (val) {
-    // api.updateReportZan(val).then(res => {
-    //   this.$set(this.newReportList[val.index], 'is_like', val.like)
-    //   let userInfo = wx.getStorageSync('userInfo')
-    //   if (val.like) {
-    //     let userLike = [
-    //       {
-    //         parent_id: userInfo.parent_id,
-    //         wx_headimgurl: userInfo.avatarUrl + '?x-oss-process=image/resize,m_fill,h_140,w_140',
-    //         wx_nickname: userInfo.nickName
-    //       }
-    //     ]
-    //     let likeList = this.newReportList[val.index].like_list.concat(
-    //       userLike
-    //     )
-    //     this.$set(this.newReportList[val.index], 'like_list', likeList)
-    //     this.$set(this.newReportList[val.index], 'show', 1)
-    //     this._setTime()
-    //     wx.showToast({
-    //       title: '点赞成功'
-    //     })
-    //   } else {
-    //     wx.showToast({
-    //       title: '取消点赞'
-    //     })
-    //     let likeList = this.newReportList[val.index].like_list
-    //     this.$set(this.newReportList[val.index], 'show', 0)
-    //     likeList.forEach((res, index) => {
-    //       if (res.parent_id === userInfo.parent_id) {
-    //         this.newReportList[val.index].like_list.splice(index, 1)
-    //         this.$set(this.newReportList[val.index], 'like_list', likeList)
-    //         return false
-    //       }
-    //     })
-    //   }
-    // })
+  _like (event) {
+    let val = event.detail
+    api.updateReportZan(val).then(res => {
+      let isLike =  `newReportList[${val.index}].is_like`
+      let show = `newReportList[${val.index}].show`
+      let items= `newReportList[${val.index}].like_list`
+      this.setData({
+        [isLike]: val.like
+      })
+      let userInfo = wx.getStorageSync('userInfo')
+      if (val.like) {
+        wx.showToast({
+          title: '点赞成功'
+        })
+        let userLike = [
+          {
+            parent_id: userInfo.parent_id,
+            wx_headimgurl: userInfo.avatarUrl + '?x-oss-process=image/resize,m_fill,h_140,w_140',
+            wx_nickname: userInfo.nickName
+          }
+        ]
+        let likeList = this.data.newReportList[val.index].like_list.concat(
+          userLike
+        )
+        this.setData({
+          [items]: likeList,
+          [show]: 1
+        })
+        this._setTime()
+      } else {
+        wx.showToast({
+          title: '取消点赞'
+        })
+        let likeList = this.data.newReportList[val.index].like_list
+        this.setData({
+          [show]:0
+        })
+        likeList.forEach((res, index) => {
+          if (res.parent_id === userInfo.parent_id) {
+            this.data.newReportList[val.index].like_list.splice(index, 1)
+            this.setData({
+              [items]: likeList
+            })
+            return false
+          }
+        })
+      }
+    })
   },
-  _deteilComment (val) {
-    console.log(val, 'val')
+  _deteilComment (event) {
+    let val = event.detail
+    console.log(val,"val")
     val.from_user_type = Number(val.from_user_type)
-    if (
-      val.from_user_id === wx.getStorageSync('userInfo').parent_id &&
-      val.from_user_type === 2
-    ) {
+    if ( val.from_user_id === wx.getStorageSync('userInfo').parent_id && val.from_user_type === 2) {
       let parmes = {
         report_reply_id: val.report_reply_id,
         from_user_id: val.from_user_id,
@@ -258,28 +268,18 @@ Page({
         success: res => {
           if (res.confirm) {
             api.deleteReportReply(parmes).then(res => {
-              // if (val.contentIndex === 0 || val.contentIndex) {
-              //   // contentIndex :删除二级评论
-              //   let repyList = this.newReportList[val.index].first_reply_list
-              //   this.newReportList[val.index].first_reply_list[val.repyIndex].send_reply_list.splice(val.contentIndex, 1)
-              //   this.$set(
-              //     this.newReportList[val.index],
-              //     'first_reply_list',
-              //     repyList
-              //   )
-              //   this.$forceUpdate()
-              // } else {
-              //   // contentIndex :删除一级评论
-              //   let repyList = this.newReportList[val.index].first_reply_list
-              //   this.newReportList[val.index].first_reply_list.splice(val.repyIndex, 1)
-              //   this.$set(
-              //     this.newReportList[val.index],
-              //     'first_reply_list',
-              //     repyList
-              //   )
-              //   this.$forceUpdate()
-              // }
-
+              let repyList = this.data.newReportList[val.index].first_reply_list
+              if (val.contentIndex === 0 || val.contentIndex) {
+                // contentIndex :删除二级评论
+                this.data.newReportList[val.index].first_reply_list[val.repyIndex].send_reply_list.splice(val.contentIndex, 1)
+              } else {
+                // contentIndex :删除一级评论
+                this.data.newReportList[val.index].first_reply_list.splice(val.repyIndex, 1)
+              }
+              let firstReplyList = `newReportList[${val.index}].first_reply_list`
+              this.setData({
+                [firstReplyList]: repyList
+              })
               wx.showToast({
                 title: '已删除'
               })
@@ -289,21 +289,23 @@ Page({
       })
     }
   },
-  _previewImage (imagesIndex, index, repyIndex, contentIndex) {
-    // this.isPreviewImage = true
-    // if (contentIndex === 0 || contentIndex) {
-    //   let url = this.newReportList[index].first_reply_list[repyIndex].send_reply_list[imagesIndex].reply_images
-    //   wx.previewImage({
-    //     urls: url,
-    //     current: url[contentIndex]
-    //   })
-    // } else {
-    //   let url = this.newReportList[index].first_reply_list[repyIndex].reply_images
-    //   wx.previewImage({
-    //     urls: url,
-    //     current: url[imagesIndex]
-    //   })
-    // }
+  _previewImage (event) {
+    let item = event.detail
+    this.data.isPreviewImage = true
+    if (item.contentIndex === 0 || item.contentIndex) {
+      console.log(this.data.newReportList[item.index].first_reply_list[item.repyIndex].send_reply_list)
+      let url = this.data.newReportList[item.index].first_reply_list[item.repyIndex].send_reply_list[item.contentIndex].reply_images
+      wx.previewImage({
+        urls: url,
+        current: url[item.imagesIndex]
+      })
+    } else {
+      let url = this.data.newReportList[item.index].first_reply_list[item.repyIndex].reply_images
+      wx.previewImage({
+        urls: url,
+        current: url[item.imagesIndex]
+      })
+    }
   },
   _sendGuanzhuCourse (e) {
     let num = e.detail

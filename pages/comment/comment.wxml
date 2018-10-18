@@ -1,0 +1,21 @@
+<view class="comment">
+    <navigator-bar title="发表评论"></navigator-bar>
+      <view class="comment_item">
+        <view class='textarea'>
+        <textarea placeholder="输入文字评论"  bindinput="_bindinput" maxlength="{{limit}}" placeholder-style="color:#ccc"/>
+        <view class="limit"><text>{{value.length}}</text>/{{limit}}</view>
+      </view>
+      <view class="addPhone">
+          <view class="upload">
+            <view class="iconUpload" bindtap="_chooseImage" wx:if="{{file.length<9}}">
+              <text class="iconfont icon-jiahao"></text>
+            </view>
+            <view class="loadImg border_gray-01" bindtap="_previewImage"  wx:for="{{file}}" data-index="{{index}}" wx:key="item">
+              <image  class="upLoad_img" src="{{item+'?x-oss-process=image/resize,m_fill,h_75,w_75'}}" data-imgindex="index" mode="aspectFill"/>
+              <text class="iconfont icon-close closeBtns" catchtap="_delImage" data-index="{{index}}"></text>
+            </view>
+          </view>
+      </view>
+      <button bindtap="_submit" class="submit {{(!value&& file.length === 0 )?'actives':'actives_1'}}">提交</button>
+    </view>
+  </view>

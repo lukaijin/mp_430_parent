@@ -25,6 +25,7 @@
     "pages/publish/publish",
     "pages/teacherComment/teacherComment",
     "pages/poster/poster",
+    "pages/comment/comment",
     "pages/submitWork/submitWork"
   ],
   "window": {
